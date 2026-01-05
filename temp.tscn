@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://6lhwmnuamvft"]
+
+[ext_resource type="PackedScene" uid="uid://bbd0aduf4k1tp" path="res://components/characters/knight/knight.tscn" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://components/characters/skeleton archer/skeleton archer.tscn" id="2_ufh25"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e48y"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="knight" parent="." instance=ExtResource("1_wtcfe")]
+position = Vector2(71, -71)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_0e48y")
+
+[node name="Skeleton Archer" parent="." instance=ExtResource("2_ufh25")]
+position = Vector2(330, -74)
