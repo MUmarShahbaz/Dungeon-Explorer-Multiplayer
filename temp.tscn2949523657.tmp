@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://6lhwmnuamvft"]
+[gd_scene load_steps=6 format=3 uid="uid://6lhwmnuamvft"]
 
 [ext_resource type="PackedScene" uid="uid://bbd0aduf4k1tp" path="res://components/characters/knight/knight.tscn" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://components/characters/skeleton archer/skeleton archer.tscn" id="2_ufh25"]
 [ext_resource type="TileSet" uid="uid://2nk5y54dgy8h" path="res://assets/tilemap/traps.tres" id="3_k81e3"]
 [ext_resource type="Script" uid="uid://hty4wsqfi05u" path="res://assets/tilemap/traps.gd" id="4_f68d1"]
-[ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/main.tres" id="5_h2clf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e48y"]
 
@@ -19,13 +18,9 @@ position = Vector2(71, -71)
 shape = SubResource("WorldBoundaryShape2D_0e48y")
 
 [node name="Skeleton Archer" parent="." instance=ExtResource("2_ufh25")]
-position = Vector2(-4, -37)
+position = Vector2(330, -74)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAIAP//AAALAAgAAAAJAP//AAALAAgAAAAKAP//AAALAAgAAAALAP//AAALAAgAAAAMAP//AAALAAgAAAANAP//AAALAAgAAAAOAP//AAALAAgAAAAPAP//AAALAAgAAAAQAP//AAALAAgAAAARAP//AAALAAgAAAASAP//AAALAAgAAAAIAP7/AAAPAAYAAAAJAP7/AAAPAAYAAAAKAP7/AAAPAAYAAAALAP7/AAAPAAYAAAAMAP7/AAAPAAYAAAANAP7/AAAPAAYAAAAOAP7/AAAPAAYAAAAPAP7/AAAPAAYAAAAQAP7/AAAPAAYAAAARAP7/AAAPAAYAAAASAP7/AAAPAAYAAAAHAP7/AAAPAAYAAAA=")
+tile_map_data = PackedByteArray(0, 0, 4, 0, 255, 255, 0, 0, 15, 0, 6, 0, 0, 0, 8, 0, 255, 255, 0, 0, 11, 0, 8, 0, 0, 0)
 tile_set = ExtResource("3_k81e3")
 script = ExtResource("4_f68d1")
-
-[node name="TileMapLayer2" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAADAP//AAADAAoAAAAEAP//AAAEAAoAAAAFAP//AAAFAAoAAAA=")
-tile_set = ExtResource("5_h2clf")
