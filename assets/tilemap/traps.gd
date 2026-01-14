@@ -6,7 +6,13 @@ var cells = {
 	"spikes_out" : Vector2i(12, 8)
 }
 
+var TRAPS_CONTAINER
+
 func _ready() -> void:
+	TRAPS_CONTAINER = Node2D.new()
+	TRAPS_CONTAINER.name = "Traps"
+	get_tree().get_current_scene().add_child.call_deferred(TRAPS_CONTAINER)
+	
 	for cell in get_used_cells():
 		match get_cell_atlas_coords(cell):
 			cells.breakable_floors:
@@ -26,8 +32,11 @@ func create_area(cell, local_position, handler):
 	area.add_child(collider)
 	area.global_position = map_to_local(cell) + local_position
 	area.body_entered.connect(Callable(self, handler).bind(area, cell))
-	area.collision_mask = 3
-	get_tree().get_current_scene().add_child.call_deferred(area)
+	area.set_collision_mask_value(1, false)
+	area.set_collision_mask_value(2, true)
+	area.name = handler + "(" + str(cell.x) + "," + str(cell.y) + ")"
+	
+	TRAPS_CONTAINER.add_child.call_deferred(area)
 
 func break_floor(body, floor_piece : Area2D, cell):
 	if body is not Player: return
