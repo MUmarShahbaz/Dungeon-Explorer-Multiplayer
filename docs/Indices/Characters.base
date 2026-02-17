@@ -1,0 +1,10 @@
+views:
+  - type: cards
+    name: Cards
+    filters:
+      and:
+        - file.folder == "Characters"
+    order:
+      - file.basename
+    cardSize: 140
+    imageAspectRatio: 1

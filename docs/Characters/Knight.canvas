@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"463fc846d7d245a4","type":"group","x":200,"y":680,"width":980,"height":920,"label":"Melee Attack"},
+		{"id":"c00a0aa181dc447c","type":"file","file":"ECS/Player.md","x":-480,"y":-60,"width":400,"height":400},
+		{"id":"c0e44e8adff09d0f","type":"file","file":"ECS/Entity.md","x":-480,"y":-540,"width":400,"height":400},
+		{"id":"01a026b22b6be197","type":"text","text":"**Knight**","x":-405,"y":400,"width":250,"height":60},
+		{"id":"6716809b85caaaf8","type":"file","file":"MISC/Buffer.md","x":-240,"y":620,"width":400,"height":400},
+		{"id":"7eb81a809b34e56d","type":"file","file":"AC/Shield.md","x":-680,"y":620,"width":400,"height":400},
+		{"id":"bca6d327004e1c5d","type":"file","file":"AC/Melee Controller.md","x":220,"y":700,"width":400,"height":400},
+		{"id":"e4b341b1e19570bc","type":"file","file":"RES/Melee Attack.md","x":220,"y":1180,"width":400,"height":400},
+		{"id":"dd0cf099b562b40e","type":"file","file":"AC/Damage Zone.md","x":760,"y":940,"width":400,"height":400}
+	],
+	"edges":[
+		{"id":"3a7427e08c528024","fromNode":"c0e44e8adff09d0f","fromSide":"bottom","toNode":"c00a0aa181dc447c","toSide":"top"},
+		{"id":"3b59219eb9dc8d12","fromNode":"bca6d327004e1c5d","fromSide":"right","toNode":"dd0cf099b562b40e","toSide":"left"},
+		{"id":"c18bb21426776ef8","fromNode":"e4b341b1e19570bc","fromSide":"right","toNode":"dd0cf099b562b40e","toSide":"left"},
+		{"id":"b9246852ca7632d5","fromNode":"c00a0aa181dc447c","fromSide":"bottom","toNode":"01a026b22b6be197","toSide":"top"},
+		{"id":"08131f35bb6c9c5f","fromNode":"01a026b22b6be197","fromSide":"bottom","toNode":"6716809b85caaaf8","toSide":"top"},
+		{"id":"e32d721455d9a57a","fromNode":"01a026b22b6be197","fromSide":"bottom","toNode":"7eb81a809b34e56d","toSide":"top"},
+		{"id":"3087005555f7fa6f","fromNode":"6716809b85caaaf8","fromSide":"bottom","toNode":"463fc846d7d245a4","toSide":"left"}
+	]
+}

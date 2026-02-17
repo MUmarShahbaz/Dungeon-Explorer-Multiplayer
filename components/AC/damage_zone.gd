@@ -1,0 +1,30 @@
+extends Area2D
+class_name DamageZone
+
+@onready var collider = get_children()[0]
+@onready var parent : Entity = get_parent()
+@onready var ray : RayCast2D = RayCast2D.new()
+
+func _ready() -> void:
+	set_collision_mask_value(1, false)
+	set_collision_mask_value(2, parent is Enemy)
+	set_collision_mask_value(3, parent is Player)
+	ray.enabled = false
+	ray.set_collision_mask_value(5, true)
+	parent.add_child.call_deferred(ray)
+
+func damage_all(amount):
+	ray.enabled = true
+	for body in get_overlapping_bodies():
+		if body is not Entity or obstruction_check(body): continue
+		body.take_damage(amount)
+	ray.enabled = false
+
+func obstruction_check(target : Entity) -> bool:
+	ray.target_position = to_local(target.global_position)
+	ray.force_raycast_update()
+	if ray.is_colliding() : return true
+	else : return false
+
+func flip():
+	collider.scale.x *= -1

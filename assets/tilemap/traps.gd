@@ -50,6 +50,6 @@ func activate_spike(body, spike_piece : Area2D, cell):
 		await get_tree().create_timer(0.5).timeout
 		set_cell(cell, 0, cells.spikes_out, 0)
 	for this_body in spike_piece.get_overlapping_bodies():
-		if this_body is Player: (this_body as Player).take_damage(10000)
+		if this_body is Player: (this_body as Player).die()
 	await get_tree().create_timer(1.5).timeout
 	set_cell(cell, 0, cells.spikes_in, 0)

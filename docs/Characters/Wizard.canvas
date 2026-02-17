@@ -1,0 +1,18 @@
+{
+	"nodes":[
+		{"id":"c0d0f1593d1c08e6","type":"group","x":-760,"y":560,"width":985,"height":940,"label":"Projectiles"},
+		{"id":"c00a0aa181dc447c","type":"file","file":"ECS/Player.md","x":-480,"y":-60,"width":400,"height":400},
+		{"id":"c0e44e8adff09d0f","type":"file","file":"ECS/Entity.md","x":-480,"y":-540,"width":400,"height":400},
+		{"id":"01a026b22b6be197","type":"text","text":"**Wizard**","x":-405,"y":400,"width":250,"height":60},
+		{"id":"8d2f1bca77cec4ea","type":"file","file":"RES/Projectile Attack.md","x":-740,"y":1080,"width":400,"height":400},
+		{"id":"87382d698c986f82","type":"file","file":"MISC/Projectile.md","x":-195,"y":840,"width":400,"height":400},
+		{"id":"ebfb2ba20a2f3b7f","type":"file","file":"AC/Projectile Launcher.md","x":-740,"y":580,"width":400,"height":400}
+	],
+	"edges":[
+		{"id":"3a7427e08c528024","fromNode":"c0e44e8adff09d0f","fromSide":"bottom","toNode":"c00a0aa181dc447c","toSide":"top"},
+		{"id":"b9246852ca7632d5","fromNode":"c00a0aa181dc447c","fromSide":"bottom","toNode":"01a026b22b6be197","toSide":"top"},
+		{"id":"87326fdc8305e069","fromNode":"ebfb2ba20a2f3b7f","fromSide":"right","toNode":"87382d698c986f82","toSide":"left"},
+		{"id":"563c8aafb3ac5a86","fromNode":"8d2f1bca77cec4ea","fromSide":"right","toNode":"87382d698c986f82","toSide":"left"},
+		{"id":"de7343f9864ddb83","fromNode":"01a026b22b6be197","fromSide":"bottom","toNode":"c0d0f1593d1c08e6","toSide":"top"}
+	]
+}

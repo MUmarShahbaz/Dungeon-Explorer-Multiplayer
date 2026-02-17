@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp323yc8k4qgy"]
+
+[ext_resource type="Texture2D" uid="uid://d3mvi5v8yfo00" path="res://assets/sprites/knight.png" id="1_oh732"]
+[ext_resource type="Texture2D" uid="uid://dfsnggtsf1qi2" path="res://assets/sprites/wizard.png" id="2_b0rrl"]
+
+[node name="Player Selector" type="CanvasLayer"]
+
+[node name="Selector" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SplitContainer" type="VBoxContainer" parent="Selector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.5
+offset_top = -250.0
+offset_right = 186.5
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="Selector/SplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="Knight" type="TextureButton" parent="Selector/SplitContainer/GridContainer"]
+custom_minimum_size = Vector2(186.5, 186.5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("1_oh732")
+stretch_mode = 6
+
+[node name="Wizard" type="TextureButton" parent="Selector/SplitContainer/GridContainer"]
+custom_minimum_size = Vector2(186.5, 186.5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("2_b0rrl")
+stretch_mode = 6
+
+[node name="Dwarf" type="TextureButton" parent="Selector/SplitContainer/GridContainer"]
+custom_minimum_size = Vector2(186.5, 186.5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("1_oh732")
+stretch_mode = 6
+
+[node name="Robot" type="TextureButton" parent="Selector/SplitContainer/GridContainer"]
+custom_minimum_size = Vector2(186.5, 186.5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("1_oh732")
+stretch_mode = 6
+
+[node name="Character Name" type="Label" parent="Selector/SplitContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "CHARACTER"
+horizontal_alignment = 1
+
+[node name="Continue Button" type="Button" parent="Selector/SplitContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
+text = "Continue"

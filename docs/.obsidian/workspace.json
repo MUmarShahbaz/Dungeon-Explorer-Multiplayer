@@ -4,44 +4,44 @@
     "type": "split",
     "children": [
       {
-        "id": "95d7ab35c94f2a1c",
+        "id": "502aa648eecc345e",
         "type": "tabs",
         "children": [
           {
-            "id": "08eb1ad5cb9c5efd",
+            "id": "e34cdd4dbea6bc1e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ECS/Entity.md",
+                "file": "Index.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Entity"
+              "title": "Index"
             },
-            "group": "7f72c72e202fbc11"
+            "group": "bbaba535960c8208"
           }
         ]
       },
       {
-        "id": "263f460d776a9521",
+        "id": "d5c665cc2b92b1a7",
         "type": "tabs",
         "children": [
           {
-            "id": "49688f65f800325e",
+            "id": "bf5dfd31b6e37c4b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ECS/Entity.md",
+                "file": "Index.md",
                 "mode": "preview",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "Entity"
+              "title": "Index"
             },
-            "group": "7f72c72e202fbc11"
+            "group": "bbaba535960c8208"
           }
         ]
       }
@@ -100,7 +100,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "22a9baffdf338c2b",
@@ -178,17 +179,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ECS/Entity.md",
+                "file": "Index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Entity"
+              "title": "Outline of Index"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -206,18 +207,36 @@
       "bases:Create new base": false
     }
   },
-  "active": "08eb1ad5cb9c5efd",
+  "active": "bf5dfd31b6e37c4b",
   "lastOpenFiles": [
-    "ECS/Entity Component System.md",
+    "MISC/CAM.md",
+    "Index.md",
+    "AC/Projectile Launcher.md",
+    "AC/Melee Controller.md",
+    "AC/Damage Zone.md",
+    "MISC/Spawner.md",
+    "Indices/Resource.md",
+    "Indices/Characters.base",
+    "Indices/Miscellaneous Components.md",
+    "Indices/Entity Component System.md",
+    "Indices/Ability Components.md",
+    "Indices",
+    "Characters.md",
+    "Characters/Wizard.canvas",
+    "Characters/Knight.canvas",
     "ECS/Entity.md",
-    "AC/Ability Components.md",
-    "Untitled.md",
-    "AC",
+    "RES/Projectile Attack.md",
+    "RES/Melee Attack.md",
+    "MISC/Projectile.md",
+    "MISC/Buffer.md",
+    "AC/Shield.md",
+    "Characters",
+    "MISC",
     "ECS/Enemy.md",
     "ECS/Player.md",
-    "Welcome.md",
-    "Untitled.base",
-    "Untitled.canvas",
+    "AC/Melee.md",
+    "RES",
+    "AC",
     "ECS"
   ]
 }
