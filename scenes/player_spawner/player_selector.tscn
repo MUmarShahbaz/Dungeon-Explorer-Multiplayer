@@ -5,9 +5,11 @@ script/source = "extends CanvasLayer
 class_name PlayerSelector
 
 @export var grid : GridContainer
+@export var label : Label
+@export var continue_btn : Button
 enum characters {Knight, Wizard, Dwarf, Samurai}
 var selected : StringName
-var playable : Array[characters] = [characters.Wizard, characters.Knight, characters.Dwarf, characters.Samurai]
+var playable : Array[characters]
 
 func  _ready() -> void:
 	grid.columns = ceil(sqrt(playable.size()))
@@ -30,15 +32,17 @@ func add_button(my_name: StringName, image : Texture2D):
 	my_button.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	my_button.texture_normal = image
 	my_button.pressed.connect(func ():
-		$\"Selector/SplitContainer/Character Name\".text = my_name
+		label.text = my_name
 		selected = my_name
 	)
 	grid.add_child.call_deferred(my_button)
 "
 
-[node name="Player Selector" type="CanvasLayer" node_paths=PackedStringArray("grid")]
+[node name="Player Selector" type="CanvasLayer" node_paths=PackedStringArray("grid", "label", "continue_btn")]
 script = SubResource("GDScript_6fp4g")
 grid = NodePath("Selector/SplitContainer/GridContainer")
+label = NodePath("Selector/SplitContainer/Character Name")
+continue_btn = NodePath("Selector/SplitContainer/Continue Button")
 
 [node name="Selector" type="Control" parent="."]
 layout_mode = 3

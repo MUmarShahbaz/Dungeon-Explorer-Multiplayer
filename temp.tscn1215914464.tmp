@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://6lhwmnuamvft"]
+[gd_scene load_steps=12 format=4 uid="uid://6lhwmnuamvft"]
 
 [ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/skeleton archer.tscn" id="2_ufh25"]
 [ext_resource type="TileSet" uid="uid://2nk5y54dgy8h" path="res://assets/tilemap/traps.tres" id="3_k81e3"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/main.tres" id="5_h2clf"]
 [ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="6_iyses"]
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/skeleton warrior.tscn" id="7_1nlwk"]
+[ext_resource type="PackedScene" uid="uid://msfapqekcvg1" path="res://scenes/unrefined/hud/hud.tscn" id="8_1nlwk"]
 [ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/skeleton spearman.tscn" id="8_b6ebu"]
 [ext_resource type="Script" uid="uid://b666ndns0368d" path="res://scenes/player_spawner/player_spawner.gd" id="9_b6ebu"]
 
@@ -16,31 +17,28 @@ size = Vector2(220, 118)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Floor" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_0e48y")
 
-[node name="Tilemap layers" type="Node2D" parent="."]
-
-[node name="Traps" type="TileMapLayer" parent="Tilemap layers"]
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAIAP//AAALAAgAAAAJAP//AAALAAgAAAAKAP//AAALAAgAAAALAP//AAALAAgAAAAMAP//AAALAAgAAAANAP//AAALAAgAAAAOAP//AAALAAgAAAAPAP//AAALAAgAAAAQAP//AAALAAgAAAARAP//AAALAAgAAAASAP//AAALAAgAAAAIAP7/AAAPAAYAAAAJAP7/AAAPAAYAAAAKAP7/AAAPAAYAAAALAP7/AAAPAAYAAAAMAP7/AAAPAAYAAAANAP7/AAAPAAYAAAAOAP7/AAAPAAYAAAAPAP7/AAAPAAYAAAAQAP7/AAAPAAYAAAARAP7/AAAPAAYAAAASAP7/AAAPAAYAAAAHAP7/AAAPAAYAAAA=")
 tile_set = ExtResource("3_k81e3")
 script = ExtResource("4_f68d1")
 
-[node name="Main" type="TileMapLayer" parent="Tilemap layers"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAADAP//AAAEAAoAAAAEAP//AAAEAAoAAAAFAP//AAAEAAoAAAACAP//AAAJAAgAAAAGAP//AAAEAAoAAAAGAP7/AAAJAAgAAAAHAP//AAAEAAoAAAAHAP7/AAAIAAgAAAA=")
 tile_set = ExtResource("5_h2clf")
 
-[node name="PlayerSpawner" type="Node2D" parent="."]
-position = Vector2(-515, -87)
-script = ExtResource("9_b6ebu")
-metadata/_custom_type_script = "uid://b666ndns0368d"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("8_1nlwk")]
 
 [node name="Spawner" type="Area2D" parent="." node_paths=PackedStringArray("Spawn_Root")]
 script = ExtResource("6_iyses")
 Mob_Scenes = Array[PackedScene]([ExtResource("2_ufh25"), ExtResource("8_b6ebu"), ExtResource("7_1nlwk")])
-Spawn_Root = NodePath("../Mobs")
+Spawn_Root = NodePath("..")
 Rate = 0.2
 metadata/_custom_type_script = "uid://k0njues52nl2"
 
@@ -48,4 +46,6 @@ metadata/_custom_type_script = "uid://k0njues52nl2"
 position = Vector2(-84, -71)
 shape = SubResource("RectangleShape2D_b6ebu")
 
-[node name="Mobs" type="Node2D" parent="."]
+[node name="PlayerSpawner" type="Node" parent="."]
+script = ExtResource("9_b6ebu")
+metadata/_custom_type_script = "uid://b666ndns0368d"

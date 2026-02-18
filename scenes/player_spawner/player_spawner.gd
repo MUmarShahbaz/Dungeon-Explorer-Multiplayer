@@ -1,9 +1,36 @@
 extends Node2D
+class_name PlayerSpawner
 
-enum characters {Knight, Wizard}
-var already_used: Array[characters] = []
-@export var player_selector : PackedScene
+var already_used: Array[StringName] = []
+var player_selector : PackedScene = preload("res://scenes/player_spawner/player_selector.tscn")
+var hud : PackedScene = preload("res://scenes/unrefined/hud/hud.tscn")
 
+var knight : PackedScene = preload("res://scenes/characters/knight.tscn")
+var wizard : PackedScene = preload("res://scenes/characters/wizard.tscn")
+var dwarf : PackedScene
+var samurai : PackedScene
+
+func _ready() -> void:
+	display_player_selector()
 
 func display_player_selector():
-	get_tree().get_current_scene().add_child.call_deferred(player_selector)
+	var new_selector = player_selector.instantiate()
+	(new_selector.playable as Array).append_array([new_selector.characters.Knight, new_selector.characters.Wizard, new_selector.characters.Dwarf, new_selector.characters.Samurai])
+	(new_selector.continue_btn as Button).pressed.connect(func ():
+		var player : Player
+		match new_selector.selected:
+			"KNIGHT":
+				player = knight.instantiate()
+			"WIZARD":
+				player = wizard.instantiate()
+			"DWARF":
+				player = dwarf.instantiate()
+			"SAMURAI":
+				player = samurai.instantiate()
+		new_selector.queue_free()
+		player.global_position = self.global_position
+		get_tree().get_current_scene().add_child.call_deferred(player)
+		self.add_sibling.call_deferred(hud.instantiate())
+		self.queue_free()
+	)
+	get_tree().get_current_scene().add_child.call_deferred(new_selector)
