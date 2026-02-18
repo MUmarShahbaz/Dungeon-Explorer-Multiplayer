@@ -1,9 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp323yc8k4qgy"]
+[gd_scene load_steps=2 format=3 uid="uid://dp323yc8k4qgy"]
 
-[ext_resource type="Texture2D" uid="uid://d3mvi5v8yfo00" path="res://assets/sprites/knight.png" id="1_oh732"]
-[ext_resource type="Texture2D" uid="uid://dfsnggtsf1qi2" path="res://assets/sprites/wizard.png" id="2_b0rrl"]
+[sub_resource type="GDScript" id="GDScript_6fp4g"]
+script/source = "extends CanvasLayer
+class_name PlayerSelector
 
-[node name="Player Selector" type="CanvasLayer"]
+@export var grid : GridContainer
+enum characters {Knight, Wizard, Dwarf, Samurai}
+var selected : StringName
+var playable : Array[characters] = [characters.Wizard, characters.Knight, characters.Dwarf, characters.Samurai]
+
+func  _ready() -> void:
+	grid.columns = ceil(sqrt(playable.size()))
+	for this_character in playable:
+		match this_character:
+			characters.Knight:
+				add_button(\"KNIGHT\", load(\"res://assets/sprites/knight.png\"))
+			characters.Wizard:
+				add_button(\"WIZARD\", load(\"res://assets/sprites/wizard.png\"))
+			characters.Dwarf:
+				add_button(\"DWARF\", load(\"res://assets/sprites/dwarf.png\"))
+			characters.Samurai:
+				add_button(\"SAMURAI\", load(\"res://assets/sprites/samurai.png\"))
+
+func add_button(my_name: StringName, image : Texture2D):
+	var my_button : TextureButton = TextureButton.new()
+	my_button.name = my_name
+	my_button.stretch_mode = TextureButton.StretchMode.STRETCH_KEEP_ASPECT_COVERED
+	my_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	my_button.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	my_button.texture_normal = image
+	my_button.pressed.connect(func ():
+		$\"Selector/SplitContainer/Character Name\".text = my_name
+		selected = my_name
+	)
+	grid.add_child.call_deferred(my_button)
+"
+
+[node name="Player Selector" type="CanvasLayer" node_paths=PackedStringArray("grid")]
+script = SubResource("GDScript_6fp4g")
+grid = NodePath("Selector/SplitContainer/GridContainer")
 
 [node name="Selector" type="Control" parent="."]
 layout_mode = 3
@@ -32,38 +67,6 @@ alignment = 2
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
-
-[node name="Knight" type="TextureButton" parent="Selector/SplitContainer/GridContainer"]
-custom_minimum_size = Vector2(186.5, 186.5)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource("1_oh732")
-stretch_mode = 6
-
-[node name="Wizard" type="TextureButton" parent="Selector/SplitContainer/GridContainer"]
-custom_minimum_size = Vector2(186.5, 186.5)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource("2_b0rrl")
-stretch_mode = 6
-
-[node name="Dwarf" type="TextureButton" parent="Selector/SplitContainer/GridContainer"]
-custom_minimum_size = Vector2(186.5, 186.5)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource("1_oh732")
-stretch_mode = 6
-
-[node name="Robot" type="TextureButton" parent="Selector/SplitContainer/GridContainer"]
-custom_minimum_size = Vector2(186.5, 186.5)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource("1_oh732")
-stretch_mode = 6
 
 [node name="Character Name" type="Label" parent="Selector/SplitContainer"]
 layout_mode = 2

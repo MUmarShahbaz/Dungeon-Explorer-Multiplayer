@@ -642,7 +642,7 @@ states/walk/position = Vector2(348, 3.79818)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xvblh"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_pma8q"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_y1brm"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_t2new"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_ffo2t"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_kbpb8"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_cu0da"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_lmxp8"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_2xjtu"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_jdx8s"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_o1aex")]
 graph_offset = Vector2(0, 13.2303)
 
-[sub_resource type="Resource" id="Resource_7cuvh"]
+[sub_resource type="Resource" id="Resource_k7qhe"]
 script = ExtResource("8_osokx")
 Animation_Name = "shoot"
 Load_Animation_Frame = 11
@@ -684,5 +684,5 @@ anim_player = NodePath("../anim_player")
 
 [node name="ProjectileLauncher" type="Node" parent="."]
 script = ExtResource("10_bagv5")
-move_list = Array[ExtResource("8_osokx")]([SubResource("Resource_7cuvh")])
+Move_List = Array[ExtResource("8_osokx")]([SubResource("Resource_k7qhe")])
 metadata/_custom_type_script = "uid://cjyum5jemod6g"

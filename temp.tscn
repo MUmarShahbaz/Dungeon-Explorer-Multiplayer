@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=4 uid="uid://6lhwmnuamvft"]
 
-[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/skeleton archer/skeleton archer.tscn" id="2_ufh25"]
+[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/skeleton archer.tscn" id="2_ufh25"]
 [ext_resource type="TileSet" uid="uid://2nk5y54dgy8h" path="res://assets/tilemap/traps.tres" id="3_k81e3"]
 [ext_resource type="Script" uid="uid://hty4wsqfi05u" path="res://assets/tilemap/traps.gd" id="4_f68d1"]
 [ext_resource type="PackedScene" uid="uid://bvyqp60mp8g54" path="res://scenes/unrefined/character_selector/character_selection.tscn" id="5_b6ebu"]
 [ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/main.tres" id="5_h2clf"]
 [ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="6_iyses"]
-[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/skeleton warrior/skeleton warrior.tscn" id="7_1nlwk"]
+[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/skeleton warrior.tscn" id="7_1nlwk"]
 [ext_resource type="PackedScene" uid="uid://msfapqekcvg1" path="res://scenes/unrefined/hud/hud.tscn" id="8_1nlwk"]
-[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/skeleton spearman/skeleton spearman.tscn" id="8_b6ebu"]
+[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/skeleton spearman.tscn" id="8_b6ebu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e48y"]
 

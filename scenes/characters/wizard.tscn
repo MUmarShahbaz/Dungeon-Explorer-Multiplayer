@@ -1,6 +1,5 @@
 [gd_scene load_steps=119 format=3 uid="uid://dy7gi0gjpojrs"]
 
-[ext_resource type="Script" uid="uid://clwn5i2n7xvi7" path="res://scenes/characters/wizard/wizard.gd" id="1_0xpa7"]
 [ext_resource type="Texture2D" uid="uid://45p3i200ixtb" path="res://assets/sprites/players/wizard/Magic_arrow.png" id="2_tmpb7"]
 [ext_resource type="Texture2D" uid="uid://c13r6gvpx3he2" path="res://assets/sprites/players/wizard/Idle.png" id="3_tpcqg"]
 [ext_resource type="Texture2D" uid="uid://c5fvu5a8e0fjj" path="res://assets/sprites/players/wizard/Dead.png" id="4_cpdw5"]
@@ -13,6 +12,19 @@
 [ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/RES/ProjectileAttack.gd" id="11_s5sl6"]
 [ext_resource type="PackedScene" uid="uid://41857mtigfwr" path="res://scenes/projectile_scenes/magic arrow.tscn" id="11_tpcqg"]
 [ext_resource type="PackedScene" uid="uid://cvth31vukk7kj" path="res://scenes/projectile_scenes/magic bomb.tscn" id="12_cpdw5"]
+
+[sub_resource type="GDScript" id="GDScript_egk8w"]
+script/source = "extends Player
+class_name Wizard
+
+func primary():
+	if pause_movement(): return
+	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_1\")
+
+func secondary():
+	if pause_movement(): return
+	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_2\")
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0r2dl"]
 atlas = ExtResource("2_tmpb7")
@@ -935,7 +947,7 @@ states/walk/position = Vector2(542.258, 25.38)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqwwa"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_gu12u"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_ku7g3"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_jpmv8"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_868je"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_ox6at"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_p6e26"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_wfufo"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_xjcqi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ov28q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_xs2k8"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_1fk6n"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_335tu"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_slg3v"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_4380a"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_y1nkr"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_0ekmf"), "idle", "attack_2", SubResource("AnimationNodeStateMachineTransition_tmpb7"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_tpcqg")]
 graph_offset = Vector2(0, 80.6853)
 
-[sub_resource type="Resource" id="Resource_6eu3c"]
+[sub_resource type="Resource" id="Resource_0h755"]
 script = ExtResource("11_s5sl6")
 Animation_Name = "attack_1"
 Load_Animation_Frame = 0
@@ -945,7 +957,7 @@ Spawn_Offset = Vector2(7, -8)
 Force = 600
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
-[sub_resource type="Resource" id="Resource_veg6e"]
+[sub_resource type="Resource" id="Resource_18klt"]
 script = ExtResource("11_s5sl6")
 Animation_Name = "attack_2"
 Load_Animation_Frame = 9
@@ -956,7 +968,7 @@ Force = 300
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
 [node name="wizard" type="CharacterBody2D" node_paths=PackedStringArray("ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
-script = ExtResource("1_0xpa7")
+script = SubResource("GDScript_egk8w")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
@@ -980,5 +992,4 @@ anim_player = NodePath("../anim_player")
 
 [node name="Projectile Launcher" type="Node" parent="."]
 script = ExtResource("10_tmpb7")
-move_list = Array[ExtResource("11_s5sl6")]([SubResource("Resource_6eu3c"), SubResource("Resource_veg6e")])
-metadata/_custom_type_script = "uid://cjyum5jemod6g"
+Move_List = Array[ExtResource("11_s5sl6")]([SubResource("Resource_0h755"), SubResource("Resource_18klt")])

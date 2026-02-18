@@ -3,7 +3,7 @@ extends Camera2D
 class_name CAM
 
 var target: CharacterBody2D
-@export var smoothing: float = 0.5
+@export_range(0.0, 1.0, 0.01) var smoothing: float = 0.5
 @export var offset_distance: Vector2 = Vector2(120, 60)
 var target_offset: Vector2 = Vector2.ZERO
 

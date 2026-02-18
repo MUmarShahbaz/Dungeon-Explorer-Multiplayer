@@ -25,9 +25,9 @@ func _physics_process(delta: float) -> void:
 	control(delta)
 	move_and_slide()
 
-func control(_delta : float):
+func control(delta : float):
 	attack()
-	movement()
+	movement(delta)
 	camera()
 	special()
 
@@ -57,15 +57,15 @@ func pause_movement():
 		if check_anim(anim) : return true
 	return false
 
-func movement():
+func movement(delta : float):
 	if pause_movement(): return
 	var x_dir : float = Input.get_axis("left", "right")
 	if x_dir != 0:
 		if Input.is_action_pressed("sprint"):
-			velocity.x = x_dir * MV_Run_Speed
+			velocity.x = x_dir * MV_Run_Speed * delta * 60
 			if is_on_floor(): ANM_Animation_Tree.get("parameters/playback").travel("run")
 		else:
-			velocity.x = x_dir * MV_Speed
+			velocity.x = x_dir * MV_Speed * delta * 50
 			if is_on_floor(): ANM_Animation_Tree.get("parameters/playback").travel("walk")
 	else: velocity.x = 0
 	if x_dir * facing < 0 : flip()
