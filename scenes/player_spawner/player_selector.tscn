@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp323yc8k4qgy"]
+[gd_scene load_steps=3 format=3 uid="uid://dp323yc8k4qgy"]
 
 [sub_resource type="GDScript" id="GDScript_6fp4g"]
 script/source = "extends CanvasLayer
@@ -38,6 +38,9 @@ func add_button(my_name: StringName, image : Texture2D):
 	grid.add_child.call_deferred(my_button)
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oy4sy"]
+bg_color = Color(0, 0, 0, 0.815686)
+
 [node name="Player Selector" type="CanvasLayer" node_paths=PackedStringArray("grid", "label", "continue_btn")]
 script = SubResource("GDScript_6fp4g")
 grid = NodePath("Selector/SplitContainer/GridContainer")
@@ -51,6 +54,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="Selector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_oy4sy")
+text = "
+Select a Character"
+horizontal_alignment = 1
 
 [node name="SplitContainer" type="VBoxContainer" parent="Selector"]
 layout_mode = 1

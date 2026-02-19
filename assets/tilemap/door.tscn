@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://12mmn67whf4v"]
+
+[ext_resource type="Texture2D" uid="uid://b8euirx78u1vs" path="res://assets/tilemap/doors_and_window.png" id="1_3j8fw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0phs7"]
+texture = ExtResource("1_3j8fw")
+texture_region_size = Vector2i(32, 32)
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+8:0/size_in_atlas = Vector2i(2, 2)
+8:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_50cdl"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_0phs7")
+
+[sub_resource type="GDScript" id="GDScript_s83n0"]
+script/source = "extends TileMapLayer
+
+signal door_used
+@onready var region: Area2D = $\"Interact Region\"
+@export var node_group : StringName
+@export var start_locked : bool
+
+var locked: bool
+var opened : bool
+
+var locked_tile = {\"source\": 1, \"atlas\": Vector2i(4, 0)}
+var unlocked_tile = {\"source\": 1, \"atlas\": Vector2i(0, 0)}
+var opened_tile = {\"source\": 1, \"atlas\": Vector2i(2, 0)}
+
+func _ready() -> void:
+	if start_locked: lock()
+
+func _process(_delta: float) -> void:
+	if opened: return
+	if node_group:
+		if get_tree().get_node_count_in_group(node_group) == 0:
+			unlock()
+		else:
+			lock()
+	if region.has_overlapping_bodies() and Input.is_action_just_pressed(\"interact\") and not locked:
+		open()
+
+func lock():
+	opened = false
+	locked = true
+	switch_tile(locked_tile)
+
+func unlock():
+	opened = false
+	locked = false
+	switch_tile(unlocked_tile)
+
+func open():
+	opened = true
+	locked = false
+	switch_tile(opened_tile)
+	emit_signal(\"door_used\")
+
+func switch_tile(tile):
+	set_cell(Vector2(-1, -1), tile.source, tile.atlas, 0)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3j8fw"]
+size = Vector2(47, 56)
+
+[node name="Doors" type="TileMapLayer"]
+position = Vector2(25, 6)
+scale = Vector2(1.5, 1.5)
+tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 1, 0, 4, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_50cdl")
+script = SubResource("GDScript_s83n0")
+
+[node name="Interact Region" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="region" type="CollisionShape2D" parent="Interact Region"]
+position = Vector2(-16.5, -16)
+shape = SubResource("RectangleShape2D_3j8fw")
