@@ -1020,6 +1020,7 @@ script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
 shield = NodePath("Sheild")
+ITM_Healing_Potions = 0
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
