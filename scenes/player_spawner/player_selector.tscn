@@ -7,21 +7,21 @@ class_name PlayerSelector
 @export var grid : GridContainer
 @export var label : Label
 @export var continue_btn : Button
-enum characters {Knight, Wizard, Dwarf, Samurai}
+
 var selected : StringName
-var playable : Array[characters]
+var playable : Array[StringName] = [\"KNIGHT\", \"WIZARD\", \"DWARF\", \"SAMURAI\"]
 
 func  _ready() -> void:
 	grid.columns = ceil(sqrt(playable.size()))
 	for this_character in playable:
 		match this_character:
-			characters.Knight:
+			\"KNIGHT\":
 				add_button(\"KNIGHT\", load(\"res://assets/sprites/knight.png\"))
-			characters.Wizard:
+			\"WIZARD\":
 				add_button(\"WIZARD\", load(\"res://assets/sprites/wizard.png\"))
-			characters.Dwarf:
+			\"DWARF\":
 				add_button(\"DWARF\", load(\"res://assets/sprites/dwarf.png\"))
-			characters.Samurai:
+			\"SAMURAI\":
 				add_button(\"SAMURAI\", load(\"res://assets/sprites/samurai.png\"))
 
 func add_button(my_name: StringName, image : Texture2D):

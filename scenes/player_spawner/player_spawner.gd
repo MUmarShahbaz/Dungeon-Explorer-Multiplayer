@@ -1,7 +1,7 @@
 extends Node2D
 class_name PlayerSpawner
 
-var already_used: Array[StringName] = []
+var disabled_characters: Array[StringName] = ["DWARF", "SAMURAI"]
 var player_selector : PackedScene = preload("res://scenes/player_spawner/player_selector.tscn")
 var hud : PackedScene = preload("res://scenes/unrefined/hud/hud.tscn")
 
@@ -15,7 +15,8 @@ func _ready() -> void:
 
 func display_player_selector():
 	var new_selector = player_selector.instantiate()
-	(new_selector.playable as Array).append_array([new_selector.characters.Knight, new_selector.characters.Wizard, new_selector.characters.Dwarf, new_selector.characters.Samurai])
+	for this_character in disabled_characters:
+		(new_selector.playable as Array).erase(this_character)
 	(new_selector.continue_btn as Button).pressed.connect(func ():
 		var player : Player
 		match new_selector.selected:

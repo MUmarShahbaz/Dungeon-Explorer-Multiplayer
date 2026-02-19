@@ -82,8 +82,7 @@ func take_damage(amount : float) -> void:
 	HP_Current -= amount
 	if HP_Current <= 0:
 		velocity = Vector2.ZERO
-		ANM_Animation_Tree.get("parameters/playback").travel("die")
-		ANM_Animation_Tree.advance(0)
+		ANM_Animation_Tree.get("parameters/playback").start("die")
 		await await_frame("die", ANM_Animated_Sprite.sprite_frames.get_frame_count("die") - 1)
 		queue_free()
 		return
