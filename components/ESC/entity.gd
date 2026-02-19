@@ -26,6 +26,8 @@ class_name Entity
 @onready var SP_Current = SP_Stamina_Points
 
 @export_group("Movement", "MV")
+## Collider
+@export var MV_Collider : CollisionShape2D
 ## Walking Speed
 @export var MV_Speed : float = 100
 ## Running Speed
@@ -83,6 +85,7 @@ func take_damage(amount : float) -> void:
 	if HP_Current <= 0:
 		velocity = Vector2.ZERO
 		ANM_Animation_Tree.get("parameters/playback").start("die")
+		MV_Collider.disabled = true
 		await await_frame("die", ANM_Animated_Sprite.sprite_frames.get_frame_count("die") - 1)
 		queue_free()
 		return

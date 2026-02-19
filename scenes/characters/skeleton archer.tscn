@@ -652,7 +652,7 @@ Spawn_Offset = Vector2(5, -22)
 Force = 600
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
-[node name="Skeleton Archer" type="CharacterBody2D" node_paths=PackedStringArray("ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Skeleton Archer" type="CharacterBody2D" node_paths=PackedStringArray("MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = ExtResource("1_7cuvh")
 VIS_Range = 400.0
 VIS_Attack_Range = 350.0
@@ -660,6 +660,7 @@ HP_Health_Points = 5.0
 HP_Regeneration_Rate = 0.0
 SP_Stamina_Points = 0.0
 SP_Regeneration_Rate = 0.0
+MV_Collider = NodePath("collider")
 MV_Run_Speed = 230.0
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")

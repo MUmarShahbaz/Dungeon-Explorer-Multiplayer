@@ -967,8 +967,9 @@ Spawn_Offset = Vector2(15, -8)
 Force = 300
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
-[node name="wizard" type="CharacterBody2D" node_paths=PackedStringArray("ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="wizard" type="CharacterBody2D" node_paths=PackedStringArray("MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_egk8w")
+MV_Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")

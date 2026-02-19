@@ -19,13 +19,16 @@ func _ready() -> void:
 func _on_to_boss_door_door_used() -> void:
 	get_tree().get_first_node_in_group(\"players\").global_position = Vector2(3528, -976)
 
-
 func _on_from_boss_door_door_used() -> void:
-	$Spawner.queue_free()
+	if $Spawner: $Spawner.queue_free()
 	get_tree().get_first_node_in_group(\"players\").global_position = Vector2(3248, 384)
 
 func _on_exit_door_door_used() -> void:
 	$you_win.show()
+
+func _process(delta: float) -> void:
+	if not get_tree().get_first_node_in_group(\"players\") and $PlayerSpawner.selected:
+		$PlayerSpawner.spawn()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6ebu"]

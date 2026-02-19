@@ -650,7 +650,7 @@ Damage_Zone = NodePath("../Attack 2")
 Damage = 2.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Skeleton Spearman" type="CharacterBody2D" node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Skeleton Spearman" type="CharacterBody2D" node_paths=PackedStringArray("attack_buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = ExtResource("1_uscrk")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
@@ -660,6 +660,7 @@ HP_Health_Points = 10.0
 HP_Regeneration_Rate = 0.0
 SP_Stamina_Points = 0.0
 SP_Regeneration_Rate = 0.0
+MV_Collider = NodePath("collider")
 MV_Run_Speed = 250.0
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")

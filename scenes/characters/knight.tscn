@@ -1015,12 +1015,13 @@ metadata/_custom_type_script = "uid://otxwfmoatx33"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6kln"]
 size = Vector2(5, 64)
 
-[node name="knight" type="CharacterBody2D" node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="knight" type="CharacterBody2D" node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
 shield = NodePath("Sheild")
 ITM_Healing_Potions = 0
+MV_Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
