@@ -1,6 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://cvth31vukk7kj"]
+[gd_scene load_steps=20 format=3 uid="uid://cvth31vukk7kj"]
 
-[ext_resource type="Script" uid="uid://c0irv2blollmd" path="res://components/MISC/projectile.gd" id="1_d4iy4"]
+[ext_resource type="Script" uid="uid://b4fsecdbecsaj" path="res://components/MISC/area_dmg_projectile.gd" id="1_87c0s"]
 [ext_resource type="Texture2D" uid="uid://bw7y0p58gtatw" path="res://assets/sprites/players/wizard/Charge_1.png" id="2_rd8li"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5t12"]
@@ -155,12 +155,13 @@ states/spawn/node = SubResource("AnimationNodeAnimation_y5t12")
 states/spawn/position = Vector2(349.333, 99.3333)
 transitions = ["Start", "spawn", SubResource("AnimationNodeStateMachineTransition_udx4i"), "spawn", "default", SubResource("AnimationNodeStateMachineTransition_ilr1u")]
 
-[node name="Magic Bomb" type="RigidBody2D" node_paths=PackedStringArray("sprite", "collider")]
-script = ExtResource("1_d4iy4")
-sprite = NodePath("sprite")
-collider = NodePath("collider")
-damage = 100
-metadata/_custom_type_script = "uid://c0irv2blollmd"
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_13p3x"]
+radius = 20.0
+height = 120.0
+
+[node name="Magic Bomb" type="RigidBody2D"]
+script = ExtResource("1_87c0s")
+metadata/_custom_type_script = "uid://b4fsecdbecsaj"
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d4iy4")
@@ -180,3 +181,10 @@ libraries = {
 [node name="anim_tree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_rd8li")
 anim_player = NodePath("../anim_player")
+
+[node name="Blast Radius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blast Radius"]
+position = Vector2(60, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_13p3x")
