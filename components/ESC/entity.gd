@@ -85,7 +85,7 @@ func take_damage(amount : float) -> void:
 	if HP_Current <= 0:
 		velocity = Vector2.ZERO
 		ANM_Animation_Tree.get("parameters/playback").start("die")
-		MV_Collider.disabled = true
+		call_deferred(&"hide_entity")
 		await await_frame("die", ANM_Animated_Sprite.sprite_frames.get_frame_count("die") - 1)
 		queue_free()
 		return
@@ -93,6 +93,10 @@ func take_damage(amount : float) -> void:
 		velocity.x = 0
 		ANM_Animation_Tree.get("parameters/playback").travel("hurt")
 		ANM_Animation_Tree.advance(0)
+
+## Disable the entity
+func hide_entity():
+	MV_Collider.disabled = true
 
 ## Insta-kill the entity
 func die() -> void:

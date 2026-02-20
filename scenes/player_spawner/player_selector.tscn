@@ -8,21 +8,38 @@ class_name PlayerSelector
 @export var label : Label
 @export var continue_btn : Button
 
-var selected : StringName
-var playable : Array[StringName] = [\"KNIGHT\", \"WIZARD\", \"DWARF\", \"SAMURAI\"]
+var selected : Dictionary
+var playable : Array[StringName] = [\"KNIGHT\", \"WIZARD\", \"SAMURAI\", \"NINJA\"]
+
+var all_characters = {
+	\"KNIGHT\": {
+		\"scene\": \"res://scenes/characters/knight.tscn\",
+		\"image\": \"res://assets/sprites/knight.png\",
+		\"avatar\": \"\"
+	},
+	\"WIZARD\": {
+		\"scene\": \"res://scenes/characters/wizard.tscn\",
+		\"image\": \"res://assets/sprites/wizard.png\",
+		\"avatar\": \"\"
+	},
+	\"SAMURAI\": {
+		\"scene\": \"\",
+		\"image\": \"res://assets/sprites/samurai.png\",
+		\"avatar\": \"\"
+	},
+	\"NINJA\": {},
+	\"DWARF\": {},
+	\"ELF\": {},
+	\"WITCH\": {},
+	\"GLADIATOR\": {},
+	\"AMAZON\": {},
+	\"PYROMANCER\": {}
+}
 
 func  _ready() -> void:
 	grid.columns = ceil(sqrt(playable.size()))
 	for this_character in playable:
-		match this_character:
-			\"KNIGHT\":
-				add_button(\"KNIGHT\", load(\"res://assets/sprites/knight.png\"))
-			\"WIZARD\":
-				add_button(\"WIZARD\", load(\"res://assets/sprites/wizard.png\"))
-			\"DWARF\":
-				add_button(\"DWARF\", load(\"res://assets/sprites/dwarf.png\"))
-			\"SAMURAI\":
-				add_button(\"SAMURAI\", load(\"res://assets/sprites/samurai.png\"))
+		add_button(this_character, load(all_characters[this_character][&\"image\"]))
 
 func add_button(my_name: StringName, image : Texture2D):
 	var my_button : TextureButton = TextureButton.new()
@@ -33,7 +50,7 @@ func add_button(my_name: StringName, image : Texture2D):
 	my_button.texture_normal = image
 	my_button.pressed.connect(func ():
 		label.text = my_name
-		selected = my_name
+		selected = all_characters[my_name]
 	)
 	grid.add_child.call_deferred(my_button)
 "
