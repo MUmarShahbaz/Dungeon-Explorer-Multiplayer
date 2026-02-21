@@ -1,7 +1,7 @@
 extends Node2D
 class_name PlayerSpawner
 
-var disabled_characters: Array[StringName] = ["SAMURAI", "NINJA"]
+var disabled_characters: Array[StringName] = ["NINJA"]
 var player_selector : PackedScene = preload("res://scenes/player_spawner/player_selector.tscn")
 var hud : PackedScene = preload("res://scenes/unrefined/hud/hud.tscn")
 

@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://d3mvi5v8yfo00" path="res://assets/sprites/knight.png" id="1_0i02a"]
 [ext_resource type="Script" uid="uid://bwnrmceyd3n1w" path="res://scenes/unrefined/character_selector/character_selection.gd" id="1_q58um"]
-[ext_resource type="PackedScene" uid="uid://bbd0aduf4k1tp" path="res://scenes/characters/knight.tscn" id="2_l0l02"]
+[ext_resource type="PackedScene" uid="uid://bbd0aduf4k1tp" path="res://scenes/characters/pc/knight.tscn" id="2_l0l02"]
 [ext_resource type="Texture2D" uid="uid://dfsnggtsf1qi2" path="res://assets/sprites/wizard.png" id="2_q58um"]
-[ext_resource type="PackedScene" uid="uid://dy7gi0gjpojrs" path="res://scenes/characters/wizard.tscn" id="3_rwfr3"]
+[ext_resource type="PackedScene" uid="uid://dy7gi0gjpojrs" path="res://scenes/characters/pc/wizard.tscn" id="3_rwfr3"]
 [ext_resource type="PackedScene" uid="uid://msfapqekcvg1" path="res://scenes/unrefined/hud/hud.tscn" id="4_rwfr3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q88bm"]

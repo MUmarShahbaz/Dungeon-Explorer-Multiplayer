@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=4 uid="uid://6lhwmnuamvft"]
 
-[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/skeleton archer.tscn" id="2_ufh25"]
+[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="2_ufh25"]
 [ext_resource type="TileSet" uid="uid://2nk5y54dgy8h" path="res://assets/tilemap/traps.tres" id="3_k81e3"]
 [ext_resource type="PackedScene" uid="uid://12mmn67whf4v" path="res://assets/tilemap/door.tscn" id="4_b6ebu"]
 [ext_resource type="Script" uid="uid://hty4wsqfi05u" path="res://assets/tilemap/traps.gd" id="4_f68d1"]
 [ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/main.tres" id="5_h2clf"]
 [ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="6_iyses"]
-[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/skeleton warrior.tscn" id="7_1nlwk"]
-[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/skeleton spearman.tscn" id="8_b6ebu"]
+[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="7_1nlwk"]
+[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="8_b6ebu"]
 [ext_resource type="Script" uid="uid://b666ndns0368d" path="res://scenes/player_spawner/player_spawner.gd" id="9_b6ebu"]
-[ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/skeleton champion.tscn" id="10_v4i6i"]
+[ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/skeleton champion.tscn" id="10_v4i6i"]
 
 [sub_resource type="GDScript" id="GDScript_b6ebu"]
 script/source = "extends Node2D

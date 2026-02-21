@@ -50,7 +50,7 @@ func special():
 		ITM_Booster_Potions -= 1
 		SP_Current += SP_Regeneration_Rate * 60
 
-var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "die"]
+var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "shoot", "die"]
 
 func pause_movement():
 	for anim in pause_on_anims:

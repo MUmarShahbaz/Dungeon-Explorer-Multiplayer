@@ -13,17 +13,17 @@ var playable : Array[StringName] = [\"KNIGHT\", \"WIZARD\", \"SAMURAI\", \"NINJA
 
 var all_characters = {
 	\"KNIGHT\": {
-		\"scene\": \"res://scenes/characters/knight.tscn\",
+		\"scene\": \"res://scenes/characters/pc/knight.tscn\",
 		\"image\": \"res://assets/sprites/knight.png\",
 		\"avatar\": \"\"
 	},
 	\"WIZARD\": {
-		\"scene\": \"res://scenes/characters/wizard.tscn\",
+		\"scene\": \"res://scenes/characters/pc/wizard.tscn\",
 		\"image\": \"res://assets/sprites/wizard.png\",
 		\"avatar\": \"\"
 	},
 	\"SAMURAI\": {
-		\"scene\": \"\",
+		\"scene\": \"res://scenes/characters/pc/samurai.tscn\",
 		\"image\": \"res://assets/sprites/samurai.png\",
 		\"avatar\": \"\"
 	},
