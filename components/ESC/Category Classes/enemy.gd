@@ -7,6 +7,9 @@ func _ready() -> void:
 	set_collision_layer_value(3, true)
 	VIS_Ray.set_collision_mask_value(2, true)
 	add_child.call_deferred(VIS_Ray)
+	VIS_Block_Check.target_position = Vector2((50+(MV_Collider.shape as CapsuleShape2D).radius/2)*facing, 0)
+	VIS_Block_Check.global_position = Vector2(0, (MV_Collider.shape as CapsuleShape2D).height/2 - 5)
+	add_child.call_deferred(VIS_Block_Check)
 
 func _physics_process(delta: float) -> void:
 	if HP_Current <= 0: return
@@ -16,6 +19,7 @@ func _physics_process(delta: float) -> void:
 
 @export_group("Vision", "VIS")
 @onready var VIS_Ray : RayCast2D = RayCast2D.new()
+@onready var VIS_Block_Check : RayCast2D = RayCast2D.new()
 @export var VIS_Range : float
 @export var VIS_Attack_Range : float
 # Mob Brain
@@ -58,7 +62,7 @@ func patrol():
 	if next_dist * facing < 0 : flip()
 	ANM_Animation_Tree.get("parameters/playback").travel("walk")
 	velocity.x = MV_Speed * (-1 if next_dist < 0 else 1)
-	if home + abs(next_dist) < global_position.x or home - abs(next_dist) > global_position.x:
+	if home + abs(next_dist) < global_position.x or home - abs(next_dist) > global_position.x or VIS_Block_Check.is_colliding():
 		velocity.x = 0
 		pause = true
 		home = global_position.x
@@ -98,3 +102,7 @@ func find_closest_player():
 func face_player(player : Player):
 	if to_local(player.global_position).x * facing < 0:
 		flip()
+
+func flip():
+	super.flip()
+	VIS_Block_Check.target_position = Vector2((50+(MV_Collider.shape as CapsuleShape2D).radius/2)*facing, 0)
