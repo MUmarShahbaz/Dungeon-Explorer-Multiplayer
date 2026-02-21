@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 ## Changes the direction the character is facing. Should be overwritten for more additions.
 func flip() -> void:
 	facing *= -1
-	ANM_Animated_Sprite.flip_h = !ANM_Animated_Sprite.flip_h
+	ANM_Animated_Sprite.scale.x *= -1
 
 ## Reduces HP of the entity when it gets hurt and dies when HP falls below 0
 func take_damage(amount : float) -> void:
