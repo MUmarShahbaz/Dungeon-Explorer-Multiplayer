@@ -1183,7 +1183,7 @@ Animation_Name = "shoot"
 Load_Animation_Frame = 10
 Launch_Animation_Frame = 11
 Projectile_Scene = ExtResource("16_rlas0")
-Spawn_Offset = Vector2(14, -21)
+Spawn_Offset = Vector2(35, -21)
 Force = 600
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 

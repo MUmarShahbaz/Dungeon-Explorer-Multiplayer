@@ -30,8 +30,7 @@ damage = 1
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ahq02")
-offset = Vector2(0, 0.5)
+offset = Vector2(-21, -0.5)
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(21, 1)
 shape = SubResource("CircleShape2D_j8600")

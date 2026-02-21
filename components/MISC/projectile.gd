@@ -24,8 +24,8 @@ func _ready() -> void:
 		if abs(linear_velocity.x) < 2: queue_free()
 
 func flip():
-	sprite.flip_h = !sprite.flip_h
-	collider.position.x *= -1
+	sprite.scale.x *= -1
+	collider.scale.x *= -1
 
 func _physics_process(_delta: float) -> void:
 	var bodies = get_colliding_bodies()

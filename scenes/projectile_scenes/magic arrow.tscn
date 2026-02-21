@@ -193,10 +193,9 @@ collider = NodePath("collider")
 sprite_frames = SubResource("SpriteFrames_ahq02")
 autoplay = "spawn"
 frame = 1
-offset = Vector2(0, 0.5)
+offset = Vector2(-11, 0.5)
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(10.5, 0)
 shape = SubResource("CircleShape2D_j8600")
 
 [node name="anim_player" type="AnimationPlayer" parent="."]

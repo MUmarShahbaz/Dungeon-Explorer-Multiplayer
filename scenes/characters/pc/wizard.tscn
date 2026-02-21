@@ -953,7 +953,7 @@ Animation_Name = "attack_1"
 Load_Animation_Frame = 0
 Launch_Animation_Frame = 5
 Projectile_Scene = ExtResource("11_tpcqg")
-Spawn_Offset = Vector2(7, -8)
+Spawn_Offset = Vector2(29, -10)
 Force = 600
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
@@ -963,7 +963,7 @@ Animation_Name = "attack_2"
 Load_Animation_Frame = 9
 Launch_Animation_Frame = 12
 Projectile_Scene = ExtResource("12_cpdw5")
-Spawn_Offset = Vector2(15, -8)
+Spawn_Offset = Vector2(35, -10)
 Force = 300
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 

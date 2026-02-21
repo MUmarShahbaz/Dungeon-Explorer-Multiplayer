@@ -159,17 +159,20 @@ transitions = ["Start", "spawn", SubResource("AnimationNodeStateMachineTransitio
 radius = 20.0
 height = 120.0
 
-[node name="Magic Bomb" type="RigidBody2D"]
+[node name="Magic Bomb" type="RigidBody2D" node_paths=PackedStringArray("blast_radius", "sprite", "collider")]
 script = ExtResource("1_87c0s")
+blast_radius = NodePath("Blast Radius")
+sprite = NodePath("sprite")
+collider = NodePath("collider")
 metadata/_custom_type_script = "uid://b4fsecdbecsaj"
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d4iy4")
 autoplay = "spawn"
 frame = 1
+offset = Vector2(-16, 0)
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(16, 0)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_rd8li")
 
@@ -185,6 +188,6 @@ anim_player = NodePath("../anim_player")
 [node name="Blast Radius" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blast Radius"]
-position = Vector2(60, 0)
+position = Vector2(50, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_13p3x")

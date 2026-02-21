@@ -16,3 +16,7 @@ func _physics_process(_delta: float) -> void:
 				(body as Entity).take_damage(damage)
 				(body as Entity).velocity.x += 10*direction
 		queue_free()
+
+func flip():
+	super.flip()
+	blast_radius.scale.x *= -1
