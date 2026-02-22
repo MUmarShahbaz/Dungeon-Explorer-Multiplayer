@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://h6i84rdwjpt7"]
+
+[ext_resource type="Texture2D" uid="uid://cula1up684mj3" path="res://assets/bg.png" id="1_tt30a"]
+[ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="2_1ey7h"]
+
+[sub_resource type="GDScript" id="GDScript_tt30a"]
+script/source = "extends Control
+
+@onready var main_panel = $Main
+@onready var mode_panel = $Mode
+@onready var multiplayer_panel = $Multiplayer
+@onready var connect_panel = $Connect
+@onready var address_bar =  $Connect/Address
+
+func _on_play_pressed() -> void:
+	main_panel.hide()
+	mode_panel.show()
+
+
+func _on_controls_pressed() -> void:
+	pass
+
+
+func _on_single_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://SinglePlayerMode.tscn\")
+
+
+func _on_multi_pressed() -> void:
+	mode_panel.hide()
+	multiplayer_panel.show()
+
+
+func _on_host_pressed() -> void:
+	var multiplayer_mode = load(\"res://MultiPlayerMode.tscn\").instantiate()
+	multiplayer_mode.mode = &\"HOST\"
+	get_tree().change_scene_to_node(multiplayer_mode)
+
+
+func _on_join_pressed() -> void:
+	multiplayer_panel.hide()
+	connect_panel.show()
+
+
+func _on_connect_pressed() -> void:
+	var multiplayer_mode = load(\"res://MultiPlayerMode.tscn\").instantiate()
+	multiplayer_mode.mode = address_bar.text
+	get_tree().change_scene_to_node(multiplayer_mode)
+"
+
+[node name="Home" type="Control" unique_id=2120224760]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_tt30a")
+
+[node name="BG" type="TextureRect" parent="." unique_id=16252052]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tt30a")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="Main" type="VBoxContainer" parent="." unique_id=342506106]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -129.0
+offset_right = 201.5
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="Main" unique_id=1970747116]
+layout_mode = 2
+theme = ExtResource("2_1ey7h")
+theme_override_font_sizes/font_size = 100
+text = "Play"
+
+[node name="Controls" type="Button" parent="Main" unique_id=1031803877]
+layout_mode = 2
+theme = ExtResource("2_1ey7h")
+text = "Controls"
+
+[node name="Mode" type="VBoxContainer" parent="." unique_id=224533239]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -105.0
+offset_right = 202.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Single" type="Button" parent="Mode" unique_id=17173736]
+layout_mode = 2
+theme = ExtResource("2_1ey7h")
+theme_override_font_sizes/font_size = 50
+text = "Single Player
+"
+
+[node name="Multi" type="Button" parent="Mode" unique_id=129473408]
+layout_mode = 2
+theme = ExtResource("2_1ey7h")
+theme_override_font_sizes/font_size = 50
+text = "Multiplayer"
+
+[node name="Multiplayer" type="VBoxContainer" parent="." unique_id=1457436869]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -105.0
+offset_right = 201.5
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Button" parent="Multiplayer" unique_id=1823623472]
+layout_mode = 2
+theme = ExtResource("2_1ey7h")
+theme_override_font_sizes/font_size = 50
+text = "Host"
+
+[node name="Join" type="Button" parent="Multiplayer" unique_id=1938829563]
+layout_mode = 2
+theme = ExtResource("2_1ey7h")
+theme_override_font_sizes/font_size = 50
+text = "Join"
+
+[node name="Connect" type="VBoxContainer" parent="." unique_id=1207646233]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -105.0
+offset_right = 201.5
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Address" type="TextEdit" parent="Connect" unique_id=785905409]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+placeholder_text = "192.168.9.9"
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="Connect" type="Button" parent="Connect" unique_id=1942972613]
+layout_mode = 2
+theme = ExtResource("2_1ey7h")
+theme_override_font_sizes/font_size = 50
+text = "Connect"
+
+[connection signal="pressed" from="Main/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Mode/Single" to="." method="_on_single_pressed"]
+[connection signal="pressed" from="Mode/Multi" to="." method="_on_multi_pressed"]
+[connection signal="pressed" from="Multiplayer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Multiplayer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Connect/Connect" to="." method="_on_connect_pressed"]

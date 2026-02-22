@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://6lhwmnuamvft"]
+[gd_scene format=4 uid="uid://6lhwmnuamvft"]
 
 [ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="2_ufh25"]
 [ext_resource type="TileSet" uid="uid://2nk5y54dgy8h" path="res://assets/tilemap/traps.tres" id="3_k81e3"]
