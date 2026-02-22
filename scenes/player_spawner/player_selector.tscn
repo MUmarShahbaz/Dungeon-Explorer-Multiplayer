@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp323yc8k4qgy"]
+[gd_scene format=3 uid="uid://dp323yc8k4qgy"]
 
 [sub_resource type="GDScript" id="GDScript_6fp4g"]
 script/source = "extends CanvasLayer
@@ -9,7 +9,7 @@ class_name PlayerSelector
 @export var continue_btn : Button
 
 var selected : Dictionary
-var playable : Array[StringName] = [\"KNIGHT\", \"WIZARD\", \"SAMURAI\", \"NINJA\"]
+var playable : Array[StringName] = [\"KNIGHT\", \"WIZARD\", \"SAMURAI\"]
 
 var all_characters = {
 	\"KNIGHT\": {
@@ -58,13 +58,13 @@ func add_button(my_name: StringName, image : Texture2D):
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oy4sy"]
 bg_color = Color(0, 0, 0, 0.815686)
 
-[node name="Player Selector" type="CanvasLayer" node_paths=PackedStringArray("grid", "label", "continue_btn")]
+[node name="Player Selector" type="CanvasLayer" unique_id=1550448352 node_paths=PackedStringArray("grid", "label", "continue_btn")]
 script = SubResource("GDScript_6fp4g")
 grid = NodePath("Selector/SplitContainer/GridContainer")
 label = NodePath("Selector/SplitContainer/Character Name")
 continue_btn = NodePath("Selector/SplitContainer/Continue Button")
 
-[node name="Selector" type="Control" parent="."]
+[node name="Selector" type="Control" parent="." unique_id=1140559539]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +72,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Selector"]
+[node name="Label" type="Label" parent="Selector" unique_id=1509403498]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,7 +85,7 @@ text = "
 Select a Character"
 horizontal_alignment = 1
 
-[node name="SplitContainer" type="VBoxContainer" parent="Selector"]
+[node name="SplitContainer" type="VBoxContainer" parent="Selector" unique_id=877136299]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,18 +100,18 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="GridContainer" type="GridContainer" parent="Selector/SplitContainer"]
+[node name="GridContainer" type="GridContainer" parent="Selector/SplitContainer" unique_id=850765664]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
-[node name="Character Name" type="Label" parent="Selector/SplitContainer"]
+[node name="Character Name" type="Label" parent="Selector/SplitContainer" unique_id=1758176595]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "CHARACTER"
 horizontal_alignment = 1
 
-[node name="Continue Button" type="Button" parent="Selector/SplitContainer"]
+[node name="Continue Button" type="Button" parent="Selector/SplitContainer" unique_id=54297618]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3

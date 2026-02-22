@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=3 uid="uid://fdklui3d6kmg"]
+[gd_scene format=3 uid="uid://fdklui3d6kmg"]
 
 [ext_resource type="Texture2D" uid="uid://ddosu0pwe5wir" path="res://assets/sprites/players/samurai/Attack_1.png" id="1_klv7w"]
 [ext_resource type="Texture2D" uid="uid://327g2eu41mrs" path="res://assets/sprites/players/samurai/Attack_2.png" id="2_ke03c"]
@@ -1187,7 +1187,21 @@ Spawn_Offset = Vector2(35, -21)
 Force = 600
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
-[node name="samurai" type="CharacterBody2D" node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rlas0"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("sprite:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("sprite:frame")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("sprite:scale")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
@@ -1199,55 +1213,56 @@ ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=722151253]
 sprite_frames = SubResource("SpriteFrames_8lcca")
 autoplay = "default"
 offset = Vector2(0, -32)
 
-[node name="collider" type="CollisionShape2D" parent="."]
+[node name="collider" type="CollisionShape2D" parent="." unique_id=1871050037]
 shape = SubResource("CapsuleShape2D_f1v5o")
 
-[node name="anim_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_gu12u")
-}
+[node name="anim_player" type="AnimationPlayer" parent="." unique_id=2126939872]
+libraries/ = SubResource("AnimationLibrary_gu12u")
 
-[node name="anim_tree" type="AnimationTree" parent="."]
+[node name="anim_tree" type="AnimationTree" parent="." unique_id=386376624]
 tree_root = SubResource("AnimationNodeStateMachine_wfufo")
 anim_player = NodePath("../anim_player")
 parameters/conditions/attack = false
 
-[node name="Melee Buffer" type="Node" parent="."]
+[node name="Melee Buffer" type="Node" parent="." unique_id=2141978975]
 script = ExtResource("11_wkjnu")
 metadata/_custom_type_script = "uid://n2liqouspgxa"
 
-[node name="Melee Controller" type="Node" parent="."]
+[node name="Melee Controller" type="Node" parent="." unique_id=1102892389]
 script = ExtResource("12_1xd65")
 Move_List = Array[ExtResource("13_uprf7")]([SubResource("Resource_sdnk0"), SubResource("Resource_32tv2"), SubResource("Resource_1rr0u")])
 metadata/_custom_type_script = "uid://bqxoijlpwtgvm"
 
-[node name="ProjectileLauncher" type="Node" parent="."]
+[node name="ProjectileLauncher" type="Node" parent="." unique_id=1703317668]
 script = ExtResource("14_unlmi")
 Move_List = Array[ExtResource("15_rlas0")]([SubResource("Resource_8s716")])
 metadata/_custom_type_script = "uid://cjyum5jemod6g"
 
-[node name="Attack 1" type="Area2D" parent="."]
+[node name="Attack 1" type="Area2D" parent="." unique_id=1104800646]
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 1" unique_id=953170360]
 polygon = PackedVector2Array(3, -4, 53, 7, 64, -6, 65, -24, 8, -25)
 
-[node name="Attack 2" type="Area2D" parent="."]
+[node name="Attack 2" type="Area2D" parent="." unique_id=1550585782]
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 2" unique_id=148419582]
 polygon = PackedVector2Array(0, 4, 46, 17, 65, 10, 70, -22, 55, -47, 11, -31)
 
-[node name="Attack 3" type="Area2D" parent="."]
+[node name="Attack 3" type="Area2D" parent="." unique_id=1461956384]
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3" unique_id=123949228]
 polygon = PackedVector2Array(-1, 2, 66, 3, 72, -7, 53, -21, 2, -17)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=204299743]
+replication_config = SubResource("SceneReplicationConfig_rlas0")

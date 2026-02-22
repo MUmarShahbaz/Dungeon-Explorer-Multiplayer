@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://dy7gi0gjpojrs"]
+[gd_scene format=3 uid="uid://dy7gi0gjpojrs"]
 
 [ext_resource type="Texture2D" uid="uid://45p3i200ixtb" path="res://assets/sprites/players/wizard/Magic_arrow.png" id="2_tmpb7"]
 [ext_resource type="Texture2D" uid="uid://c13r6gvpx3he2" path="res://assets/sprites/players/wizard/Idle.png" id="3_tpcqg"]
@@ -950,7 +950,6 @@ graph_offset = Vector2(0, 80.6853)
 [sub_resource type="Resource" id="Resource_0h755"]
 script = ExtResource("11_s5sl6")
 Animation_Name = "attack_1"
-Load_Animation_Frame = 0
 Launch_Animation_Frame = 5
 Projectile_Scene = ExtResource("11_tpcqg")
 Spawn_Offset = Vector2(29, -10)
@@ -967,30 +966,45 @@ Spawn_Offset = Vector2(35, -10)
 Force = 300
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
-[node name="wizard" type="CharacterBody2D" node_paths=PackedStringArray("MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s7oct"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("sprite:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("sprite:frame")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("sprite:scale")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="wizard" type="CharacterBody2D" unique_id=929675328 node_paths=PackedStringArray("MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_egk8w")
 MV_Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=640456716]
 sprite_frames = SubResource("SpriteFrames_8lcca")
 autoplay = "default"
 offset = Vector2(4, -32)
 
-[node name="collider" type="CollisionShape2D" parent="."]
+[node name="collider" type="CollisionShape2D" parent="." unique_id=1339590818]
 shape = SubResource("CapsuleShape2D_f1v5o")
 
-[node name="anim_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_gu12u")
-}
+[node name="anim_player" type="AnimationPlayer" parent="." unique_id=1207727466]
+libraries/ = SubResource("AnimationLibrary_gu12u")
 
-[node name="anim_tree" type="AnimationTree" parent="."]
+[node name="anim_tree" type="AnimationTree" parent="." unique_id=1604131072]
 tree_root = SubResource("AnimationNodeStateMachine_wfufo")
 anim_player = NodePath("../anim_player")
 
-[node name="Projectile Launcher" type="Node" parent="."]
+[node name="Projectile Launcher" type="Node" parent="." unique_id=348662494]
 script = ExtResource("10_tmpb7")
 Move_List = Array[ExtResource("11_s5sl6")]([SubResource("Resource_0h755"), SubResource("Resource_18klt")])
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=626849582]
+replication_config = SubResource("SceneReplicationConfig_s7oct")
