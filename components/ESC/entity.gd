@@ -59,7 +59,7 @@ class_name Entity
 #endregion
 
 ## The Direction the entity is facing. [code]0[/code] is Left, [code]1[/code] is Right
-var facing : int = 1
+@export var facing : int = 1
 
 func _physics_process(delta: float) -> void:
 	# Gravity effect on all entities

@@ -27,4 +27,4 @@ func obstruction_check(target : Entity) -> bool:
 	else : return false
 
 func flip():
-	collider.scale.x *= -1
+	scale.x *= -1

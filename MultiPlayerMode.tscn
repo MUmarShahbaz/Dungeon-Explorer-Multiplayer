@@ -44,7 +44,7 @@ func add_player(id : int):
 func connected():
 	pass
 
-@rpc(\"authority\", \"call_remote\")
+@rpc(\"authority\", \"call_remote\", \"reliable\")
 func display_selector():
 	var new_selector = selector.instantiate()
 	(new_selector.continue_btn as Button).pressed.connect(func ():
@@ -53,7 +53,7 @@ func display_selector():
 	)
 	get_tree().get_current_scene().add_child.call_deferred(new_selector)
 
-@rpc(\"any_peer\", \"call_local\")
+@rpc(\"any_peer\", \"call_local\", \"reliable\")
 func spawn(selected, id):
 	if !multiplayer.is_server(): return
 	var new_player = load(selected[&\"scene\"]).instantiate()
