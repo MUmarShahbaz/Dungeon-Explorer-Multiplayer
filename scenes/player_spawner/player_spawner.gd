@@ -1,8 +1,6 @@
 extends Node2D
 class_name PlayerSpawner
 
-signal chatacter_selected
-
 var player_selector : PackedScene = preload("res://scenes/player_spawner/player_selector.tscn")
 var hud : PackedScene = preload("res://scenes/unrefined/hud/hud.tscn")
 
@@ -13,9 +11,10 @@ var selected : Dictionary
 func display_player_selector():
 	var new_selector = player_selector.instantiate()
 	(new_selector.continue_btn as Button).pressed.connect(func ():
-		selected = new_selector.selected
-		new_selector.queue_free()
-		chatacter_selected.emit()
+		if new_selector.selected:
+			selected = new_selector.selected
+			new_selector.queue_free()
+			spawn()
 	)
 	get_tree().get_current_scene().add_child.call_deferred(new_selector)
 

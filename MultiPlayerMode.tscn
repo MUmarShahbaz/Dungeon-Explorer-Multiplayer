@@ -48,8 +48,9 @@ func connected():
 func display_selector():
 	var new_selector = selector.instantiate()
 	(new_selector.continue_btn as Button).pressed.connect(func ():
-		spawn.rpc(new_selector.selected, multiplayer.get_unique_id())
-		new_selector.queue_free()
+		if new_selector.selected:
+			spawn.rpc(new_selector.selected, multiplayer.get_unique_id())
+			new_selector.queue_free()
 	)
 	get_tree().get_current_scene().add_child.call_deferred(new_selector)
 

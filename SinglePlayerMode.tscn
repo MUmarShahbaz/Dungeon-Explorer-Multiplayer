@@ -32,10 +32,6 @@ func _on_exit_door_door_used() -> void:
 func _process(_delta: float) -> void:
 	if not get_tree().get_first_node_in_group(\"players\") and $PlayerSpawner.selected:
 		$PlayerSpawner.spawn()
-
-
-func _on_player_spawner_chatacter_selected() -> void:
-	$PlayerSpawner.spawn()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6ebu"]
@@ -126,4 +122,3 @@ vertical_alignment = 1
 [connection signal="door_used" from="Tilemap layers/To-Boss Door" to="." method="_on_to_boss_door_door_used"]
 [connection signal="door_used" from="Tilemap layers/From-Boss Door" to="." method="_on_from_boss_door_door_used"]
 [connection signal="door_used" from="Tilemap layers/Exit Door" to="." method="_on_exit_door_door_used"]
-[connection signal="chatacter_selected" from="PlayerSpawner" to="." method="_on_player_spawner_chatacter_selected"]
