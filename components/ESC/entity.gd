@@ -60,6 +60,7 @@ class_name Entity
 
 ## The Direction the entity is facing. [code]0[/code] is Left, [code]1[/code] is Right
 @export var facing : int = 1
+signal entity_died
 
 func _physics_process(delta: float) -> void:
 	# Gravity effect on all entities
@@ -87,6 +88,8 @@ func take_damage(amount : float) -> void:
 		ANM_Animation_Tree.get("parameters/playback").start("die")
 		call_deferred(&"hide_entity")
 		await await_frame("die", ANM_Animated_Sprite.sprite_frames.get_frame_count("die") - 1)
+		emit_signal("entity_died")
+		name += "_corpse"
 		queue_free()
 		return
 	else:

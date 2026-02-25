@@ -58,6 +58,7 @@ func spawn(selected, id):
 	if !multiplayer.is_server(): return
 	var new_player = load(selected[&\"scene\"]).instantiate()
 	new_player.name = str(id)
+	(new_player as Player).entity_died.connect(spawn.rpc.bind(selected, id))
 	player_container.add_child.call_deferred(new_player)
 "
 
