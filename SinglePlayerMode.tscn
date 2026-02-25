@@ -10,11 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="8_b6ebu"]
 [ext_resource type="Script" uid="uid://b666ndns0368d" path="res://scenes/player_spawner/player_spawner.gd" id="9_b6ebu"]
 [ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/skeleton champion.tscn" id="10_v4i6i"]
+[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/MISC/fade.gd" id="11_mulqt"]
 
 [sub_resource type="GDScript" id="GDScript_b6ebu"]
 script/source = "extends Node2D
 
 func _ready() -> void:
+	$Fade.fade_in()
 	$\"Mobs/Skeleton Champion\".remove_from_group(\"enemies\")
 	$PlayerSpawner.player_id = 1
 	$PlayerSpawner.display_player_selector()
@@ -118,6 +120,11 @@ text = "YOU ESCAPED THE
 ENDLESS LOOP OF MOBS!!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Fade" type="CanvasLayer" parent="." unique_id=799402822]
+script = ExtResource("11_mulqt")
+duration = 2.0
+metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
 [connection signal="door_used" from="Tilemap layers/To-Boss Door" to="." method="_on_to_boss_door_door_used"]
 [connection signal="door_used" from="Tilemap layers/From-Boss Door" to="." method="_on_from_boss_door_door_used"]

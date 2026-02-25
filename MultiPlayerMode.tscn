@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/main.tres" id="1_ayucd"]
 [ext_resource type="TileSet" uid="uid://2nk5y54dgy8h" path="res://assets/tilemap/traps.tres" id="2_wcs8x"]
 [ext_resource type="Script" uid="uid://hty4wsqfi05u" path="res://assets/tilemap/traps.gd" id="3_y1gtw"]
+[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/MISC/fade.gd" id="4_rxxdc"]
 
 [sub_resource type="GDScript" id="GDScript_b6ebu"]
 script/source = "extends Node2D
@@ -13,6 +14,7 @@ var selector : PackedScene = load(\"res://scenes/player_spawner/player_selector.
 @onready var player_container = $Players
 
 func _ready() -> void:
+	$Fade.fade_in()
 	if mode == &\"HOST\": host()
 	else: join(mode)
 
@@ -94,3 +96,8 @@ tile_set = ExtResource("2_wcs8x")
 script = ExtResource("3_y1gtw")
 
 [node name="Players" type="Node2D" parent="." unique_id=1128702416]
+
+[node name="Fade" type="CanvasLayer" parent="." unique_id=1806546520]
+script = ExtResource("4_rxxdc")
+duration = 2.0
+metadata/_custom_type_script = "uid://1uygfo1ei3w4"

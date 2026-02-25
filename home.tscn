@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://df3utcvtlscxo" path="res://assets/gamepad.png" id="14_d26pf"]
 [ext_resource type="Texture2D" uid="uid://jjt8n1p52ytv" path="res://assets/keyboard.png" id="16_nnxq8"]
 [ext_resource type="FontFile" uid="uid://ma273g1gutiu" path="res://assets/fonts/NewRocker-Regular.ttf" id="16_sa43c"]
+[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/MISC/fade.gd" id="18_c6lok"]
 
 [sub_resource type="GDScript" id="GDScript_tt30a"]
 script/source = "extends CanvasLayer
@@ -102,6 +103,7 @@ func _on_controls_pressed() -> void:
 
 
 func _on_single_pressed() -> void:
+	await $Fade.fade_out()
 	get_tree().change_scene_to_file(\"res://SinglePlayerMode.tscn\")
 
 
@@ -112,6 +114,7 @@ func _on_multi_pressed() -> void:
 func _on_host_pressed() -> void:
 	var multiplayer_mode = load(\"res://MultiPlayerMode.tscn\").instantiate()
 	multiplayer_mode.mode = &\"HOST\"
+	await $Fade.fade_out()
 	get_tree().change_scene_to_node(multiplayer_mode)
 
 
@@ -122,6 +125,7 @@ func _on_join_pressed() -> void:
 func _on_connect_pressed() -> void:
 	var multiplayer_mode = load(\"res://MultiPlayerMode.tscn\").instantiate()
 	multiplayer_mode.mode = address_bar.text
+	await $Fade.fade_out()
 	get_tree().change_scene_to_node(multiplayer_mode)
 
 
@@ -1244,6 +1248,12 @@ offset_bottom = -30.0
 grow_vertical = 0
 theme = ExtResource("2_1ey7h")
 text = "Back"
+
+[node name="Fade" type="CanvasLayer" parent="." unique_id=1740989572]
+script = ExtResource("18_c6lok")
+duration = 2.0
+start_blank = true
+metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
 [connection signal="pressed" from="Menu/Main/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/Main/Controls" to="." method="_on_controls_pressed"]
