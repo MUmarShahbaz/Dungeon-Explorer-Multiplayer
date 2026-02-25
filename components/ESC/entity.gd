@@ -87,10 +87,11 @@ func take_damage(amount : float) -> void:
 		velocity = Vector2.ZERO
 		ANM_Animation_Tree.get("parameters/playback").start("die")
 		call_deferred(&"hide_entity")
+		name = str(randi())
 		await await_frame("die", ANM_Animated_Sprite.sprite_frames.get_frame_count("die") - 1)
 		emit_signal("entity_died")
-		name += "_corpse"
-		queue_free()
+		if multiplayer.is_server(): queue_free()
+		else: hide()
 		return
 	else:
 		velocity.x = 0

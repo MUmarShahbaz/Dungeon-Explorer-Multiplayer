@@ -3,7 +3,11 @@
 [ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/main.tres" id="1_ayucd"]
 [ext_resource type="TileSet" uid="uid://2nk5y54dgy8h" path="res://assets/tilemap/traps.tres" id="2_wcs8x"]
 [ext_resource type="Script" uid="uid://hty4wsqfi05u" path="res://assets/tilemap/traps.gd" id="3_y1gtw"]
+[ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="4_ngafo"]
 [ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/MISC/fade.gd" id="4_rxxdc"]
+[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="5_yxdkl"]
+[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="6_ayucd"]
+[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="7_wcs8x"]
 
 [sub_resource type="GDScript" id="GDScript_b6ebu"]
 script/source = "extends Node2D
@@ -42,6 +46,7 @@ func add_player(id : int):
 	num_players += 1
 	if id == 1: display_selector()
 	else: display_selector.rpc_id(id)
+	$Spawner.begin()
 
 func connected():
 	pass
@@ -70,15 +75,22 @@ properties/0/path = NodePath(".:num_players")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngafo"]
+size = Vector2(382, 63)
+
 [node name="MultiPlayer" type="Node2D" unique_id=1770292243]
 script = SubResource("GDScript_b6ebu")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1887997252]
 replication_config = SubResource("SceneReplicationConfig_rxxdc")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=113779296]
+[node name="MultiplayerPlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=113779296]
 _spawnable_scenes = PackedStringArray("uid://bbd0aduf4k1tp", "uid://fdklui3d6kmg", "uid://dy7gi0gjpojrs")
 spawn_path = NodePath("../Players")
+
+[node name="MultiplayerMobSpawner" type="MultiplayerSpawner" parent="." unique_id=882636309]
+_spawnable_scenes = PackedStringArray("uid://54ny3m7kmgsf", "uid://bels7wc0jjdav", "uid://bgt00d8spir50")
+spawn_path = NodePath("../Mobs")
 
 [node name="Tilemap layers" type="Node2D" parent="." unique_id=1594801405]
 
@@ -95,7 +107,20 @@ tile_map_data = PackedByteArray("AAAGAAEAAAALAAgAAAAHAAEAAAALAAgAAAAIAAEAAAALAAg
 tile_set = ExtResource("2_wcs8x")
 script = ExtResource("3_y1gtw")
 
+[node name="Spawner" type="Area2D" parent="." unique_id=693254131 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("4_ngafo")
+Mob_Scenes = Array[PackedScene]([ExtResource("7_wcs8x"), ExtResource("6_ayucd"), ExtResource("5_yxdkl")])
+Spawn_Root = NodePath("../Mobs")
+Rate = 0.2
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner" unique_id=1518560472]
+position = Vector2(2452, 30)
+shape = SubResource("RectangleShape2D_ngafo")
+
 [node name="Players" type="Node2D" parent="." unique_id=1128702416]
+
+[node name="Mobs" type="Node2D" parent="." unique_id=666668874]
 
 [node name="Fade" type="CanvasLayer" parent="." unique_id=1806546520]
 script = ExtResource("4_rxxdc")

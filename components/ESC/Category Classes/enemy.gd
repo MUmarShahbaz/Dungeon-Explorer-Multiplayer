@@ -10,11 +10,12 @@ func _ready() -> void:
 	VIS_Block_Check.target_position = Vector2((50+(MV_Collider.shape as CapsuleShape2D).radius/2)*facing, 0)
 	VIS_Block_Check.global_position = Vector2(0, (MV_Collider.shape as CapsuleShape2D).height/2 - 5)
 	add_child.call_deferred(VIS_Block_Check)
+	if !is_multiplayer_authority(): ANM_Animation_Tree.active = false
 
 func _physics_process(delta: float) -> void:
 	if HP_Current <= 0: return
 	super._physics_process(delta)
-	mob_brain()
+	if is_multiplayer_authority(): mob_brain()
 	move_and_slide()
 
 @export_group("Vision", "VIS")

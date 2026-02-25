@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://c6beiwhjtrb7d"]
+[gd_scene format=3 uid="uid://c6beiwhjtrb7d"]
 
 [ext_resource type="Script" uid="uid://bj366idhkt0fr" path="res://components/ESC/Character Classes/Enemy/melee_enemy.gd" id="1_22xln"]
 [ext_resource type="Texture2D" uid="uid://ej8ph8cnr3yh" path="res://assets/sprites/mobs/skeleton warrior/Attack_1.png" id="2_gxmpl"]
@@ -758,7 +758,33 @@ Damage_Zone = NodePath("../Attack 3")
 Damage = 12.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Skeleton Champion" type="CharacterBody2D" node_paths=PackedStringArray("attack_buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bnif8"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:facing")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("sprite:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("sprite:frame")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("sprite:scale")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Attack 1:scale")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Attack 2:scale")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Attack 3:scale")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+
+[node name="Skeleton Champion" type="CharacterBody2D" unique_id=270097652 node_paths=PackedStringArray("attack_buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 scale = Vector2(1.8, 1.8)
 script = ExtResource("1_22xln")
 attack_buffer = NodePath("Attack Buffer")
@@ -774,51 +800,52 @@ ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=468525905]
 sprite_frames = SubResource("SpriteFrames_kbpb8")
 frame = 1
 offset = Vector2(0, -34)
 
-[node name="collider" type="CollisionShape2D" parent="."]
+[node name="collider" type="CollisionShape2D" parent="." unique_id=863153628]
 shape = SubResource("CapsuleShape2D_6wvc4")
 
-[node name="anim_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_xvblh")
-}
+[node name="anim_player" type="AnimationPlayer" parent="." unique_id=1138713938]
+libraries/ = SubResource("AnimationLibrary_xvblh")
 
-[node name="anim_tree" type="AnimationTree" parent="."]
+[node name="anim_tree" type="AnimationTree" parent="." unique_id=1765515258]
 tree_root = SubResource("AnimationNodeStateMachine_kbpb8")
 anim_player = NodePath("../anim_player")
 parameters/conditions/attack = false
 
-[node name="Melee Controller" type="Node" parent="."]
+[node name="Melee Controller" type="Node" parent="." unique_id=1228649902]
 script = ExtResource("10_g0vef")
 Move_List = Array[ExtResource("11_q6jqe")]([SubResource("Resource_ffo2t"), SubResource("Resource_uuvfu"), SubResource("Resource_6wvc4")])
 metadata/_custom_type_script = "uid://bqxoijlpwtgvm"
 
-[node name="Attack Buffer" type="Node" parent="."]
+[node name="Attack Buffer" type="Node" parent="." unique_id=233833571]
 script = ExtResource("12_ycoqu")
 duration = 0.1
 metadata/_custom_type_script = "uid://n2liqouspgxa"
 
-[node name="Attack 1" type="Area2D" parent="."]
+[node name="Attack 1" type="Area2D" parent="." unique_id=714122829]
 script = ExtResource("13_k1mcq")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 1" unique_id=56637653]
 polygon = PackedVector2Array(0, 0, 40, 13, 58, -11, 61, -37, 46, -55)
 
-[node name="Attack 2" type="Area2D" parent="."]
+[node name="Attack 2" type="Area2D" parent="." unique_id=1732710203]
 script = ExtResource("13_k1mcq")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 2" unique_id=1743798899]
 polygon = PackedVector2Array(0, 0, 55, 1, 67, -19, 54, -48, 31, -52, 12, -41)
 
-[node name="Attack 3" type="Area2D" parent="."]
+[node name="Attack 3" type="Area2D" parent="." unique_id=564427098]
 script = ExtResource("13_k1mcq")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3" unique_id=263459870]
 polygon = PackedVector2Array(0, 0, 8, 16, 47, 28, 56, -2, 44, -32)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=93532907]
+replication_config = SubResource("SceneReplicationConfig_bnif8")
