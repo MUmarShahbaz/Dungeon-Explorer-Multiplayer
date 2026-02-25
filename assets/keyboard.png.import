@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy8p8qn8de35a"
-path="res://.godot/imported/samurai.png-85b16381260706445ff353bad0d2de33.ctex"
+uid="uid://jjt8n1p52ytv"
+path="res://.godot/imported/keyboard.png-2771f8875f06b8814b16eba3fc311cef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/samurai.png"
-dest_files=["res://.godot/imported/samurai.png-85b16381260706445ff353bad0d2de33.ctex"]
+source_file="res://assets/keyboard.png"
+dest_files=["res://.godot/imported/keyboard.png-2771f8875f06b8814b16eba3fc311cef.ctex"]
 
 [params]
 

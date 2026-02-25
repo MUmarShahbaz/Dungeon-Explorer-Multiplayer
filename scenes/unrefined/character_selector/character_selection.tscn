@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvyqp60mp8g54"]
+[gd_scene format=3 uid="uid://bvyqp60mp8g54"]
 
 [ext_resource type="Texture2D" uid="uid://d3mvi5v8yfo00" path="res://assets/sprites/knight.png" id="1_0i02a"]
 [ext_resource type="Script" uid="uid://bwnrmceyd3n1w" path="res://scenes/unrefined/character_selector/character_selection.gd" id="1_q58um"]
