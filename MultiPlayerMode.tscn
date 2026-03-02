@@ -14,6 +14,7 @@ script/source = "extends Node2D
 
 var mode : StringName
 var selector : PackedScene = load(\"res://scenes/player_spawner/player_selector.tscn\")
+var hud : PackedScene = preload(\"res://scenes/player_spawner/hud.tscn\")
 
 @onready var player_container = $Players
 
@@ -68,6 +69,19 @@ func spawn(selected, id):
 	new_player.name = str(id)
 	(new_player as Player).entity_died.connect(spawn.rpc.bind(selected, id))
 	player_container.add_child.call_deferred(new_player)
+	await new_player.ready
+	if id != 1: rpc_id(id, &\"create_hud\", id, selected[&\"image\"])
+	else: create_hud(id, selected[&\"image\"])
+
+@rpc(\"reliable\")
+func create_hud(id, image):
+	var new_hud = hud.instantiate()
+	new_hud.multiplayer_id = id
+	new_hud.avatar = AtlasTexture.new()
+	new_hud.avatar.atlas = load(image)
+	new_hud.avatar.region.position = Vector2(16, 8)
+	new_hud.avatar.region.size = Vector2(32, 32)
+	add_child.call_deferred(new_hud)
 "
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rxxdc"]

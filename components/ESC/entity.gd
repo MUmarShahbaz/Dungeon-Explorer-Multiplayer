@@ -2,7 +2,7 @@ extends CharacterBody2D
 ## Base class of all entities.
 ##
 ## This class includes the assignment of the following properties:[br]
-## > Health and Stamina[br]
+## > Health and Special(for boost)[br]
 ## > Movement[br]
 ## > Attack[br]
 ## > Animation & SFX[br]
@@ -17,13 +17,9 @@ class_name Entity
 ## Current HP
 @onready var HP_Current = HP_Health_Points
 
-@export_group("Stamina", "SP")
-## Max SP
-@export var SP_Stamina_Points : float = 100
-## SP gained per second
-@export var SP_Regeneration_Rate : float = 1
-## Current SP
-@onready var SP_Current = SP_Stamina_Points
+@export_group("Special", "SP")
+## SP
+@export var SP_Special_Points : float = 100
 
 @export_group("Movement", "MV")
 ## Collider
@@ -66,11 +62,9 @@ func _physics_process(delta: float) -> void:
 	# Gravity effect on all entities
 	if not is_on_floor(): velocity += get_gravity() * delta
 	
-	# HP and SP regeneration
+	# HP regeneration
 	if HP_Health_Points > HP_Current : HP_Current += HP_Regeneration_Rate * delta
 	else: HP_Current = HP_Health_Points
-	if SP_Stamina_Points > SP_Current : SP_Current += SP_Regeneration_Rate * delta
-	else: SP_Current = SP_Stamina_Points
 	
 	# Deceleration Effect
 	if velocity.x != 0: velocity.x = move_toward(velocity.x, 0, delta*10)

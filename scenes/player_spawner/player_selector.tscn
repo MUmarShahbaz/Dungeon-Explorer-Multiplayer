@@ -17,18 +17,15 @@ var playable : Array[StringName] = [\"KNIGHT\", \"WIZARD\", \"SAMURAI\"]
 var all_characters = {
 	\"KNIGHT\": {
 		\"scene\": \"res://scenes/characters/pc/knight.tscn\",
-		\"image\": \"res://assets/sprites/knight.png\",
-		\"avatar\": \"\"
+		\"image\": \"res://assets/sprites/knight.png\"
 	},
 	\"WIZARD\": {
 		\"scene\": \"res://scenes/characters/pc/wizard.tscn\",
-		\"image\": \"res://assets/sprites/wizard.png\",
-		\"avatar\": \"\"
+		\"image\": \"res://assets/sprites/wizard.png\"
 	},
 	\"SAMURAI\": {
 		\"scene\": \"res://scenes/characters/pc/samurai.tscn\",
-		\"image\": \"res://assets/sprites/samurai.png\",
-		\"avatar\": \"\"
+		\"image\": \"res://assets/sprites/samurai.png\"
 	},
 	\"NINJA\": {},
 	\"DWARF\": {},

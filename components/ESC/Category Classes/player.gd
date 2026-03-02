@@ -50,10 +50,9 @@ func special():
 	if Input.is_action_just_pressed("heal") and ITM_Healing_Potions > 0:
 		ITM_Healing_Potions -= 1
 		HP_Current += HP_Regeneration_Rate * 60
-		SP_Current += SP_Regeneration_Rate * 30
 	if Input.is_action_just_pressed("boost") and ITM_Booster_Potions > 0:
 		ITM_Booster_Potions -= 1
-		SP_Current += SP_Regeneration_Rate * 60
+		SP_Special_Points += 60
 
 var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "shoot", "die"]
 
