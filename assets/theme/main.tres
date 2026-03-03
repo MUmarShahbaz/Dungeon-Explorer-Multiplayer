@@ -51,6 +51,29 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nre6y"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4jp5p"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2qyn"]
 content_margin_left = 2.0
 content_margin_top = 2.0
@@ -100,6 +123,18 @@ Button/styles/focus = SubResource("StyleBoxFlat_l7ie4")
 Button/styles/hover = SubResource("StyleBoxFlat_vdwbc")
 Button/styles/normal = SubResource("StyleBoxFlat_lxycn")
 Button/styles/pressed = SubResource("StyleBoxFlat_lxycn")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_l7ie4")
+Label/styles/focus = SubResource("StyleBoxFlat_nre6y")
+Label/styles/normal = SubResource("StyleBoxEmpty_4jp5p")
 ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
 ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
 ProgressBar/constants/outline_size = 8
