@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="8_ptx0d"]
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="9_al8kk"]
 [ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/skeleton champion.tscn" id="10_p4en5"]
-[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/MISC/fade.gd" id="11_iqfor"]
+[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="11_iqfor"]
 
 [sub_resource type="GDScript" id="GDScript_b6ebu"]
 script/source = "extends Node2D
@@ -20,7 +20,11 @@ func _ready() -> void:
 	$\"Mobs/Skeleton Champion\".remove_from_group(\"enemies\")
 	$PlayerSpawner.player_id = 1
 	$PlayerSpawner.display_player_selector()
-	await dialog()
+	await $PlayerSpawner.entity_spawned
+	var dialog_box = Dialog.new()
+	add_child(dialog_box)
+	await dialog_box.begin_dialog(dialog_sequence)
+	dialog_box.queue_free()
 	$Spawner.begin()
 
 func _on_to_boss_door_door_used() -> void:
@@ -37,59 +41,58 @@ func _process(_delta: float) -> void:
 	if not get_tree().get_first_node_in_group(\"players\") and $PlayerSpawner.selected:
 		$PlayerSpawner.spawn()
 
-var dialog_sequence = [
+var dialog_sequence : Array[Dictionary] = [
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Aggression.png\",
-		\"text\": \"!!??\"
+		\"text\": \"!!??\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Aggression.png\",
-		\"text\": \"WHO DARES ENTER MY DUNGEON??\"
+		\"text\": \"WHO DARES ENTER MY DUNGEON??\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Calm.png\",
-		\"text\": \"Hmmmm........\\nYou look like you could take a hit or two.....\"
+		\"text\": \"Hmmmm........\\nYou look like you could take a hit or two.....\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"Very well.......\\nYou will be my entertainment today!\"
+		\"text\": \"Very well.......\\nYou will be my entertainment today!\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"Up ahead is an infinitely growing number of my skeleton soldiers.\"
+		\"text\": \"Up ahead is an infinitely growing number of my skeleton soldiers.\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"The only way to stop more from spawning is to defeat the champion.\"
+		\"text\": \"The only way to stop more from spawning is to defeat the champion.\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"The door to the champion only unlocks for a brief moment\\nwhen there are no skeleton soldiers.\"
+		\"text\": \"The door to the champion only unlocks for a brief moment\\nwhen there are no skeleton soldiers.\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"Only after all foes are dead, you may leave through where you came.\"
+		\"text\": \"Only after all foes are dead, you may leave through where you came.\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"In here you will be denied even death!\\nSo you may suffer in an endless battle.\"
+		\"text\": \"In here you will be denied even death!\\nSo you may suffer in an endless battle.\",
+		\"avatar_on_right\": true
 	},
 	{
 		\"image\": \"res://assets/sprites/dialogs/dark queen/Sadness.png\",
-		\"text\": \"What a horrible fate.........\"
+		\"text\": \"What a horrible fate.........\",
+		\"avatar_on_right\": true
 	}
 ]
-
-func dialog():
-	var dialog_box = Dialog.new()
-	add_child(dialog_box)
-	for this_dialog in dialog_sequence:
-		while Input.is_action_pressed(\"jump\"):
-			await get_tree().physics_frame
-		dialog_box.update_dialog(this_dialog[&\"image\"], this_dialog[&\"text\"], true)
-		while not Input.is_action_just_pressed(\"jump\"):
-			await get_tree().physics_frame
-	dialog_box.queue_free()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6ebu"]

@@ -4,6 +4,7 @@ class_name PlayerSpawner
 var player_selector : PackedScene = preload("res://scenes/player_spawner/player_selector.tscn")
 var hud : PackedScene = preload("res://scenes/player_spawner/hud.tscn")
 
+signal entity_spawned
 
 var player_id : int
 var selected : Dictionary
@@ -30,3 +31,4 @@ func spawn():
 	new_hud.avatar.region.position = Vector2(16, 8)
 	new_hud.avatar.region.size = Vector2(32, 32)
 	self.add_sibling.call_deferred(new_hud)
+	emit_signal("entity_spawned")

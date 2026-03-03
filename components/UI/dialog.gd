@@ -40,5 +40,10 @@ func update_dialog(image, text ,avatar_on_right = false):
 		avatar.flip_h = false
 		avatar_container.alignment = BoxContainer.ALIGNMENT_BEGIN
 	
-	
-	
+func begin_dialog(dialog_sequence : Array[Dictionary]):
+	for this_dialog in dialog_sequence:
+		while Input.is_action_pressed("jump"):
+			await get_tree().physics_frame
+		update_dialog(this_dialog[&"image"], this_dialog[&"text"], this_dialog[&"avatar_on_right"])
+		while not Input.is_action_just_pressed("jump"):
+			await get_tree().physics_frame

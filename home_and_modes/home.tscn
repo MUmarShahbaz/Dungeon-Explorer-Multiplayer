@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://df3utcvtlscxo" path="res://assets/gamepad.png" id="15_wc8x0"]
 [ext_resource type="Texture2D" uid="uid://jjt8n1p52ytv" path="res://assets/keyboard.png" id="16_4hyja"]
 [ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="17_r22g2"]
-[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/MISC/fade.gd" id="18_a2yj8"]
+[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="18_a2yj8"]
 
 [sub_resource type="GDScript" id="GDScript_tt30a"]
 script/source = "extends CanvasLayer

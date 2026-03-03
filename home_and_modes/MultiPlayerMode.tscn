@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="5_572wm"]
 [ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="6_38htn"]
 [ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="7_el32x"]
-[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/MISC/fade.gd" id="8_ur3di"]
+[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="8_ur3di"]
 
 [sub_resource type="GDScript" id="GDScript_b6ebu"]
 script/source = "extends Node2D
