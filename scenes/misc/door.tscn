@@ -91,7 +91,7 @@ func open():
 	state = door_state.opened
 	play(\"opened\")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var players_in_range : Array = $\"Interaction Region\".get_overlapping_bodies().filter(func(body):
 		if body is Player: return true
 		else: return false

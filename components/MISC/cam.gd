@@ -14,7 +14,7 @@ func _ready() -> void:
 	position_smoothing_enabled = true
 	make_current()
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var cam_off: Vector2 = Vector2.ZERO
 	cam_off.x = Input.get_axis("cam_left", "cam_right")
 	cam_off.y = Input.get_axis("cam_up", "cam_down")

@@ -4,31 +4,39 @@ class_name PlayerSpawner
 var player_selector : PackedScene = preload("res://scenes/player_spawner/player_selector.tscn")
 var hud : PackedScene = preload("res://scenes/player_spawner/hud.tscn")
 
-signal entity_spawned
+signal player_spawned(player : Player)
 
 var player_id : int
-var selected : Dictionary
 
+@rpc("authority", "call_remote", "reliable")
 func display_player_selector():
 	var new_selector = player_selector.instantiate()
 	(new_selector.continue_btn as Button).pressed.connect(func ():
 		if new_selector.selected:
-			selected = new_selector.selected
+			spawn.rpc(new_selector.selected, multiplayer.get_unique_id())
 			new_selector.queue_free()
-			spawn()
 	)
 	get_tree().get_current_scene().add_child.call_deferred(new_selector)
 
-func spawn():
-	var player : Player = load(selected[&"scene"]).instantiate()
-	player.global_position = self.global_position
-	if player_id: player.name = str(player_id)
-	get_tree().get_current_scene().add_child.call_deferred(player)
+@rpc("any_peer", "call_local", "reliable")
+func spawn(selected, id):
+	if !multiplayer.is_server(): return
+	var new_player = load(selected[&"scene"]).instantiate()
+	new_player.name = str(id)
+	(new_player as Player).entity_died.connect(spawn.rpc.bind(selected, id))
+	get_tree().current_scene.add_child.call_deferred(new_player)
+	new_player.global_position = global_position
+	player_spawned.emit(new_player)
+	await new_player.ready
+	if id != 1: create_hud.rpc_id(id, id, selected[&"image"])
+	else: create_hud(id, selected[&"image"])
+
+@rpc("reliable")
+func create_hud(id, image):
 	var new_hud = hud.instantiate()
-	new_hud.player = player
+	new_hud.multiplayer_id = id
 	new_hud.avatar = AtlasTexture.new()
-	new_hud.avatar.atlas = load(selected[&"image"])
+	new_hud.avatar.atlas = load(image)
 	new_hud.avatar.region.position = Vector2(16, 8)
 	new_hud.avatar.region.size = Vector2(32, 32)
-	self.add_sibling.call_deferred(new_hud)
-	emit_signal("entity_spawned")
+	add_child.call_deferred(new_hud)

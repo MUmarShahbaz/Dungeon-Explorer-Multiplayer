@@ -20,12 +20,14 @@ func _ready() -> void:
 	$\"Mobs/Skeleton Champion\".remove_from_group(\"enemies\")
 	$PlayerSpawner.player_id = 1
 	$PlayerSpawner.display_player_selector()
-	await $PlayerSpawner.entity_spawned
+	var this_player = await $PlayerSpawner.player_spawned
+	this_player.disable_controls = true
 	var dialog_box = Dialog.new()
 	add_child(dialog_box)
 	await dialog_box.begin_dialog(dialog_sequence)
 	dialog_box.queue_free()
 	$Spawner.begin()
+	this_player.disable_controls = false
 
 func _on_to_boss_door_door_used(players) -> void:
 	for this_player in players:
@@ -40,8 +42,6 @@ func _on_exit_door_door_used(_players) -> void:
 	$you_win.show()
 
 func _process(_delta: float) -> void:
-	if not get_tree().get_first_node_in_group(\"players\") and $PlayerSpawner.selected:
-		$PlayerSpawner.spawn()
 	if get_tree().get_nodes_in_group(\"enemies\").size() == 0:
 		$\"Doors/To Boss\".unlock()
 		$\"Doors/Exit Door\".unlock()

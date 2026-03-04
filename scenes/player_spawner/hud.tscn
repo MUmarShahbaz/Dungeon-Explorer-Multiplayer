@@ -13,9 +13,9 @@ var multiplayer_id : int
 func _ready() -> void:
 	$\"Control/Player/Avatar\".texture = avatar
 	$\"Control/Minimap Container/Minimap\".world_2d = get_tree().root.world_2d
-	if multiplayer_id: player = get_tree().current_scene.get_node(\"Players/\" + str(multiplayer_id))
+	if multiplayer_id: player = get_tree().current_scene.get_node(str(multiplayer_id))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player:
 		$\"Control/Player/HP_SP/HP\".value = (player.HP_Current / player.HP_Health_Points)*100
 		$\"Control/Player/HP_SP/SP\".value = player.SP_Special_Points

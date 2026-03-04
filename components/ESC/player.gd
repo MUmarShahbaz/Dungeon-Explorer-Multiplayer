@@ -25,10 +25,12 @@ func _ready() -> void:
 		myEars.make_current()
 	else: ANM_Animation_Tree.active = false
 
+var disable_controls := false
+
 func _physics_process(delta: float) -> void:
 	if HP_Current <= 0: return
 	super._physics_process(delta)
-	if is_multiplayer_authority(): control(delta)
+	if is_multiplayer_authority() and not disable_controls: control(delta)
 	move_and_slide()
 
 func control(delta : float):
