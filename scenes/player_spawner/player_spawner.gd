@@ -6,8 +6,6 @@ var hud : PackedScene = preload("res://scenes/player_spawner/hud.tscn")
 
 signal player_spawned(player : Player)
 
-var player_id : int
-
 @rpc("authority", "call_remote", "reliable")
 func display_player_selector():
 	var new_selector = player_selector.instantiate()
@@ -25,11 +23,16 @@ func spawn(selected, id):
 	new_player.name = str(id)
 	(new_player as Player).entity_died.connect(spawn.rpc.bind(selected, id))
 	get_tree().current_scene.add_child.call_deferred(new_player)
-	new_player.global_position = global_position
-	player_spawned.emit(new_player)
 	await new_player.ready
+	await get_tree().physics_frame
+	position_rpc.rpc(id, global_position)
+	player_spawned.emit(new_player)
 	if id != 1: create_hud.rpc_id(id, id, selected[&"image"])
 	else: create_hud(id, selected[&"image"])
+
+@rpc("any_peer", "call_local", "reliable")
+func position_rpc(id : int, new_position: Vector2):
+	get_tree().current_scene.get_node_or_null(str(id)).global_position = new_position
 
 @rpc("reliable")
 func create_hud(id, image):

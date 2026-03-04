@@ -60,7 +60,7 @@ signal door_opened(players : Array[Player])
 
 enum door_state {locked, unlocked, opened, doorless}
 @export var state : door_state
-var force_freeze : bool = false
+@export var force_freeze : bool = false
 
 func _ready() -> void:
 	match state:
@@ -98,8 +98,12 @@ func _physics_process(_delta: float) -> void:
 		)
 	if Input.is_action_just_pressed(\"interact\") and players_in_range.size() > 0 and not state == door_state.locked:
 		door_opened.emit(players_in_range)
-		open()
-		force_freeze = true
+		open_for_all.rpc()
+
+@rpc(\"any_peer\", \"call_local\", \"reliable\")
+func open_for_all():
+	open()
+	force_freeze = true
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nbxa"]
@@ -112,6 +116,9 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:state")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:force_freeze")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="Door" type="AnimatedSprite2D" unique_id=17175201]
 scale = Vector2(1.8, 1.8)
