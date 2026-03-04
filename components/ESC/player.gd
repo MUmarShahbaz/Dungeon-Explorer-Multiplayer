@@ -6,6 +6,7 @@ signal cam(direction : Vector2)
 @export_group("Items", "ITM")
 @export var ITM_Healing_Potions : int = 3
 @export var ITM_Booster_Potions : int = 5
+var SP_Special_Points : float = 100
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(name))

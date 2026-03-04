@@ -17,10 +17,6 @@ class_name Entity
 ## Current HP
 @onready var HP_Current = HP_Health_Points
 
-@export_group("Special", "SP")
-## SP
-@export var SP_Special_Points : float = 100
-
 @export_group("Movement", "MV")
 ## Collider
 @export var MV_Collider : CollisionShape2D
