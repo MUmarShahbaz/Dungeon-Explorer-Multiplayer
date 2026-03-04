@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgx5f5q7qqnxc"
-path="res://.godot/imported/Special.png-a9a025bf1df845d7c809255765645e06.ctex"
+uid="uid://d1pqxgx2pvxbb"
+path="res://.godot/imported/Smile.png-d105b81a9aad28e689a007481b57e517.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dialogs/dark queen/Special.png"
-dest_files=["res://.godot/imported/Special.png-a9a025bf1df845d7c809255765645e06.ctex"]
+source_file="res://assets/sprites/dialogues/dark queen/Smile.png"
+dest_files=["res://.godot/imported/Smile.png-d105b81a9aad28e689a007481b57e517.ctex"]
 
 [params]
 

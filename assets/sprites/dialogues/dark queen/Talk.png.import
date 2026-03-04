@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://s61ekmxgk2nh"
-path="res://.godot/imported/Talk.png-4248b5265afa7c98ff53a151c47a33ce.ctex"
+path="res://.godot/imported/Talk.png-2c0374fd39107de31042ad8a3c0ad093.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dialogs/dark queen/Talk.png"
-dest_files=["res://.godot/imported/Talk.png-4248b5265afa7c98ff53a151c47a33ce.ctex"]
+source_file="res://assets/sprites/dialogues/dark queen/Talk.png"
+dest_files=["res://.godot/imported/Talk.png-2c0374fd39107de31042ad8a3c0ad093.ctex"]
 
 [params]
 

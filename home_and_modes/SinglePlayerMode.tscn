@@ -22,10 +22,10 @@ func _ready() -> void:
 	$PlayerSpawner.display_player_selector()
 	var this_player = await $PlayerSpawner.player_spawned
 	this_player.disable_controls = true
-	var dialog_box = Dialog.new()
-	add_child(dialog_box)
-	await dialog_box.begin_dialog(dialog_sequence)
-	dialog_box.queue_free()
+	var dialogue_box = DialogueBox.new()
+	add_child(dialogue_box)
+	await dialogue_box.begin_dialog(dialogue_on_start)
+	dialogue_box.queue_free()
 	$Spawner.begin()
 	this_player.disable_controls = false
 
@@ -39,7 +39,9 @@ func _on_from_boss_door_door_used(players) -> void:
 		this_player.global_position = Vector2(3248, 384)
 
 func _on_exit_door_door_used(_players) -> void:
-	$you_win.show()
+	var dialogue_box = DialogueBox.new()
+	add_child(dialogue_box)
+	dialogue_box.begin_dialog(dialogue_on_end)
 
 func _process(_delta: float) -> void:
 	if get_tree().get_nodes_in_group(\"enemies\").size() == 0:
@@ -51,65 +53,70 @@ func _process(_delta: float) -> void:
 	if get_node_or_null(\"Mobs/Skeleton Champion\") == null:
 		$\"Doors/From Boss\".unlock()
 
-var dialog_sequence : Array[Dictionary] = [
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Aggression.png\",
-		\"text\": \"!!??\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Aggression.png\",
-		\"text\": \"WHO DARES ENTER MY DUNGEON??\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Calm.png\",
-		\"text\": \"Hmmmm........\\nYou look like you could take a hit or two.....\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"Very well.......\\nYou will be my entertainment today!\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"Up ahead is an infinitely growing number of my skeleton soldiers.\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"The only way to stop more from spawning is to defeat the champion.\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"The door to the champion only unlocks for a brief moment\\nwhen there are no skeleton soldiers.\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"Only after all foes are dead, you may leave through where you came.\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Talk.png\",
-		\"text\": \"In here you will be denied even death!\\nSo you may suffer in an endless battle.\",
-		\"avatar_on_right\": true
-	},
-	{
-		\"image\": \"res://assets/sprites/dialogs/dark queen/Sadness.png\",
-		\"text\": \"What a horrible fate.........\",
-		\"avatar_on_right\": true
-	}
+var dialogue_on_start : Array[Dialogue] = [
+	Dialogue.new(
+		\"!!??\",
+		load(\"res://assets/sprites/dialogues/dark queen/Aggression.png\"),
+		true
+	),
+	Dialogue.new(
+		\"WHO DARES ENTER MY DUNGEON??\",
+		load(\"res://assets/sprites/dialogues/dark queen/Aggression.png\"),
+		true
+	),
+	Dialogue.new(
+		\"Hmmmm........\\nYou look like you could take a hit or two.....\",
+		load(\"res://assets/sprites/dialogues/dark queen/Calm.png\"),
+		true
+	),
+	Dialogue.new(
+		\"Very well.......\\nYou will be my entertainment today!\",
+		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
+		true
+	),
+	Dialogue.new(
+		\"Up ahead is an infinitely growing number of my skeleton soldiers.\",
+		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
+		true
+	),
+	Dialogue.new(
+		\"The only way to stop more from spawning is to defeat the champion.\",
+		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
+		true
+	),
+	Dialogue.new(
+		\"The door to the champion only unlocks for a brief moment\\nwhen there are no skeleton soldiers.\",
+		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
+		true
+	),
+	Dialogue.new(
+		\"Only after all foes are dead, you may leave through where you came.\",
+		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
+		true
+	),
+	Dialogue.new(
+		\"In here you will be denied even death!\\nSo you may suffer in an endless battle.\",
+		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
+		true
+	),
+	Dialogue.new(
+		\"What a horrible fate.........\",
+		load(\"res://assets/sprites/dialogues/dark queen/Sadness.png\"),
+		true
+	),
+]
+
+var dialogue_on_end : Array[Dialogue] = [
+		Dialogue.new(
+		\"Impressive.....\",
+		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
+		true
+	),
 ]
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6ebu"]
 size = Vector2(382, 63)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6ebu"]
-bg_color = Color(0, 0, 0, 0.776471)
 
 [node name="SinglePlayer" type="Node2D" unique_id=1335079302]
 script = SubResource("GDScript_b6ebu")
@@ -160,31 +167,6 @@ shape = SubResource("RectangleShape2D_b6ebu")
 
 [node name="Skeleton Champion" parent="Mobs" unique_id=684033546 instance=ExtResource("10_p4en5")]
 position = Vector2(4375, -974)
-
-[node name="you_win" type="CanvasLayer" parent="." unique_id=1520338520]
-visible = false
-
-[node name="Control" type="Control" parent="you_win" unique_id=254287892]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="you_win/Control" unique_id=886702459]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 75
-theme_override_styles/normal = SubResource("StyleBoxFlat_b6ebu")
-text = "YOU ESCAPED THE
-ENDLESS LOOP OF MOBS!!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Fade" type="CanvasLayer" parent="." unique_id=799402822]
 script = ExtResource("11_iqfor")

@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name Dialog
+class_name DialogueBox
 
 @onready var container = Control.new()
 @onready var bg = ColorRect.new()
@@ -31,7 +31,7 @@ func _ready() -> void:
 	avatar.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 
 func update_dialog(image, text ,avatar_on_right = false):
-	avatar.texture = load(image)
+	avatar.texture = image
 	text_box.text = text + "\n\n(jump to continue...)"
 	if avatar_on_right:
 		avatar.flip_h = true
@@ -40,10 +40,10 @@ func update_dialog(image, text ,avatar_on_right = false):
 		avatar.flip_h = false
 		avatar_container.alignment = BoxContainer.ALIGNMENT_BEGIN
 	
-func begin_dialog(dialog_sequence : Array[Dictionary]):
+func begin_dialog(dialog_sequence : Array[Dialogue]):
 	for this_dialog in dialog_sequence:
 		while Input.is_action_pressed("jump"):
 			await get_tree().physics_frame
-		update_dialog(this_dialog[&"image"], this_dialog[&"text"], this_dialog[&"avatar_on_right"])
+		update_dialog(this_dialog.Sprite, this_dialog.Text, this_dialog.Right_Side)
 		while not Input.is_action_just_pressed("jump"):
 			await get_tree().physics_frame

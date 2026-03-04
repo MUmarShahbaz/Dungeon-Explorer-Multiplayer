@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp4n75kuh8spu"
-path="res://.godot/imported/Calm.png-e88998e3fc2717fa2180e60eca44031d.ctex"
+uid="uid://ebds6ij2c334"
+path="res://.godot/imported/Aggression.png-1c6252210fc3570a4bfa0dbb71df9d0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dialogs/dark queen/Calm.png"
-dest_files=["res://.godot/imported/Calm.png-e88998e3fc2717fa2180e60eca44031d.ctex"]
+source_file="res://assets/sprites/dialogues/dark queen/Aggression.png"
+dest_files=["res://.godot/imported/Aggression.png-1c6252210fc3570a4bfa0dbb71df9d0b.ctex"]
 
 [params]
 
