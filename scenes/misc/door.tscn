@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://dc3i2o2v2kf3v"]
+
+[ext_resource type="Texture2D" uid="uid://b8euirx78u1vs" path="res://assets/tilemap/doors_and_window.png" id="1_7nbxa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrqdb"]
+atlas = ExtResource("1_7nbxa")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orotp"]
+atlas = ExtResource("1_7nbxa")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nbxa"]
+atlas = ExtResource("1_7nbxa")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uq8g"]
+atlas = ExtResource("1_7nbxa")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mrqdb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrqdb")
+}],
+"loop": false,
+"name": &"doorless",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orotp")
+}],
+"loop": false,
+"name": &"locked",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nbxa")
+}],
+"loop": false,
+"name": &"opened",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uq8g")
+}],
+"loop": false,
+"name": &"unlocked",
+"speed": 0.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_7nbxa"]
+script/source = "extends AnimatedSprite2D
+
+signal door_opened(players : Array[Player])
+
+enum door_state {locked, unlocked, opened, doorless}
+@export var state : door_state
+var force_freeze : bool = false
+
+func _ready() -> void:
+	match state:
+		door_state.locked:
+			lock()
+		door_state.unlocked:
+			unlock()
+		door_state.opened:
+			open()
+		door_state.doorless:
+			state = door_state.doorless
+			play(\"doorless\")
+	$\"Interaction Region\".set_collision_mask_value(1, false)
+	$\"Interaction Region\".set_collision_mask_value(2, true)
+
+func lock():
+	if force_freeze: return
+	state = door_state.locked
+	play(\"locked\")
+
+func unlock():
+	if force_freeze: return
+	state = door_state.unlocked
+	play(\"unlocked\")
+
+func open():
+	if force_freeze: return
+	state = door_state.opened
+	play(\"opened\")
+
+func _physics_process(delta: float) -> void:
+	var players_in_range : Array = $\"Interaction Region\".get_overlapping_bodies().filter(func(body):
+		if body is Player: return true
+		else: return false
+		)
+	if Input.is_action_just_pressed(\"interact\") and players_in_range.size() > 0 and not state == door_state.locked:
+		door_opened.emit(players_in_range)
+		open()
+		force_freeze = true
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nbxa"]
+size = Vector2(48, 56)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7nbxa"]
+properties/0/path = NodePath(".:animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:state")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Door" type="AnimatedSprite2D" unique_id=17175201]
+scale = Vector2(1.8, 1.8)
+sprite_frames = SubResource("SpriteFrames_mrqdb")
+animation = &"opened"
+speed_scale = 0.0
+offset = Vector2(0.5, 0)
+script = SubResource("GDScript_7nbxa")
+
+[node name="Interaction Region" type="Area2D" parent="." unique_id=531143545]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Region" unique_id=579602188]
+shape = SubResource("RectangleShape2D_7nbxa")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=601841384]
+replication_config = SubResource("SceneReplicationConfig_7nbxa")

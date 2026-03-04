@@ -3,3 +3,4 @@
 /android/
 godot_super-wakatime/
 addons/
+*.tmp
