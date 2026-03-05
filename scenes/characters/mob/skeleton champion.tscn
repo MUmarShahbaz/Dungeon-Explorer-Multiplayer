@@ -29,6 +29,21 @@ func pounce(player):
 func flip():
 	super.flip()
 	melee_controller.flip()
+
+func get_card_data() -> Dictionary:
+	var my_avatar := AtlasTexture.new()
+	my_avatar.atlas = load(\"res://assets/sprites/mobs/skeleton warrior/Idle.png\")
+	my_avatar.region.position = Vector2(416, 58)
+	my_avatar.region.size = Vector2(60, 70)
+	return {
+		\"avatar\": my_avatar,
+		\"title\": \"Skeleton Champion\",
+		\"type\": \"Boss\",
+		\"hp\": 100,
+		\"dmg\": 10,
+		\"spd\": 28,
+		\"rng\": 5,
+	}
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mcu0"]

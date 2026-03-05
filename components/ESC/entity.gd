@@ -109,3 +109,14 @@ func await_frame(animation: String, frame : int) -> void:
 	while !check_frame(animation, frame):
 		await get_tree().physics_frame
 	return
+
+func get_card_data() -> Dictionary:
+	return {
+		"avatar": "",
+		"title": "",
+		"type": "",
+		"hp": 0,
+		"dmg": 0,
+		"spd": 0,
+		"rng": 0,
+	}

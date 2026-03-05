@@ -15,6 +15,21 @@ script/source = "extends Enemy
 func pounce(player):
 	super.pounce(player)
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"shoot\")
+
+func get_card_data() -> Dictionary:
+	var my_avatar := AtlasTexture.new()
+	my_avatar.atlas = load(\"res://assets/sprites/mobs/skeleton archer/Idle.png\")
+	my_avatar.region.position = Vector2(416, 58)
+	my_avatar.region.size = Vector2(60, 70)
+	return {
+		\"avatar\": my_avatar,
+		\"title\": \"Skeleton Archer\",
+		\"type\": \"Projectile\",
+		\"hp\": 5,
+		\"dmg\": 1,
+		\"spd\": 23,
+		\"rng\": 35,
+	}
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1njwi"]

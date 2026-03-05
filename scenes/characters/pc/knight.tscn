@@ -45,6 +45,22 @@ func flip():
 	super.flip()
 	melee_controller.flip()
 	shield.flip()
+
+
+func get_card_data() -> Dictionary:
+	var my_avatar := AtlasTexture.new()
+	my_avatar.atlas = load(\"res://assets/sprites/players/knight/Idle.png\")
+	my_avatar.region.position = Vector2(416, 28)
+	my_avatar.region.size = Vector2(60, 70)
+	return {
+		\"avatar\": my_avatar,
+		\"title\": \"Knight\",
+		\"type\": \"Melee\",
+		\"hp\": 100,
+		\"dmg\": 10,
+		\"spd\": 30,
+		\"rng\": INF,
+	}
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_slg3v"]
