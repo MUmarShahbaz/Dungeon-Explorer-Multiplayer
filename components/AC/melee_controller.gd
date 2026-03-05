@@ -19,3 +19,9 @@ func _process(_delta: float) -> void:
 func flip():
 	for melee_attack : MeleeAttack in Move_List:
 		(get_node_or_null(melee_attack.Damage_Zone) as DamageZone).flip()
+
+func get_avg_damage():
+	var sum_damages : int = 0
+	for melee_attack : MeleeAttack in Move_List:
+		sum_damages += melee_attack.Damage
+	return sum_damages / Move_List.size()

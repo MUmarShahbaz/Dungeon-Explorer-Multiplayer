@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://83howi64ipha"]
+
+[ext_resource type="Texture2D" uid="uid://cwer7wbqp2t6c" path="res://assets/theme/character_card.png" id="1_gn73n"]
+[ext_resource type="FontFile" uid="uid://dgrgg4560mh2s" path="res://assets/fonts/Prata-Regular.ttf" id="2_qtdkp"]
+[ext_resource type="Texture2D" uid="uid://cmulckpkb3a36" path="res://assets/sprites/mobs/skeleton archer/Idle.png" id="3_gn73n"]
+
+[sub_resource type="GDScript" id="GDScript_l0nex"]
+script/source = "extends Node2D
+
+@onready var avatar = $BG/Container/Sub/Avatar
+@onready var title = $BG/Container/Name/Title
+@onready var type = $BG/Container/Name/Type
+@onready var hp = $BG/Container/Sub/Stats/HP/Value
+@onready var dmg = $BG/Container/Sub/Stats/DMG/Value
+@onready var spd = $BG/Container/Sub/Stats/SPD/Value
+@onready var rng = $BG/Container/Sub/Stats/RNG/Value
+
+@export var entity : PackedScene
+
+func _ready() -> void:
+	var temp_entity : Entity = entity.instantiate()
+	var data : Dictionary = temp_entity.get_card_data()
+	temp_entity.queue_free()
+	avatar.texture = data.avatar
+	title.text = data.title
+	type.text = data.type
+	hp.text = str(data.hp)
+	dmg.text = str(data.dmg)
+	spd.text = str(data.spd)
+	rng.text = str(data.rng)
+	
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2scpd"]
+atlas = ExtResource("3_gn73n")
+region = Rect2(416, 58, 60, 70)
+
+[node name="Character Card" type="Node2D" unique_id=1199636227]
+script = SubResource("GDScript_l0nex")
+
+[node name="BG" type="TextureRect" parent="." unique_id=1406316015]
+custom_minimum_size = Vector2(350, 490)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -245.0
+offset_right = 175.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gn73n")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Container" type="VBoxContainer" parent="BG" unique_id=842467057]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sub" type="HBoxContainer" parent="BG/Container" unique_id=317594288]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 2
+
+[node name="Stats" type="VBoxContainer" parent="BG/Container/Sub" unique_id=1682822454]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="HP" type="VBoxContainer" parent="BG/Container/Sub/Stats" unique_id=367505047]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/Container/Sub/Stats/HP" unique_id=1555968886]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 13
+text = "HP"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="BG/Container/Sub/Stats/HP" unique_id=1213325254]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 20
+text = "20"
+horizontal_alignment = 1
+
+[node name="DMG" type="VBoxContainer" parent="BG/Container/Sub/Stats" unique_id=980104435]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/Container/Sub/Stats/DMG" unique_id=261894524]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 13
+text = "DMG"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="BG/Container/Sub/Stats/DMG" unique_id=1017308376]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 20
+text = "5"
+horizontal_alignment = 1
+
+[node name="SPD" type="VBoxContainer" parent="BG/Container/Sub/Stats" unique_id=1304114092]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/Container/Sub/Stats/SPD" unique_id=2122617840]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 13
+text = "SPD"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="BG/Container/Sub/Stats/SPD" unique_id=1626275308]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 20
+text = "28"
+horizontal_alignment = 1
+
+[node name="RNG" type="VBoxContainer" parent="BG/Container/Sub/Stats" unique_id=893055309]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/Container/Sub/Stats/RNG" unique_id=403858821]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 13
+text = "RNG"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="BG/Container/Sub/Stats/RNG" unique_id=1036240669]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 20
+text = "5"
+horizontal_alignment = 1
+
+[node name="Avatar" type="TextureRect" parent="BG/Container/Sub" unique_id=404912874]
+custom_minimum_size = Vector2(231, 361)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_2scpd")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Name" type="VBoxContainer" parent="BG/Container" unique_id=1060699055]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="BG/Container/Name" unique_id=121423435]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 35
+text = "Skeleton Warrior"
+horizontal_alignment = 1
+
+[node name="Type" type="Label" parent="BG/Container/Name" unique_id=1532226551]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_font_sizes/font_size = 24
+text = "Melee"
+horizontal_alignment = 1

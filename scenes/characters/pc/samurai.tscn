@@ -39,6 +39,10 @@ func flip():
 	melee_controller.flip()
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7nts"]
+atlas = ExtResource("4_klv7w")
+region = Rect2(416, 24, 56, 104)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkir8"]
 atlas = ExtResource("1_klv7w")
 region = Rect2(0, 0, 128, 128)
@@ -1221,9 +1225,12 @@ ITM_Healing_Potions = 0
 HP_Health_Points = 150.0
 HP_Regeneration_Rate = 2.0
 MV_Collider = NodePath("collider")
+MV_Run_Speed = 230.0
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
+CI_Avatar = SubResource("AtlasTexture_f7nts")
+CI_Title = "Samurai"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=722151253]
 sprite_frames = SubResource("SpriteFrames_8lcca")

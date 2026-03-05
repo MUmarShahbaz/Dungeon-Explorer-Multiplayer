@@ -47,6 +47,10 @@ func flip():
 	shield.flip()
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a0eb"]
+atlas = ExtResource("4_s7sxb")
+region = Rect2(168, 24, 48, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_slg3v"]
 atlas = ExtResource("1_c5fs1")
 region = Rect2(0, 0, 128, 128)
@@ -1054,6 +1058,8 @@ MV_Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
+CI_Avatar = SubResource("AtlasTexture_4a0eb")
+CI_Title = "Knight"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1841807516]
 sprite_frames = SubResource("SpriteFrames_8lcca")

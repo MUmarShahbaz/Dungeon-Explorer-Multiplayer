@@ -26,6 +26,10 @@ func secondary():
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_2\")
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7oct"]
+atlas = ExtResource("3_tpcqg")
+region = Rect2(416, 56, 56, 72)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0r2dl"]
 atlas = ExtResource("2_tmpb7")
 region = Rect2(0, 0, 128, 128)
@@ -989,6 +993,9 @@ MV_Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
+CI_Avatar = SubResource("AtlasTexture_s7oct")
+CI_Title = "Wizard"
+CI_Type = 1
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=640456716]
 sprite_frames = SubResource("SpriteFrames_8lcca")

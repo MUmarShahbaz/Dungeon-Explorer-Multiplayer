@@ -109,3 +109,25 @@ func await_frame(animation: String, frame : int) -> void:
 	while !check_frame(animation, frame):
 		await get_tree().physics_frame
 	return
+
+enum character_type {Melee, Projectile, Boss}
+@export_group("Character Info", "CI")
+@export var CI_Avatar : Texture2D
+@export var CI_Title : String
+@export var CI_Type : character_type
+
+func get_card_data() -> Dictionary:
+	var damagers = get_children().filter(func (node : Node): return (node is MeleeController or node is ProjectileLauncher))
+	var sum_damages : int = 0
+	for this_damager in damagers:
+		sum_damages += this_damager.get_avg_damage()
+	var avg_dmg = sum_damages / damagers.size()
+	return {
+		"avatar": CI_Avatar,
+		"title": CI_Title,
+		"type": character_type.keys()[CI_Type],
+		"hp": int(HP_Health_Points),
+		"dmg": int(avg_dmg),
+		"spd": int(MV_Run_Speed / 10),
+		"rng": int(self.VIS_Attack_Range / 10) if self is Enemy else INF,
+	}

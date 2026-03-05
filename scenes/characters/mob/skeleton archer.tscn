@@ -17,6 +17,10 @@ func pounce(player):
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"shoot\")
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdj4h"]
+atlas = ExtResource("2_o1aex")
+region = Rect2(424, 56, 48, 72)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1njwi"]
 atlas = ExtResource("2_o1aex")
 region = Rect2(0, 0, 128, 128)
@@ -687,6 +691,9 @@ MV_Run_Speed = 230.0
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
+CI_Avatar = SubResource("AtlasTexture_kdj4h")
+CI_Title = "Skeleton Archer"
+CI_Type = 1
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=77565841]
 sprite_frames = SubResource("SpriteFrames_kbpb8")

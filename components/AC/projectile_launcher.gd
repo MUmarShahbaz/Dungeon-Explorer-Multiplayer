@@ -22,3 +22,11 @@ func _process(_delta: float) -> void:
 				get_tree().get_current_scene().add_child(new_projectile)
 				await parent.await_frame(projectile_attack.Animation_Name, projectile_attack.Launch_Animation_Frame)
 				if new_projectile: new_projectile.launch(projectile_attack.Force)
+
+func get_avg_damage():
+	var sum_damages : int = 0
+	for projectile_attack : ProjectileAttack in Move_List:
+		var new_projectile : Projectile = projectile_attack.Projectile_Scene.instantiate()
+		sum_damages += new_projectile.damage
+		new_projectile.queue_free()
+	return sum_damages / Move_List.size()
