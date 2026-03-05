@@ -16,68 +16,6 @@
 [sub_resource type="GDScript" id="GDScript_b6ebu"]
 script/source = "extends Node2D
 
-#region Dialogues
-var dialogue_on_start : Array[Dialogue] = [
-	Dialogue.new(
-		\"!!??\",
-		load(\"res://assets/sprites/dialogues/dark queen/Aggression.png\"),
-		true
-	),
-	Dialogue.new(
-		\"WHO DARES ENTER MY DUNGEON??\",
-		load(\"res://assets/sprites/dialogues/dark queen/Aggression.png\"),
-		true
-	),
-	Dialogue.new(
-		\"Hmmmm........\\nYou look like you could take a hit or two.....\",
-		load(\"res://assets/sprites/dialogues/dark queen/Calm.png\"),
-		true
-	),
-	Dialogue.new(
-		\"Very well.......\\nYou will be my entertainment today!\",
-		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
-		true
-	),
-	Dialogue.new(
-		\"Up ahead is an infinitely growing number of my skeleton soldiers.\",
-		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
-		true
-	),
-	Dialogue.new(
-		\"The only way to stop more from spawning is to defeat the champion.\",
-		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
-		true
-	),
-	Dialogue.new(
-		\"The door to the champion only unlocks for a brief moment\\nwhen there are no skeleton soldiers.\",
-		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
-		true
-	),
-	Dialogue.new(
-		\"Only after all foes are dead, you may leave through where you came.\",
-		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
-		true
-	),
-	Dialogue.new(
-		\"In here you will be denied even death!\\nSo you may suffer in an endless battle.\",
-		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
-		true
-	),
-	Dialogue.new(
-		\"What a horrible fate.........\",
-		load(\"res://assets/sprites/dialogues/dark queen/Sadness.png\"),
-		true
-	),
-]
-
-var dialogue_on_end : Array[Dialogue] = [
-		Dialogue.new(
-		\"Impressive.....\",
-		load(\"res://assets/sprites/dialogues/dark queen/Talk.png\"),
-		true
-	),
-]
-#endregion
 var mode : StringName
 @onready var mm = $MultiplayerManager
 
@@ -98,7 +36,7 @@ func _on_from_boss_door_door_used(players) -> void:
 		this_player.global_position = Vector2(3248, 384)
 
 func _on_exit_door_door_used(_players) -> void:
-	pass
+	mm.start_dialogue.rpc(\"res://scenes/dialogues/dialogue_on_end.tres\")
 
 func _process(_delta: float) -> void:
 	if get_tree().get_nodes_in_group(\"enemies\").size() == 0:
@@ -109,6 +47,12 @@ func _process(_delta: float) -> void:
 		$\"Doors/Exit Door\".lock()
 	if get_node_or_null(\"Mobs/Skeleton Champion\") == null:
 		$\"Doors/From Boss\".unlock()
+
+var who_has_seen_dialogue_on_start = []
+func _on_player_spawned(player: Player) -> void:
+	if not multiplayer.is_server() or who_has_seen_dialogue_on_start.find(player.name) != -1: return
+	who_has_seen_dialogue_on_start.append(player.name)
+	mm.start_dialogue.rpc_id(int(player.name), \"res://scenes/dialogues/dialogue_on_start.tres\")
 "
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_572wm"]
@@ -207,6 +151,10 @@ script = ExtResource("8_ur3di")
 duration = 2.0
 metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
+[connection signal="player_spawned" from="PlayerSpawners/PlayerSpawner1" to="." method="_on_player_spawned"]
+[connection signal="player_spawned" from="PlayerSpawners/PlayerSpawner2" to="." method="_on_player_spawned"]
+[connection signal="player_spawned" from="PlayerSpawners/PlayerSpawner3" to="." method="_on_player_spawned"]
+[connection signal="player_spawned" from="PlayerSpawners/PlayerSpawner4" to="." method="_on_player_spawned"]
 [connection signal="door_opened" from="Doors/Exit Door" to="." method="_on_exit_door_door_used"]
 [connection signal="door_opened" from="Doors/To Boss" to="." method="_on_to_boss_door_door_used"]
 [connection signal="door_opened" from="Doors/From Boss" to="." method="_on_from_boss_door_door_used"]

@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://cxmaj0mr2v6mx"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_qg8lu"]
+[ext_resource type="Texture2D" uid="uid://ebds6ij2c334" path="res://assets/sprites/dialogues/dark queen/Aggression.png" id="2_ju0cx"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_k3hva"]
+[ext_resource type="Texture2D" uid="uid://dp4n75kuh8spu" path="res://assets/sprites/dialogues/dark queen/Calm.png" id="3_3pbvt"]
+[ext_resource type="Texture2D" uid="uid://s61ekmxgk2nh" path="res://assets/sprites/dialogues/dark queen/Talk.png" id="4_1npgm"]
+[ext_resource type="Texture2D" uid="uid://s743mvpvhlhp" path="res://assets/sprites/dialogues/dark queen/Sadness.png" id="5_tea1u"]
+
+[sub_resource type="Resource" id="Resource_ju0cx"]
+script = ExtResource("1_qg8lu")
+Text = "!!??"
+Sprite = ExtResource("2_ju0cx")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_u5i4y"]
+script = ExtResource("1_qg8lu")
+Text = "WHO DARES ENTER MY DUNGEON??"
+Sprite = ExtResource("2_ju0cx")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_rwxk6"]
+script = ExtResource("1_qg8lu")
+Text = "Hmmmm........
+You look like you could take a hit or two....."
+Sprite = ExtResource("3_3pbvt")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_a03fb"]
+script = ExtResource("1_qg8lu")
+Text = "Very well.......
+You will be my entertainment today"
+Sprite = ExtResource("4_1npgm")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_hslqp"]
+script = ExtResource("1_qg8lu")
+Text = "Up ahead is an infinitely growing number of
+my skeleton soldiers."
+Sprite = ExtResource("4_1npgm")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_tgm7k"]
+script = ExtResource("1_qg8lu")
+Text = "The only way to stop more from spawning is to
+defeat the champion."
+Sprite = ExtResource("4_1npgm")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_gn7ra"]
+script = ExtResource("1_qg8lu")
+Text = "The door to the champion only unlocks for a brief moment
+when there are no skeleton soldiers."
+Sprite = ExtResource("4_1npgm")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_g8f2c"]
+script = ExtResource("1_qg8lu")
+Text = "Only after all foes are dead,
+you may leave through where you came."
+Sprite = ExtResource("4_1npgm")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_wa0oq"]
+script = ExtResource("1_qg8lu")
+Text = "In here you will be denied even death!
+So you may suffer in an endless battle."
+Sprite = ExtResource("2_ju0cx")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_maipu"]
+script = ExtResource("1_qg8lu")
+Text = "What a horrible fate........."
+Sprite = ExtResource("5_tea1u")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_k3hva")
+array = Array[ExtResource("1_qg8lu")]([SubResource("Resource_ju0cx"), SubResource("Resource_u5i4y"), SubResource("Resource_rwxk6"), SubResource("Resource_a03fb"), SubResource("Resource_hslqp"), SubResource("Resource_tgm7k"), SubResource("Resource_gn7ra"), SubResource("Resource_g8f2c"), SubResource("Resource_wa0oq"), SubResource("Resource_maipu")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

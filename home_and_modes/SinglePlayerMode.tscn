@@ -23,7 +23,7 @@ func _ready() -> void:
 	this_player.disable_controls = true
 	var dialogue_box = DialogueBox.new()
 	add_child(dialogue_box)
-	await dialogue_box.begin_dialog(dialogue_on_start)
+	await dialogue_box.begin_dialogue(dialogue_on_start)
 	dialogue_box.queue_free()
 	$Spawner.begin()
 	this_player.disable_controls = false
@@ -40,7 +40,7 @@ func _on_from_boss_door_door_used(players) -> void:
 func _on_exit_door_door_used(_players) -> void:
 	var dialogue_box = DialogueBox.new()
 	add_child(dialogue_box)
-	dialogue_box.begin_dialog(dialogue_on_end)
+	dialogue_box.begin_dialogue(dialogue_on_end)
 
 func _process(_delta: float) -> void:
 	if get_tree().get_nodes_in_group(\"enemies\").size() == 0:

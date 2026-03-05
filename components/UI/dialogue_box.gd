@@ -30,7 +30,7 @@ func _ready() -> void:
 	avatar.expand_mode = TextureRect.EXPAND_FIT_WIDTH
 	avatar.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 
-func update_dialog(image, text ,avatar_on_right = false):
+func update_dialogue(image, text ,avatar_on_right = false):
 	avatar.texture = image
 	text_box.text = text + "\n\n(jump to continue...)"
 	if avatar_on_right:
@@ -40,10 +40,19 @@ func update_dialog(image, text ,avatar_on_right = false):
 		avatar.flip_h = false
 		avatar_container.alignment = BoxContainer.ALIGNMENT_BEGIN
 	
-func begin_dialog(dialog_sequence : Array[Dialogue]):
-	for this_dialog in dialog_sequence:
+func begin_dialogue(dialogue_sequence : Array[Dialogue]):
+	for this_dialogue in dialogue_sequence:
 		while Input.is_action_pressed("jump"):
 			await get_tree().physics_frame
-		update_dialog(this_dialog.Sprite, this_dialog.Text, this_dialog.Right_Side)
+		update_dialogue(this_dialogue.Sprite, this_dialogue.Text, this_dialogue.Right_Side)
+		while not Input.is_action_just_pressed("jump"):
+			await get_tree().physics_frame
+
+func begin_dialogue_from_resource(dialogue_sequence : String):
+	var this_sequence : DialogueSequence = load(dialogue_sequence)
+	for this_dialogue in this_sequence.array:
+		while Input.is_action_pressed("jump"):
+			await get_tree().physics_frame
+		update_dialogue(this_dialogue.Sprite, this_dialogue.Text, this_dialogue.Right_Side)
 		while not Input.is_action_just_pressed("jump"):
 			await get_tree().physics_frame

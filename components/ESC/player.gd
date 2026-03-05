@@ -8,6 +8,14 @@ signal cam(direction : Vector2)
 @export var ITM_Booster_Potions : int = 5
 var SP_Special_Points : float = 100
 
+@export_group("Dialogue Images", "DIA")
+@export var DIA_Aggression : Texture2D
+@export var DIA_Calm : Texture2D
+@export var DIA_Sadness : Texture2D
+@export var DIA_Smile : Texture2D
+@export var DIA_Special : Texture2D
+@export var DIA_Talk : Texture2D
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(name))
 

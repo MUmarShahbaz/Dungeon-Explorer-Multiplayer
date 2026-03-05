@@ -1,11 +1,11 @@
-extends Node
+extends Resource
 class_name Dialogue
 
-@export var Text: String
-@export var Sprite: Resource
+@export_multiline() var Text: String
+@export var Sprite: Texture2D
 @export var Right_Side: bool
 
-func _init(text : String, sprite : Resource, right_side : bool) -> void:
+func _init(text : String = "", sprite : Texture2D = null, right_side : bool = false) -> void:
 	Text = text
 	Sprite = sprite
 	Right_Side = right_side

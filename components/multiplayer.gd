@@ -30,3 +30,14 @@ func add_player(id : int):
 
 func connected():
 	pass
+
+@rpc("any_peer", "call_local", "reliable")
+func start_dialogue(dialogue_sequence : String):
+	var my_player : Player = get_tree().current_scene.get_node(str(multiplayer.get_unique_id()))
+	if my_player: my_player.disable_controls = true
+	var new_dialogue_box := DialogueBox.new()
+	get_tree().current_scene.add_child.call_deferred(new_dialogue_box)
+	await new_dialogue_box.ready
+	await new_dialogue_box.begin_dialogue_from_resource(dialogue_sequence)
+	new_dialogue_box.queue_free()
+	if my_player: my_player.disable_controls = false
