@@ -23,5 +23,6 @@ func flip():
 func get_avg_damage():
 	var sum_damages : int = 0
 	for melee_attack : MeleeAttack in Move_List:
-		sum_damages += melee_attack.Damage
-	return sum_damages / Move_List.size()
+		sum_damages += int(melee_attack.Damage)
+	@warning_ignore("integer_division")
+	return int(sum_damages / Move_List.size())

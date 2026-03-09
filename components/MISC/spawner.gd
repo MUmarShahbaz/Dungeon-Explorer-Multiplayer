@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 			spawn()
 
 func begin():
-	if !multiplayer.is_server(): return
 	for i in Initial_Spawns:
 		spawn()
 	spawning = true

@@ -27,6 +27,7 @@ func get_avg_damage():
 	var sum_damages : int = 0
 	for projectile_attack : ProjectileAttack in Move_List:
 		var new_projectile : Projectile = projectile_attack.Projectile_Scene.instantiate()
-		sum_damages += new_projectile.damage
+		sum_damages += int(new_projectile.damage)
 		new_projectile.queue_free()
-	return sum_damages / Move_List.size()
+	@warning_ignore("integer_division")
+	return int(sum_damages / Move_List.size())

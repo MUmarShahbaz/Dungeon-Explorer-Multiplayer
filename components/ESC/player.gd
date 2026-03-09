@@ -16,29 +16,25 @@ var SP_Special_Points : float = 100
 @export var DIA_Special : Texture2D
 @export var DIA_Talk : Texture2D
 
-func _enter_tree() -> void:
-	set_multiplayer_authority(int(name))
-
 func _ready() -> void:
 	add_to_group("players")
 	set_collision_layer_value(1, false)
 	set_collision_layer_value(2, true)
-	if is_multiplayer_authority():
-		var myCAM = CAM.new()
-		myCAM.target = self
-		add_child.call_deferred(myCAM)
-		cam.connect(Callable(myCAM, "set_target_offset"))
-		var myEars = AudioListener2D.new()
-		add_child.call_deferred(myEars)
-		myEars.make_current()
-	else: ANM_Animation_Tree.active = false
+	var myCAM = CAM.new()
+	myCAM.target = self
+	add_child.call_deferred(myCAM)
+	cam.connect(Callable(myCAM, "set_target_offset"))
+	var myEars = AudioListener2D.new()
+	add_child.call_deferred(myEars)
+	myEars.make_current()
+	visibility_layer = 2
 
 var disable_controls := false
 
 func _physics_process(delta: float) -> void:
 	if HP_Current <= 0: return
 	super._physics_process(delta)
-	if is_multiplayer_authority() and not disable_controls: control(delta)
+	if not disable_controls: control(delta)
 	move_and_slide()
 
 func control(delta : float):

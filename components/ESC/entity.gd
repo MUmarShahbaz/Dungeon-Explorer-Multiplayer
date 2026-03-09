@@ -80,8 +80,7 @@ func take_damage(amount : float) -> void:
 		name = str(randi())
 		await await_frame("die", ANM_Animated_Sprite.sprite_frames.get_frame_count("die") - 1)
 		emit_signal("entity_died")
-		if multiplayer.is_server(): queue_free()
-		else: hide()
+		queue_free()
 		return
 	else:
 		velocity.x = 0
@@ -121,13 +120,16 @@ func get_card_data() -> Dictionary:
 	var sum_damages : int = 0
 	for this_damager in damagers:
 		sum_damages += this_damager.get_avg_damage()
-	var avg_dmg = sum_damages / damagers.size()
+	@warning_ignore("integer_division")
+	var avg_dmg = int(sum_damages / damagers.size())
+	@warning_ignore("incompatible_ternary")
+	var my_rng = int(self.VIS_Attack_Range / 10) if self is Enemy else INF
 	return {
 		"avatar": CI_Avatar,
 		"title": CI_Title,
 		"type": character_type.keys()[CI_Type],
 		"hp": int(HP_Health_Points),
-		"dmg": int(avg_dmg),
+		"dmg": avg_dmg,
 		"spd": int(MV_Run_Speed / 10),
-		"rng": int(self.VIS_Attack_Range / 10) if self is Enemy else INF,
+		"rng": my_rng,
 	}
