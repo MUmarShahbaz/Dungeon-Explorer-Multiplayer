@@ -68,7 +68,7 @@ func show_only(element_to_show, element_to_focus = null):
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://rooms/lvl1.tscn\")
+	get_tree().change_scene_to_file(\"res://rooms/demo.tscn\")
 
 func _on_controls_pressed() -> void:
 	update_state(menu_state.layout_gamepad)
