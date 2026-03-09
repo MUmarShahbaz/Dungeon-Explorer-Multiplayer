@@ -1,7 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://41857mtigfwr"]
+[gd_scene format=3 uid="uid://41857mtigfwr"]
 
 [ext_resource type="Texture2D" uid="uid://c440fi2swk87u" path="res://assets/sprites/players/wizard/Charge_2.png" id="1_gop7c"]
-[ext_resource type="Script" uid="uid://c0irv2blollmd" path="res://components/MISC/projectile.gd" id="1_j8600"]
+[ext_resource type="Script" uid="uid://c0irv2blollmd" path="res://components/others/projectile.gd" id="1_j8600"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gop7c"]
 atlas = ExtResource("1_gop7c")

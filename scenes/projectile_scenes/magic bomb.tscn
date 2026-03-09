@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvth31vukk7kj"]
 
-[ext_resource type="Script" uid="uid://b4fsecdbecsaj" path="res://components/MISC/area_dmg_projectile.gd" id="1_87c0s"]
+[ext_resource type="Script" uid="uid://b4fsecdbecsaj" path="res://components/others/area_dmg_projectile.gd" id="1_87c0s"]
 [ext_resource type="Texture2D" uid="uid://bw7y0p58gtatw" path="res://assets/sprites/players/wizard/Charge_1.png" id="2_rd8li"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5t12"]

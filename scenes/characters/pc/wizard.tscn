@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://d323wtm6txni3" path="res://assets/sprites/players/wizard/Run.png" id="7_veg6e"]
 [ext_resource type="Texture2D" uid="uid://drtcsm1sqe21t" path="res://assets/sprites/players/wizard/Magic_sphere.png" id="8_5hg0q"]
 [ext_resource type="Texture2D" uid="uid://2pfagbdhxwlu" path="res://assets/sprites/players/wizard/Walk.png" id="9_p1c7k"]
-[ext_resource type="Script" uid="uid://cjyum5jemod6g" path="res://components/AC/projectile_launcher.gd" id="10_tmpb7"]
-[ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/RES/ProjectileAttack.gd" id="11_s5sl6"]
+[ext_resource type="Script" uid="uid://cjyum5jemod6g" path="res://components/AbilityComponents/projectile_launcher.gd" id="10_tmpb7"]
+[ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/ResourceTypes/ProjectileAttack.gd" id="11_s5sl6"]
 [ext_resource type="PackedScene" uid="uid://41857mtigfwr" path="res://scenes/projectile_scenes/magic arrow.tscn" id="11_tpcqg"]
 [ext_resource type="PackedScene" uid="uid://cvth31vukk7kj" path="res://scenes/projectile_scenes/magic bomb.tscn" id="12_cpdw5"]
 

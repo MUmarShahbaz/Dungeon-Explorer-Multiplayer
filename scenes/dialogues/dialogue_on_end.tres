@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://bl30em51wqrfp"]
 
-[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_reyup"]
-[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_m0ru2"]
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/ResourceTypes/Dialogue.gd" id="1_reyup"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/ResourceTypes/DialogueSequence.gd" id="2_m0ru2"]
 [ext_resource type="Texture2D" uid="uid://dp4n75kuh8spu" path="res://assets/sprites/dialogues/dark queen/Calm.png" id="2_tee78"]
 
 [sub_resource type="Resource" id="Resource_plkw8"]

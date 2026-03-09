@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://da1rk8kecexds"]
+[gd_scene format=3 uid="uid://da1rk8kecexds"]
 
-[ext_resource type="Script" uid="uid://c0irv2blollmd" path="res://components/MISC/projectile.gd" id="1_mgwxw"]
+[ext_resource type="Script" uid="uid://c0irv2blollmd" path="res://components/others/projectile.gd" id="1_mgwxw"]
 [ext_resource type="Texture2D" uid="uid://bpg2vde74syp2" path="res://assets/sprites/mobs/skeleton archer/Arrow.png" id="2_mgwxw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c2fh0"]

@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://pef12h1natq2" path="res://assets/sprites/mobs/skeleton archer/Hurt.png" id="4_7cuvh"]
 [ext_resource type="Texture2D" uid="uid://c2ik7b3kf52km" path="res://assets/sprites/mobs/skeleton archer/Walk.png" id="5_bagv5"]
 [ext_resource type="Texture2D" uid="uid://dq6d6myh0k3gx" path="res://assets/sprites/mobs/skeleton archer/Shot_1.png" id="6_5x53q"]
-[ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/RES/ProjectileAttack.gd" id="8_osokx"]
+[ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/ResourceTypes/ProjectileAttack.gd" id="8_osokx"]
 [ext_resource type="PackedScene" uid="uid://da1rk8kecexds" path="res://scenes/projectile_scenes/arrow.tscn" id="9_7cuvh"]
-[ext_resource type="Script" uid="uid://cjyum5jemod6g" path="res://components/AC/projectile_launcher.gd" id="10_bagv5"]
+[ext_resource type="Script" uid="uid://cjyum5jemod6g" path="res://components/AbilityComponents/projectile_launcher.gd" id="10_bagv5"]
 
 [sub_resource type="GDScript" id="GDScript_kdj4h"]
 script/source = "extends Enemy
