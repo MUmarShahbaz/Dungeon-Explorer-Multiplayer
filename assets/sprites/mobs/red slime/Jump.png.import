@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8euirx78u1vs"
-path="res://.godot/imported/doors_and_window.png-b7309f10b0945cd7292c44a42460072a.ctex"
+uid="uid://mdwf1ne76qjp"
+path="res://.godot/imported/Jump.png-6d6979b348f548069c1a3d3ac8dbd0e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/doors_and_window.png"
-dest_files=["res://.godot/imported/doors_and_window.png-b7309f10b0945cd7292c44a42460072a.ctex"]
+source_file="res://assets/sprites/mobs/red slime/Jump.png"
+dest_files=["res://.godot/imported/Jump.png-6d6979b348f548069c1a3d3ac8dbd0e7.ctex"]
 
 [params]
 

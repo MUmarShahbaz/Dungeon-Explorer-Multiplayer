@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8euirx78u1vs"
-path="res://.godot/imported/doors_and_window.png-b7309f10b0945cd7292c44a42460072a.ctex"
+uid="uid://b7hsfgbnwl0xr"
+path="res://.godot/imported/Idle.png-6069c97735ac9c3b08e484734dafcd86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/doors_and_window.png"
-dest_files=["res://.godot/imported/doors_and_window.png-b7309f10b0945cd7292c44a42460072a.ctex"]
+source_file="res://assets/sprites/mobs/blue slime/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-6069c97735ac9c3b08e484734dafcd86.ctex"]
 
 [params]
 
