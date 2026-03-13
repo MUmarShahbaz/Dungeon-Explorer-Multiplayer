@@ -794,7 +794,7 @@ Damage = 5.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [node name="Blue Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")

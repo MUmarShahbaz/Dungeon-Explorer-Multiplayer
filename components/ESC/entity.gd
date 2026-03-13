@@ -72,11 +72,12 @@ func flip() -> void:
 
 ## Reduces HP of the entity when it gets hurt and dies when HP falls below 0
 func take_damage(amount : float) -> void:
+	if HP_Current <= 0: return
 	HP_Current -= amount
 	if HP_Current <= 0:
 		velocity = Vector2.ZERO
-		ANM_Animation_Tree.get("parameters/playback").start("die")
 		call_deferred(&"hide_entity")
+		ANM_Animation_Tree.get("parameters/playback").start("die")
 		name = str(randi())
 		await await_frame("die", ANM_Animated_Sprite.sprite_frames.get_frame_count("die") - 1)
 		emit_signal("entity_died")

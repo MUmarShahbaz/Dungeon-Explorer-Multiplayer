@@ -62,14 +62,23 @@ func special():
 		SP_Special_Points += 60
 
 var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "shoot", "die"]
-
+var force_pause : bool = false
 func pause_movement():
+	if force_pause: return true
 	for anim in pause_on_anims:
 		if check_anim(anim) : return true
 	return false
 
 func movement(delta : float):
 	if pause_movement(): return
+	if Input.is_action_just_pressed("dodge"):
+		force_pause = true
+		velocity = Vector2(MV_Run_Speed*facing*-1, MV_Jump/2)
+		ANM_Animation_Tree.get("parameters/playback").start("jump")
+		await get_tree().physics_frame
+		while not is_on_floor():
+			await get_tree().physics_frame
+		force_pause = false
 	var x_dir : float = Input.get_axis("left", "right")
 	if x_dir != 0:
 		if Input.is_action_pressed("sprint"):

@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 func begin():
 	for i in Initial_Spawns:
 		spawn()
+	if Rate == 0: queue_free()
 	spawning = true
 
 func spawn():

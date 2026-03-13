@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/skeleton champion.tscn" id="10_p4en5"]
 [ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="11_iqfor"]
 [ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="11_yhgd0"]
-[ext_resource type="PackedScene" uid="uid://l5fcp0cx14mo" path="res://scenes/characters/mob/red slime.tscn" id="12_lex3n"]
 [ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="12_snjdo"]
 
 [sub_resource type="GDScript" id="GDScript_b6ebu"]
@@ -156,7 +155,7 @@ metadata/_custom_type_script = "uid://b666ndns0368d"
 
 [node name="Spawner" type="Area2D" parent="." unique_id=1977003798 node_paths=PackedStringArray("Spawn_Root")]
 script = ExtResource("6_sngc3")
-Mob_Scenes = Array[PackedScene]([ExtResource("7_56cl4"), ExtResource("8_ptx0d"), ExtResource("9_al8kk"), ExtResource("12_snjdo"), ExtResource("11_yhgd0"), ExtResource("12_lex3n")])
+Mob_Scenes = Array[PackedScene]([ExtResource("7_56cl4"), ExtResource("8_ptx0d"), ExtResource("9_al8kk"), ExtResource("12_snjdo"), ExtResource("11_yhgd0")])
 Spawn_Root = NodePath("../Mobs")
 Rate = 0.2
 metadata/_custom_type_script = "uid://k0njues52nl2"
@@ -174,6 +173,9 @@ position = Vector2(4375, -974)
 script = ExtResource("11_iqfor")
 duration = 2.0
 metadata/_custom_type_script = "uid://1uygfo1ei3w4"
+
+[node name="Green Slime" parent="." unique_id=952172728 instance=ExtResource("12_snjdo")]
+position = Vector2(652, 399)
 
 [connection signal="door_opened" from="Doors/Exit Door" to="." method="_on_exit_door_door_used"]
 [connection signal="door_opened" from="Doors/To Boss" to="." method="_on_to_boss_door_door_used"]
