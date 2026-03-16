@@ -1,25 +1,12 @@
-extends Entity
+extends Character
 class_name Player
 
 signal cam(direction : Vector2)
 
-@export_group("Items", "ITM")
-@export var ITM_Healing_Potions : int = 3
-@export var ITM_Booster_Potions : int = 5
-var SP_Special_Points : float = 100
-
-@export_group("Dialogue Images", "DIA")
-@export var DIA_Aggression : Texture2D
-@export var DIA_Calm : Texture2D
-@export var DIA_Sadness : Texture2D
-@export var DIA_Smile : Texture2D
-@export var DIA_Special : Texture2D
-@export var DIA_Talk : Texture2D
-
 func _ready() -> void:
+	super._ready()
+	remove_from_group("characters")
 	add_to_group("players")
-	set_collision_layer_value(1, false)
-	set_collision_layer_value(2, true)
 	var myCAM = CAM.new()
 	myCAM.target = self
 	add_child.call_deferred(myCAM)
@@ -27,7 +14,6 @@ func _ready() -> void:
 	var myEars = AudioListener2D.new()
 	add_child.call_deferred(myEars)
 	myEars.make_current()
-	visibility_layer = 2
 
 var disable_controls := false
 
@@ -35,7 +21,6 @@ func _physics_process(delta: float) -> void:
 	if HP_Current <= 0: return
 	super._physics_process(delta)
 	if not disable_controls: control(delta)
-	move_and_slide()
 
 func control(delta : float):
 	attack()
@@ -60,14 +45,6 @@ func special():
 	if Input.is_action_just_pressed("boost") and ITM_Booster_Potions > 0:
 		ITM_Booster_Potions -= 1
 		SP_Special_Points += 60
-
-var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "shoot", "die"]
-var force_pause : bool = false
-func pause_movement():
-	if force_pause: return true
-	for anim in pause_on_anims:
-		if check_anim(anim) : return true
-	return false
 
 func movement(delta : float):
 	if pause_movement(): return

@@ -1,3 +1,4 @@
+@abstract
 extends CharacterBody2D
 ## Base class of all entities.
 ##
@@ -109,6 +110,14 @@ func await_frame(animation: String, frame : int) -> void:
 	while !check_frame(animation, frame):
 		await get_tree().physics_frame
 	return
+
+var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "shoot", "die"]
+var force_pause : bool = false
+func pause_movement():
+	if force_pause: return true
+	for anim in pause_on_anims:
+		if check_anim(anim) : return true
+	return false
 
 enum character_type {Melee, Projectile, Boss}
 @export_group("Character Info", "CI")
