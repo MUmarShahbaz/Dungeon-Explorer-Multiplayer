@@ -1,0 +1,62 @@
+name: Export Godot
+
+on:
+    workflow_dispatch:
+
+jobs:
+    export:
+        name: Export Build
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Export project
+              id: export
+              uses: firebelley/godot-export@v7.0.0
+              with:
+                godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.6-stable/Godot_v4.6-stable_linux.x86_64.zip
+                godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz
+                use_preset_export_path: true
+                presets_to_export: Web
+                cache: true
+
+            - name: Upload exported artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: godot-export
+                path: ${{ steps.export.outputs.build_directory }}
+                if-no-files-found: error
+
+    deploy:
+        name: Deploy to Pages
+        needs: export
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                ref: web
+            
+            - name: Log in as Action Bot
+              run: |
+                git config user.name  "github-actions[bot]"
+                git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            
+            - name: Clean Branch
+              run: find . -mindepth 1 -maxdepth 1 -not -name .git -exec rm -rf {} +
+            
+            - name: Download Artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: godot-export
+            
+            - name: Unpack Artifact
+              run: mv -v Web/* . && rmdir Web
+            
+            - name: Push
+              run: |
+                git add .
+                git commit -m "Deployed from Workflow ${{ github.run_id }}"
+                git push
