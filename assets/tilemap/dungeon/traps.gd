@@ -16,7 +16,7 @@ func _ready() -> void:
 	for cell in get_used_cells():
 		match get_cell_atlas_coords(cell):
 			cells.breakable_floors:
-				create_area(cell, Vector2(0, -18), Vector2(48, 48), "break_floor")
+				create_area(cell, Vector2(0, -18), Vector2(54, 48), "break_floor")
 			cells.spikes_in:
 				create_area(cell, Vector2(0, 12), Vector2(48, 24), "activate_spike")
 			cells.spikes_out:

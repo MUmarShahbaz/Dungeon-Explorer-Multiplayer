@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://h6i84rdwjpt7"]
 
-[ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/main.tres" id="1_kdaw1"]
+[ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/dungeon/dungeon.tres" id="1_kdaw1"]
 [ext_resource type="Texture2D" uid="uid://ej8ph8cnr3yh" path="res://assets/sprites/mobs/skeleton warrior/Attack_1.png" id="2_fttcr"]
 [ext_resource type="Texture2D" uid="uid://dh5nxr3qp62qb" path="res://assets/sprites/mobs/skeleton warrior/Attack_2.png" id="3_t0hcx"]
 [ext_resource type="Texture2D" uid="uid://b234ooht2vg26" path="res://assets/sprites/mobs/skeleton warrior/Attack_3.png" id="4_nlovk"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dc3i2o2v2kf3v"]
 
-[ext_resource type="Texture2D" uid="uid://b8euirx78u1vs" path="res://assets/tilemap/doors_and_window.png" id="1_7nbxa"]
+[ext_resource type="Texture2D" uid="uid://b8euirx78u1vs" path="res://assets/tilemap/dungeon/doors_and_window.png" id="1_7nbxa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrqdb"]
 atlas = ExtResource("1_7nbxa")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ipw7eytfeigv"
-path="res://.godot/imported/dungeon.png-a3f679b104d5c9e50e8645edfddac76e.ctex"
+uid="uid://dfrl76585r8jt"
+path="res://.godot/imported/background 4.png-17f4a33d64165aa9432c48b1d1afed00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/dungeon.png"
-dest_files=["res://.godot/imported/dungeon.png-a3f679b104d5c9e50e8645edfddac76e.ctex"]
+source_file="res://assets/tilemap/royal castle/hall/background 4.png"
+dest_files=["res://.godot/imported/background 4.png-17f4a33d64165aa9432c48b1d1afed00.ctex"]
 
 [params]
 

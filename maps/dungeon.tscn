@@ -1,8 +1,7 @@
 [gd_scene format=4 uid="uid://3f4jx31apm83"]
 
-[ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/main.tres" id="1_dnfnu"]
-[ext_resource type="TileSet" uid="uid://2nk5y54dgy8h" path="res://assets/tilemap/traps.tres" id="2_llb8c"]
-[ext_resource type="Script" uid="uid://hty4wsqfi05u" path="res://assets/tilemap/traps.gd" id="3_pjnkd"]
+[ext_resource type="TileSet" uid="uid://ds4gwmooxmgxv" path="res://assets/tilemap/dungeon/dungeon.tres" id="1_dnfnu"]
+[ext_resource type="Script" uid="uid://hty4wsqfi05u" path="res://assets/tilemap/dungeon/traps.gd" id="3_pjnkd"]
 [ext_resource type="PackedScene" uid="uid://dc3i2o2v2kf3v" path="res://scenes/misc/door.tscn" id="4_x2vmd"]
 
 [node name="Dungeon" type="Node2D" unique_id=935988611]
@@ -21,7 +20,7 @@ tile_set = ExtResource("1_dnfnu")
 [node name="Traps" type="TileMapLayer" parent="Tilemap layers" unique_id=555677833]
 z_index = 1
 tile_map_data = PackedByteArray("AAAOAAoAAAAPAAYAAAAPAAoAAAAPAAYAAAAQAAoAAAAPAAYAAAARAAoAAAAPAAYAAAAOAAwAAAALAAgAAAAPAAwAAAALAAgAAAAQAAwAAAALAAgAAAARAAwAAAALAAgAAAASAAkAAAALAAgAAAATAAkAAAALAAgAAAAUAAkAAAALAAgAAAAVAAkAAAALAAgAAAAWAAkAAAALAAgAAAAXAAkAAAALAAgAAAAYAAkAAAALAAgAAAAZAAkAAAALAAgAAAAaAAkAAAALAAgAAAB0AA0AAAAPAAYAAAB1AA0AAAAPAAYAAAB2AA0AAAAPAAYAAAB3AA0AAAAPAAYAAAB4AA0AAAAPAAYAAAB5AA0AAAAPAAYAAAB6AA0AAAAPAAYAAAB7AA0AAAAPAAYAAAB0ABQAAAAPAAYAAAB1ABQAAAAPAAYAAAB2ABQAAAAPAAYAAAB3ABQAAAAPAAYAAAB4ABQAAAAPAAYAAAB5ABQAAAAPAAYAAAB6ABQAAAAPAAYAAAB7ABQAAAAPAAYAAAB8ABQAAAAPAAYAAAB9ABQAAAAPAAYAAAB+ABQAAAAPAAYAAAB/ABQAAAAPAAYAAABzABQAAAAPAAYAAAByABQAAAAPAAYAAABxABQAAAAPAAYAAABwABQAAAAPAAYAAAB0ABcAAAALAAgAAAB1ABcAAAALAAgAAAB2ABcAAAALAAgAAAB3ABcAAAALAAgAAAB4ABcAAAALAAgAAAB5ABcAAAALAAgAAAB6ABcAAAALAAgAAAB7ABcAAAALAAgAAAA=")
-tile_set = ExtResource("2_llb8c")
+tile_set = ExtResource("1_dnfnu")
 script = ExtResource("3_pjnkd")
 
 [node name="Doors" type="Node2D" parent="." unique_id=2131010053]
