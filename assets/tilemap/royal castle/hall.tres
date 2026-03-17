@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" format=3 uid="uid://dlxsjrldors01"]
+
+[ext_resource type="Texture2D" uid="uid://lsmudqycxrdi" path="res://assets/tilemap/royal castle/hall/Plan 1.png" id="1_toaoe"]
+[ext_resource type="Texture2D" uid="uid://dqoomphgs8n65" path="res://assets/tilemap/royal castle/hall/Plan 2.png" id="2_56tp3"]
+[ext_resource type="Texture2D" uid="uid://bfce6jqvniueh" path="res://assets/tilemap/royal castle/hall/Plan 3.png" id="3_2tr0u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_obnvg"]
+texture = ExtResource("1_toaoe")
+texture_region_size = Vector2i(576, 324)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jfwus"]
+texture = ExtResource("2_56tp3")
+texture_region_size = Vector2i(576, 324)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2x1py"]
+texture = ExtResource("3_2tr0u")
+texture_region_size = Vector2i(576, 324)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(576, 324)
+sources/0 = SubResource("TileSetAtlasSource_obnvg")
+sources/1 = SubResource("TileSetAtlasSource_jfwus")
+sources/2 = SubResource("TileSetAtlasSource_2x1py")

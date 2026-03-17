@@ -1,3 +1,76 @@
-[gd_scene format=3 uid="uid://d3sjuw2xon2v4"]
+[gd_scene format=4 uid="uid://d3sjuw2xon2v4"]
 
-[node name="RoyalCastle" type="Node2D" unique_id=2112943336]
+[ext_resource type="TileSet" uid="uid://kftyecbd1cvf" path="res://assets/tilemap/royal castle/castle outdoors.tres" id="1_wnf2b"]
+[ext_resource type="Script" uid="uid://b666ndns0368d" path="res://scenes/player_spawner/player_spawner.gd" id="2_wnf2b"]
+
+[sub_resource type="GDScript" id="GDScript_yhcpw"]
+script/source = "extends Node2D
+
+@export var player_spawner : PlayerSpawner
+
+func _ready() -> void:
+	player_spawner.player_spawned.connect(_on_player_spawned)
+	###
+	$PlayerSpawner.display_player_selector()
+
+func _on_player_spawned(player: Player, _death_count: int) -> void:
+	await player.entity_created
+	await get_tree().physics_frame
+	var player_cam : CAM = player.get_children().filter(func (x): return x is CAM)[0]
+	var hud_cam : Camera2D = player_spawner.my_hud.get_node(\"Control/Minimap Container/Minimap/Camera2D\")
+	hud_cam.zoom = Vector2(0.5, 0.5)
+	hud_cam.limit_top = -190
+	player_cam.limit_top = -190
+	hud_cam.limit_bottom = 300
+	player_cam.limit_bottom = 300
+
+func _physics_process(_delta: float) -> void:
+	if player_spawner.my_player:
+		var my_collider : CollisionShape2D = player_spawner.my_player.get_children().filter(func (x): return x is CollisionShape2D)[0]
+		var my_feet_coords : float =my_collider.shape.get_rect().end.y + player_spawner.my_player.global_position.y
+		if my_feet_coords < -25:
+			while player_spawner.my_player.velocity.y < 0:
+				await get_tree().physics_frame
+			$\"Tilemap/Balcony\".z_index = 10
+		if my_feet_coords > -10:
+			$\"Tilemap/Balcony\".z_index = 0
+"
+
+[node name="RoyalCastle" type="Node2D" unique_id=2112943336 node_paths=PackedStringArray("player_spawner")]
+script = SubResource("GDScript_yhcpw")
+player_spawner = NodePath("PlayerSpawner")
+
+[node name="Tilemap" type="Node2D" parent="." unique_id=459258776]
+scale = Vector2(0.6, 0.6)
+
+[node name="Sky" type="TileMapLayer" parent="Tilemap" unique_id=1579870005]
+tile_map_data = PackedByteArray("AAD9////CQAAAAAAAAD+////CQAAAAAAAAD/////CQAAAAAAAAAAAP//CQAAAAAAAAABAP//CQAAAAAAAAACAP//CQAAAAAAAAA=")
+tile_set = ExtResource("1_wnf2b")
+
+[node name="Clouds" type="TileMapLayer" parent="Tilemap" unique_id=1946837874]
+tile_map_data = PackedByteArray("AAD9////CAAAAAAAAAD+////CAAAAAAAAAD/////CAAAAAAAAAAAAP//CAAAAAAAAAABAP//CAAAAAAAAAACAP//CAAAAAAAAAA=")
+tile_set = ExtResource("1_wnf2b")
+
+[node name="Roof" type="TileMapLayer" parent="Tilemap" unique_id=1671267912]
+tile_map_data = PackedByteArray("AAD9////BwAAAAAAAAD+////BwAAAAAAAAD/////BwAAAAAAAAAAAP//BwAAAAAAAAABAP//BwAAAAAAAAACAP//BwAAAAAAAAA=")
+tile_set = ExtResource("1_wnf2b")
+
+[node name="Balcony" type="TileMapLayer" parent="Tilemap" unique_id=70541531]
+tile_map_data = PackedByteArray("AAD9////BQAAAAAAAAD+////BgAAAAAAAAD/////BQAAAAAAAAAAAP//BQAAAAAAAAABAP//BgAAAAAAAAACAP//BQAAAAAAAAA=")
+tile_set = ExtResource("1_wnf2b")
+
+[node name="Walls" type="TileMapLayer" parent="Tilemap" unique_id=1315995624]
+tile_map_data = PackedByteArray("AAD9/wAABAAAAAAAAAD+/wAABAAAAAAAAAD//wAABAAAAAAAAAAAAAAABAAAAAAAAAABAAAABAAAAAAAAAACAAAABAAAAAAAAAA=")
+tile_set = ExtResource("1_wnf2b")
+
+[node name="Garden" type="TileMapLayer" parent="Tilemap" unique_id=141395404]
+tile_map_data = PackedByteArray("AAD9/wAAAwAAAAAAAAD+/wAAAwAAAAAAAAD//wAAAwAAAAAAAAAAAAAAAwAAAAAAAAABAAAAAwAAAAAAAAACAAAAAwAAAAAAAAA=")
+tile_set = ExtResource("1_wnf2b")
+
+[node name="Floor" type="TileMapLayer" parent="Tilemap" unique_id=519015618]
+tile_map_data = PackedByteArray("AAD9/wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAA=")
+tile_set = ExtResource("1_wnf2b")
+
+[node name="PlayerSpawner" type="Node2D" parent="." unique_id=287037340]
+script = ExtResource("2_wnf2b")
+metadata/_custom_type_script = "uid://b666ndns0368d"

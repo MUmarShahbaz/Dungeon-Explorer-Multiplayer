@@ -19,6 +19,7 @@ func _ready() -> void:
 	set_collision_layer_value(1, false)
 	set_collision_layer_value(2, true)
 	visibility_layer = 2
+	entity_created.emit()
 
 func _physics_process(delta: float) -> void:
 	if HP_Current <= 0: return
@@ -28,15 +29,15 @@ func _physics_process(delta: float) -> void:
 func dodge():
 	if pause_movement(): return
 	force_pause = true
-	velocity = Vector2(MV_Run_Speed*facing*-1, MV_Jump/2)
+	var delta = get_physics_process_delta_time()
+	velocity = Vector2(MV_Run_Speed*facing*delta*-50, MV_Jump/2)
 	ANM_Animation_Tree.get("parameters/playback").start("jump")
-	await get_tree().physics_frame
-	while not is_on_floor():
-		await get_tree().physics_frame
+	await await_frame("land", ANM_Animated_Sprite.sprite_frames.get_frame_count("land") - 1)
 	force_pause = false
 
-func move(delta, x_dir, run = false):
+func move(x_dir, run = false):
 	if pause_movement(): return
+	var delta = get_physics_process_delta_time()
 	if x_dir != 0:
 		if run:
 			velocity.x = x_dir * MV_Run_Speed * delta * 60
@@ -53,12 +54,14 @@ func jump():
 	ANM_Animation_Tree.get("parameters/playback").travel("jump")
 
 func heal():
-	ITM_Healing_Potions -= 1
-	HP_Current += HP_Regeneration_Rate * 60
+	if ITM_Healing_Potions > 0:
+		ITM_Healing_Potions -= 1
+		HP_Current += HP_Regeneration_Rate * 60
 
 func boost():
-	ITM_Booster_Potions -= 1
-	SP_Special_Points += 60
+	if ITM_Booster_Potions > 0:
+		ITM_Booster_Potions -= 1
+		SP_Special_Points += 60
 
 func primary():
 	pass

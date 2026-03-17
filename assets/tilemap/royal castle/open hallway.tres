@@ -1,0 +1,33 @@
+[gd_resource type="TileSet" format=3 uid="uid://cfvvn7ucg6qnf"]
+
+[ext_resource type="Texture2D" uid="uid://cn26exlpcj7mp" path="res://assets/tilemap/royal castle/open hallway/Plan 1.png" id="1_ewo7q"]
+[ext_resource type="Texture2D" uid="uid://c5j5eonfhxfg4" path="res://assets/tilemap/royal castle/open hallway/Plan 2.png" id="2_sqpmx"]
+[ext_resource type="Texture2D" uid="uid://c760ohmxov60g" path="res://assets/tilemap/royal castle/open hallway/Plan 3.png" id="3_hjyhk"]
+[ext_resource type="Texture2D" uid="uid://uvos1ls10vqt" path="res://assets/tilemap/royal castle/open hallway/Plan 4.png" id="4_ng1l4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2x1py"]
+texture = ExtResource("1_ewo7q")
+texture_region_size = Vector2i(576, 324)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jy21w"]
+texture = ExtResource("2_sqpmx")
+texture_region_size = Vector2i(576, 324)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ypnf"]
+texture = ExtResource("3_hjyhk")
+texture_region_size = Vector2i(576, 324)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o85s"]
+texture = ExtResource("4_ng1l4")
+texture_region_size = Vector2i(576, 324)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(576, 324)
+sources/0 = SubResource("TileSetAtlasSource_2x1py")
+sources/1 = SubResource("TileSetAtlasSource_jy21w")
+sources/2 = SubResource("TileSetAtlasSource_2ypnf")
+sources/3 = SubResource("TileSetAtlasSource_1o85s")

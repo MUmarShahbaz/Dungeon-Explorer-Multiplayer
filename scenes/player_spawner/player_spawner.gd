@@ -6,6 +6,8 @@ var hud : PackedScene = preload("res://scenes/player_spawner/hud.tscn")
 
 signal player_spawned(player : Player, death_count : int)
 var death_count := 0
+var my_player : Player
+var my_hud : CanvasLayer
 
 func display_player_selector():
 	var new_selector = player_selector.instantiate()
@@ -29,4 +31,6 @@ func spawn(selected, first_spawn = false):
 	new_hud.avatar.region.position = Vector2(16, 8)
 	new_hud.avatar.region.size = Vector2(32, 32)
 	add_child.call_deferred(new_hud)
+	my_player = new_player
+	my_hud = new_hud
 	player_spawned.emit(new_player, death_count)

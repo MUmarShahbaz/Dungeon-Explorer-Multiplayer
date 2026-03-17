@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc0r0ptq62mdw"
-path="res://.godot/imported/background 1.png-881f91471b930b5b7b88cb568f8d36f7.ctex"
+uid="uid://tyhob5n17xde"
+path="res://.godot/imported/full floor.png-f035219ba5e46ba72892f415f0ec6478.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/royal castle/garden/background 1.png"
-dest_files=["res://.godot/imported/background 1.png-881f91471b930b5b7b88cb568f8d36f7.ctex"]
+source_file="res://assets/tilemap/royal castle/outdoors/full floor.png"
+dest_files=["res://.godot/imported/full floor.png-f035219ba5e46ba72892f415f0ec6478.ctex"]
 
 [params]
 

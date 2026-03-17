@@ -53,6 +53,7 @@ class_name Entity
 
 ## The Direction the entity is facing. [code]0[/code] is Left, [code]1[/code] is Right
 @export var facing : int = 1
+signal entity_created
 signal entity_died
 
 func _physics_process(delta: float) -> void:

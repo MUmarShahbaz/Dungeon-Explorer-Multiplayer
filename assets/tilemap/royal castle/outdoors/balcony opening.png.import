@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dolpskxl0rhwf"
-path="res://.godot/imported/Plan 2.png-cd1d3321e20a3a1b1e0fa1efebdd2e55.ctex"
+path="res://.godot/imported/balcony opening.png-039b6e69ae3edb13a374134e8171f209.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/royal castle/oof/Plan 2.png"
-dest_files=["res://.godot/imported/Plan 2.png-cd1d3321e20a3a1b1e0fa1efebdd2e55.ctex"]
+source_file="res://assets/tilemap/royal castle/outdoors/balcony opening.png"
+dest_files=["res://.godot/imported/balcony opening.png-039b6e69ae3edb13a374134e8171f209.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfvaxcuboabdx"
-path="res://.godot/imported/Plan 1.png-638acdec49795c3d336de3faf579bdb6.ctex"
+uid="uid://c7stbjjovy7xk"
+path="res://.godot/imported/clouds.png-0bf54170604894763226152b2e57d444.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/royal castle/garden/Plan 1.png"
-dest_files=["res://.godot/imported/Plan 1.png-638acdec49795c3d336de3faf579bdb6.ctex"]
+source_file="res://assets/tilemap/royal castle/outdoors/clouds.png"
+dest_files=["res://.godot/imported/clouds.png-0bf54170604894763226152b2e57d444.ctex"]
 
 [params]
 
