@@ -1038,6 +1038,7 @@ autoplay = "default"
 offset = Vector2(3, 0)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1698838339]
+visible = false
 shape = SubResource("CapsuleShape2D_f1v5o")
 
 [node name="anim_player" type="AnimationPlayer" parent="." unique_id=401617038]
@@ -1060,6 +1061,7 @@ Move_List = Array[ExtResource("13_xrrkj")]([SubResource("Resource_sdnk0"), SubRe
 metadata/_custom_type_script = "uid://bqxoijlpwtgvm"
 
 [node name="Attack 1" type="Area2D" parent="." unique_id=1202637137]
+visible = false
 script = ExtResource("14_efbjb")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
@@ -1067,6 +1069,7 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 polygon = PackedVector2Array(0, 0, 0, 0, 56, 27, 74, 6, 68, -30, 46, -44)
 
 [node name="Attack 2" type="Area2D" parent="." unique_id=235311241]
+visible = false
 script = ExtResource("14_efbjb")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
@@ -1074,6 +1077,7 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 polygon = PackedVector2Array(0, 0, 0, 0, 38, -40, 62, -32, 65, 1, 37, 22)
 
 [node name="Attack 3" type="Area2D" parent="." unique_id=2096531409]
+visible = false
 script = ExtResource("14_efbjb")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
@@ -1081,6 +1085,7 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 polygon = PackedVector2Array(-1, -1, 38, -8, 64, -6, 70, 1, 50, 11)
 
 [node name="Sheild" type="StaticBody2D" parent="." unique_id=680129964]
+visible = false
 collision_mask = 0
 script = ExtResource("15_ee0wj")
 metadata/_custom_type_script = "uid://vhohi773o038"

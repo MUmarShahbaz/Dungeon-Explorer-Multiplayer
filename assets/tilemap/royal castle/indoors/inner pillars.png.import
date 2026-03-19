@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn20dd7le16nu"
-path="res://.godot/imported/background 2.png-91e21f46b7fbd468690ef95ecb244d54.ctex"
+uid="uid://lsmudqycxrdi"
+path="res://.godot/imported/inner pillars.png-08fa6354395a51f12e19e8c65723209e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/royal castle/open hallway/background 2.png"
-dest_files=["res://.godot/imported/background 2.png-91e21f46b7fbd468690ef95ecb244d54.ctex"]
+source_file="res://assets/tilemap/royal castle/indoors/inner pillars.png"
+dest_files=["res://.godot/imported/inner pillars.png-08fa6354395a51f12e19e8c65723209e.ctex"]
 
 [params]
 

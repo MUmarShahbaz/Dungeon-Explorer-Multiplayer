@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bac54qlnuejl0"
-path="res://.godot/imported/Preview 2.png-f9ab05099c3d947d9485680477de37d5.ctex"
+uid="uid://cn26exlpcj7mp"
+path="res://.godot/imported/plants.png-8369d0d92e4b2b287dfc2fffcff68586.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/royal castle/open hallway/Preview 2.png"
-dest_files=["res://.godot/imported/Preview 2.png-f9ab05099c3d947d9485680477de37d5.ctex"]
+source_file="res://assets/tilemap/royal castle/indoors/plants.png"
+dest_files=["res://.godot/imported/plants.png-8369d0d92e4b2b287dfc2fffcff68586.ctex"]
 
 [params]
 

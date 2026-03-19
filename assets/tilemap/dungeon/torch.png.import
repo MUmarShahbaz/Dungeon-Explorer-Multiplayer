@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uvos1ls10vqt"
-path="res://.godot/imported/Plan 4.png-f70ecebfb77580c57fb35e2731324318.ctex"
+uid="uid://1gwn2k5jv1q4"
+path="res://.godot/imported/torch.png-369a30df14d4f322e07a94549a393737.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/royal castle/open hallway/Plan 4.png"
-dest_files=["res://.godot/imported/Plan 4.png-f70ecebfb77580c57fb35e2731324318.ctex"]
+source_file="res://assets/tilemap/dungeon/torch.png"
+dest_files=["res://.godot/imported/torch.png-369a30df14d4f322e07a94549a393737.ctex"]
 
 [params]
 

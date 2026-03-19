@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://jc5olg1qg0y8"]
+
+[ext_resource type="Texture2D" uid="uid://1gwn2k5jv1q4" path="res://assets/tilemap/dungeon/torch.png" id="1_4d061"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbeaw"]
+atlas = ExtResource("1_4d061")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fv70"]
+atlas = ExtResource("1_4d061")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k402"]
+atlas = ExtResource("1_4d061")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5utf"]
+atlas = ExtResource("1_4d061")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08qls"]
+atlas = ExtResource("1_4d061")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2bd3"]
+atlas = ExtResource("1_4d061")
+region = Rect2(0, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bydjq"]
+atlas = ExtResource("1_4d061")
+region = Rect2(50, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_powfa"]
+atlas = ExtResource("1_4d061")
+region = Rect2(100, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqeg2"]
+atlas = ExtResource("1_4d061")
+region = Rect2(150, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tdci"]
+atlas = ExtResource("1_4d061")
+region = Rect2(200, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir8lf"]
+atlas = ExtResource("1_4d061")
+region = Rect2(0, 100, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0gh3a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbeaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fv70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k402")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5utf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08qls")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2bd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bydjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_powfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqeg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tdci")
+}],
+"loop": true,
+"name": &"ghost",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir8lf")
+}],
+"loop": true,
+"name": &"out",
+"speed": 0.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_4d061"]
+script/source = "extends AnimatedSprite2D
+
+func normal():
+	play(\"default\")
+	$PointLight2D.enabled = true
+	$PointLight2D.color = Color(1.0, 0.875, 0.416, 1.0)
+
+func ghost_flame():
+	play(\"ghost\")
+	$PointLight2D.enabled = true
+	$PointLight2D.color = Color(0.671, 0.847, 1.0, 1.0)
+
+func put_out():
+	play(\"out\")
+	$PointLight2D.enabled = false
+"
+
+[sub_resource type="Gradient" id="Gradient_4d061"]
+offsets = PackedFloat32Array(0, 0.6875)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mbeaw"]
+gradient = SubResource("Gradient_4d061")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Torch" type="AnimatedSprite2D" unique_id=1193113312]
+sprite_frames = SubResource("SpriteFrames_0gh3a")
+autoplay = "default"
+frame_progress = 0.5073779
+offset = Vector2(1, -4)
+script = SubResource("GDScript_4d061")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=809467643]
+color = Color(0.9647059, 0.5803922, 0.20784314, 1)
+energy = 0.6
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 3.0
+texture = SubResource("GradientTexture2D_mbeaw")
+texture_scale = 8.0
