@@ -23,7 +23,8 @@ script/source = "extends Node2D
 var my_player : Player
 
 func _ready() -> void:
-	$Dungeon/Torchs.normal()
+	$Dungeon/Torches.normal()
+	$Dungeon/Darkness.enabled = true
 	$Fade.fade_in()
 	$PlayerSpawner.display_player_selector()
 	$Dungeon/Doors/door1.unlock()

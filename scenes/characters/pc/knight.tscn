@@ -1019,6 +1019,9 @@ metadata/_custom_type_script = "uid://otxwfmoatx33"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6kln"]
 size = Vector2(5, 64)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4a0eb"]
+polygon = PackedVector2Array(0, 4, 3, 0, 0, -17, -3, 0)
+
 [node name="knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
@@ -1093,3 +1096,7 @@ metadata/_custom_type_script = "uid://vhohi773o038"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sheild" unique_id=608937557]
 position = Vector2(16.5, 0)
 shape = SubResource("RectangleShape2D_w6kln")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=346463660]
+occluder = SubResource("OccluderPolygon2D_4a0eb")
+sdf_collision = false
