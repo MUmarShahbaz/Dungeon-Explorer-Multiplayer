@@ -25,10 +25,6 @@ func _process(_delta: float) -> void:
 func pounce(player):
 	super.pounce(player)
 	attack_buffer.start()
-
-func flip():
-	super.flip()
-	melee_controller.flip()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yn02r"]

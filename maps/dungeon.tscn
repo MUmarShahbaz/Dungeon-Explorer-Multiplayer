@@ -26,10 +26,10 @@ func put_out():
 [node name="Tilemap layers" type="Node2D" parent="." unique_id=528010540]
 
 [node name="BG" type="ColorRect" parent="Tilemap layers" unique_id=1742253547]
-offset_left = -665.0
-offset_top = -677.0
-offset_right = 10547.0
-offset_bottom = 1610.0
+offset_left = -3183.0
+offset_top = -3060.0
+offset_right = 13357.0
+offset_bottom = 3521.0
 color = Color(0.08235294, 0.07450981, 0.15294118, 1)
 
 [node name="Back" type="TileMapLayer" parent="Tilemap layers" unique_id=993732640]

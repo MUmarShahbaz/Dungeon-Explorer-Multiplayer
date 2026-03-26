@@ -33,10 +33,6 @@ func primary():
 
 func secondary():
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"shoot\")
-
-func flip():
-	super.flip()
-	melee_controller.flip()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f7nts"]

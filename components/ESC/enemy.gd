@@ -101,9 +101,5 @@ func find_closest_player():
 	return closest_player
 
 func face_player(player : Player):
-	if to_local(player.global_position).x * facing < 0:
+	if (player.global_position.x - self.global_position.x) * facing < 0:
 		flip()
-
-func flip():
-	super.flip()
-	VIS_Block_Check.target_position = Vector2((50+(MV_Collider.shape as CapsuleShape2D).radius/2)*facing, 0)
