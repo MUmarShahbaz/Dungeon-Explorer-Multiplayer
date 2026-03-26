@@ -21,7 +21,7 @@ func damage_all(amount):
 	ray.enabled = false
 
 func obstruction_check(target : Entity) -> bool:
-	ray.target_position = to_local(target.global_position)
+	ray.target_position = target.global_position - self.global_position
 	ray.target_position.x *= parent.facing
 	ray.force_raycast_update()
 	if ray.is_colliding() : return true

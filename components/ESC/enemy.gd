@@ -75,7 +75,7 @@ func pursue(player : Player):
 	ANM_Animation_Tree.get("parameters/playback").travel("run")
 	ANM_Animation_Tree.advance(0)
 	face_player(player)
-	var dir : Vector2 = to_local(player.global_position).normalized()
+	var dir : Vector2 = (player.global_position - self.global_position).normalized()
 	velocity.x = dir.x * MV_Run_Speed
 
 # Rewrite in lowest child
@@ -88,9 +88,10 @@ func find_closest_player():
 	var closest_player : Player
 	var closest_player_distance : float = INF
 	for player : Player in get_tree().get_nodes_in_group("players"):
-		var to_player : Vector2 = to_local(player.global_position)
+		var to_player : Vector2 = player.global_position - self.global_position
 		if to_player.x * facing < 0 and to_player.length() > VIS_Attack_Range: continue
 		if to_player.length() > VIS_Range: continue
+		to_player.x *= facing
 		VIS_Ray.target_position = to_player
 		VIS_Ray.force_raycast_update()
 		if VIS_Ray.is_colliding():
