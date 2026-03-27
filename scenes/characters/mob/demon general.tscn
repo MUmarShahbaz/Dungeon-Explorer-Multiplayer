@@ -645,7 +645,6 @@ Damage = 30.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [node name="Demon General" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
-scale = Vector2(3, 3)
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
@@ -663,10 +662,12 @@ CI_Title = "Goblin Champion"
 metadata/_custom_type_script = "uid://dyi8w7p8cl28t"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_g21a4")
 offset = Vector2(0, -28)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1178652562]
+scale = Vector2(3, 3)
 shape = SubResource("CapsuleShape2D_yn02r")
 
 [node name="anim_player" type="AnimationPlayer" parent="." unique_id=2114706160]
@@ -692,4 +693,4 @@ script = ExtResource("12_1ue2v")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 1" unique_id=1385871789]
-polygon = PackedVector2Array(0, 0, 18.666668, 36, 30.666668, 34, 75.333336, -4.666667, 53.333336, -28, 14.666667, -18.666668)
+polygon = PackedVector2Array(0, 0, 55.8, 108, 91.8, 102, 225, -13.5, 160, -84, 43.8, -55.8)

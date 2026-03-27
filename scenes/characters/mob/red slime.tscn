@@ -790,7 +790,6 @@ Damage = 10.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [node name="Red Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
-scale = Vector2(4, 4)
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
@@ -806,10 +805,12 @@ CI_Title = "Red Slime"
 metadata/_custom_type_script = "uid://dyi8w7p8cl28t"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_g21a4")
 offset = Vector2(1, -48)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1178652562]
+scale = Vector2(4, 4)
 shape = SubResource("CapsuleShape2D_yn02r")
 
 [node name="anim_player" type="AnimationPlayer" parent="." unique_id=2114706160]
@@ -835,18 +836,18 @@ script = ExtResource("12_7xrb1")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 1" unique_id=1385871789]
-polygon = PackedVector2Array(0, 0, 36, 9, 55, -7, 47, -26, 23, -24)
+polygon = PackedVector2Array(0, 0, 144, 36, 220, -28, 188, -104, 92, -96)
 
 [node name="Attack 2" type="Area2D" parent="." unique_id=172415191]
 script = ExtResource("12_7xrb1")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 2" unique_id=207008211]
-polygon = PackedVector2Array(0, 0, 28, 12, 51, 8, 53, -7, 29, -18)
+polygon = PackedVector2Array(0, 0, 112, 48, 204, 32, 212, -28, 116, -72)
 
 [node name="Attack 3" type="Area2D" parent="." unique_id=1391803401]
 script = ExtResource("12_7xrb1")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3" unique_id=1913537344]
-polygon = PackedVector2Array(0, 0, 21, 11, 37, 6, 48, -18)
+polygon = PackedVector2Array(0, 0, 84, 44, 148, 24, 192, -72)

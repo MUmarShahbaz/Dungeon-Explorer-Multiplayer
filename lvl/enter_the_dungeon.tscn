@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b25tl31ia5xmc" path="res://scenes/characters/mob/cereberus.tscn" id="12_s2l0u"]
 [ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="13_4p4r1"]
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="14_sdv70"]
+[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="15_5tki5"]
 [ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/skeleton champion.tscn" id="15_sbtkl"]
 [ext_resource type="PackedScene" uid="uid://cnhnlcn2jkj00" path="res://scenes/characters/mob/demon general.tscn" id="16_cce0b"]
 
@@ -284,7 +285,7 @@ metadata/_custom_type_script = "uid://5u3surwy2bde"
 
 [node name="Army" type="Area2D" parent="Mob Waves/Skeleton Army" unique_id=1194104672 node_paths=PackedStringArray("Spawn_Root")]
 script = ExtResource("5_5tki5")
-Mob_Scenes = Array[PackedScene]([ExtResource("13_4p4r1"), ExtResource("14_sdv70"), ExtResource("14_sdv70")])
+Mob_Scenes = Array[PackedScene]([ExtResource("13_4p4r1"), ExtResource("14_sdv70"), ExtResource("15_5tki5")])
 Spawn_Root = NodePath("..")
 Rate = 0.0
 Initial_Spawns = 47
