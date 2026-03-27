@@ -33,4 +33,5 @@ func spawn(selected, first_spawn = false):
 	add_child.call_deferred(new_hud)
 	my_player = new_player
 	my_hud = new_hud
+	await new_hud.ready
 	player_spawned.emit(new_player, death_count)

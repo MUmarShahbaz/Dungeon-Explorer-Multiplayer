@@ -21,6 +21,27 @@ func put_out():
 		torch.put_out()
 "
 
+[sub_resource type="GDScript" id="GDScript_llb8c"]
+script/source = "extends CanvasLayer
+
+func add_mini_map_vignette(hud):
+	var clone = get_node(\"TexRect\").duplicate(DUPLICATE_USE_INSTANTIATION)
+	var texture = clone.get(\"texture\").duplicate(true)
+	clone.set(\"texture\", texture)
+	clone.texture.gradient.offsets[1] = 0.4
+	hud.get_node(\"Control/Minimap Container\").add_child.call_deferred(clone)
+"
+
+[sub_resource type="Gradient" id="Gradient_dnfnu"]
+offsets = PackedFloat32Array(0, 0.7)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.9616935)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_llb8c"]
+gradient = SubResource("Gradient_dnfnu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Dungeon" type="Node2D" unique_id=935988611]
 
 [node name="Tilemap layers" type="Node2D" parent="." unique_id=528010540]
@@ -120,7 +141,6 @@ exit = NodePath("../door13")
 position = Vector2(9900, 1006)
 
 [node name="Darkness" type="DirectionalLight2D" parent="." unique_id=1479886624]
-enabled = false
 energy = 0.5
 blend_mode = 1
 
@@ -334,3 +354,17 @@ frame_progress = 0.3288282
 [node name="Torch51" parent="Torches" unique_id=1728151831 instance=ExtResource("4_dnfnu")]
 position = Vector2(9917, 904)
 frame_progress = 0.3288282
+
+[node name="Vignette" type="CanvasLayer" parent="." unique_id=1838718970]
+layer = 0
+visible = false
+script = SubResource("GDScript_llb8c")
+
+[node name="TexRect" type="TextureRect" parent="Vignette" unique_id=980107379]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_llb8c")

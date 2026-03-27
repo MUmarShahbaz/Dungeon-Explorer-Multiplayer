@@ -25,7 +25,6 @@ var my_player : Player
 
 func _ready() -> void:
 	$Dungeon/Torches.normal()
-	$Dungeon/Darkness.enabled = true
 	$Fade.fade_in()
 	$PlayerSpawner.display_player_selector()
 	$Dungeon/Doors/door1.unlock()

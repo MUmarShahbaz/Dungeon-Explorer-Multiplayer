@@ -111,7 +111,7 @@ func normal():
 func ghost_flame():
 	play(\"ghost\")
 	$Light.enabled = true
-	$Light.color = Color(0.671, 0.847, 1.0, 1.0)
+	$Light.color = Color(0.531, 0.674, 0.798, 1.0)
 
 func put_out():
 	play(\"out\")
