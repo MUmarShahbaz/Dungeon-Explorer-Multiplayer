@@ -12,6 +12,7 @@ var avatar : AtlasTexture
 var multiplayer_id : int
 
 func _ready() -> void:
+	add_to_group(\"hud\")
 	$\"Control/Player/Avatar\".texture = avatar
 	$\"Control/Minimap Container/Minimap\".world_2d = get_tree().root.world_2d
 	if multiplayer_id: player = get_tree().current_scene.get_node(str(multiplayer_id))

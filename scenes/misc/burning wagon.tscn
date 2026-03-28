@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bha0gg748anca"]
+
+[ext_resource type="Texture2D" uid="uid://dug0w2yvdi4wb" path="res://assets/tilemap/royal castle/burning wagon.png" id="1_k53fu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhkr5"]
+atlas = ExtResource("1_k53fu")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jp4d"]
+atlas = ExtResource("1_k53fu")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h2mo"]
+atlas = ExtResource("1_k53fu")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4e1l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhkr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jp4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h2mo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k53fu"]
+size = Vector2(40.77441, 32)
+
+[sub_resource type="Gradient" id="Gradient_4d061"]
+offsets = PackedFloat32Array(0, 0.6875)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k53fu"]
+gradient = SubResource("Gradient_4d061")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Burning Wagon" type="StaticBody2D" unique_id=221941775]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=575818551]
+scale = Vector2(3.2800004, 3.2800004)
+sprite_frames = SubResource("SpriteFrames_x4e1l")
+autoplay = "default"
+frame_progress = 0.85884196
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=869503519]
+position = Vector2(-20.000002, 27)
+rotation = 0.20943952
+scale = Vector2(3.2800004, 3.2800004)
+shape = SubResource("RectangleShape2D_k53fu")
+
+[node name="Light" type="PointLight2D" parent="." unique_id=684308083]
+position = Vector2(-18, 26)
+color = Color(0.9647059, 0.5803922, 0.20784314, 1)
+energy = 0.4
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 3.0
+texture = SubResource("GradientTexture2D_k53fu")
+texture_scale = 40.0

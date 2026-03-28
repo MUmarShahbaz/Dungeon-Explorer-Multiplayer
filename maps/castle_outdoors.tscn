@@ -1,0 +1,152 @@
+[gd_scene format=4 uid="uid://d3sjuw2xon2v4"]
+
+[ext_resource type="TileSet" uid="uid://cfvvn7ucg6qnf" path="res://assets/tilemap/royal castle/castle indoors.tres" id="1_cogm1"]
+[ext_resource type="TileSet" uid="uid://kftyecbd1cvf" path="res://assets/tilemap/royal castle/castle outdoors.tres" id="2_h2dug"]
+[ext_resource type="PackedScene" uid="uid://bha0gg748anca" path="res://scenes/misc/burning wagon.tscn" id="3_h2dug"]
+
+[sub_resource type="GDScript" id="GDScript_yhcpw"]
+script/source = "extends Node2D
+
+@export var player_spawner : PlayerSpawner
+
+func _ready() -> void:
+	player_spawner.player_spawned.connect(func (_x,_y): QuickScripts.clamp_camera(-1036.5, 3110, -190, 300, INF, 0.5))
+
+func entity_z_index(entity : Entity):
+	var global_bounds = QuickScripts.get_bounds(entity).slice(4, 8)
+	if global_bounds[3] < -13:
+		while entity.velocity.y < 0:
+			await get_tree().physics_frame
+		entity.z_index = -1
+	else:
+		if global_bounds[0] > 1386:
+			if global_bounds[2] < -4.5: entity.z_index = 0
+			elif global_bounds[3] < 118:
+				entity.z_index = -2
+				entity.get_children().filter(func (x): return x is LightOccluder2D)[0].hide()
+			else:
+				entity.z_index = 0
+				entity.get_children().filter(func (x): return x is LightOccluder2D)[0].show()
+		else:
+			entity.z_index = 0
+"
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yhcpw"]
+a = Vector2(2310, 124)
+b = Vector2(2310, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yhcpw"]
+normal = Vector2(1, 0)
+distance = -2220.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_duvhj"]
+normal = Vector2(-1, 0)
+distance = -5455.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cogm1"]
+a = Vector2(4618, 197)
+b = Vector2(4466, 320)
+
+[node name="Castle Outdoors" type="Node2D" unique_id=2112943336]
+script = SubResource("GDScript_yhcpw")
+
+[node name="Tilemap" type="Node2D" parent="." unique_id=459258776]
+scale = Vector2(0.6, 0.6)
+
+[node name="Inner BG" type="TileMapLayer" parent="Tilemap" unique_id=1907322070]
+z_index = -2
+position = Vector2(-277, -82)
+tile_map_data = PackedByteArray("AAAEAAAABAAAAAAAAAAFAAAABAAAAAAAAAAGAAAABAAAAAAAAAAHAAAABAAAAAAAAAAIAAAABAAAAAAAAAAJAAAABAAAAAAAAAA=")
+tile_set = ExtResource("1_cogm1")
+
+[node name="Inner Walls" type="TileMapLayer" parent="Tilemap" unique_id=233011975]
+z_index = -2
+position = Vector2(-277, -82)
+tile_map_data = PackedByteArray("AAAEAAAAAwAAAAAAAAAFAAAAAwAAAAAAAAAGAAAAAwAAAAAAAAAHAAAAAwAAAAAAAAAIAAAAAwAAAAAAAAAJAAAAAwAAAAAAAAA=")
+tile_set = ExtResource("1_cogm1")
+
+[node name="Inner Floor" type="TileMapLayer" parent="Tilemap" unique_id=446558916]
+z_index = -1
+position = Vector2(-277, -82)
+tile_map_data = PackedByteArray("AAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAgAAAAAAAAAJAAAAAQAAAAAAAAA=")
+tile_set = ExtResource("1_cogm1")
+
+[node name="Inner Garden" type="TileMapLayer" parent="Tilemap" unique_id=797896836]
+z_index = -1
+position = Vector2(-277, -82)
+tile_map_data = PackedByteArray("AAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAA=")
+tile_set = ExtResource("1_cogm1")
+
+[node name="Sky" type="TileMapLayer" parent="Tilemap" unique_id=1579870005]
+z_index = -1
+tile_map_data = PackedByteArray("AAD9////CQAAAAAAAAD+////CQAAAAAAAAD/////CQAAAAAAAAAAAP//CQAAAAAAAAABAP//CQAAAAAAAAACAP//CQAAAAAAAAADAP//CQAAAAAAAAAEAP//CQAAAAAAAAAFAP//CQAAAAAAAAAGAP//CQAAAAAAAAAHAP//CQAAAAAAAAAIAP//CQAAAAAAAAAJAP//CQAAAAAAAAD8////CQAAAAAAAAA=")
+tile_set = ExtResource("2_h2dug")
+
+[node name="Clouds" type="TileMapLayer" parent="Tilemap" unique_id=1946837874]
+z_index = -1
+tile_map_data = PackedByteArray("AAD9////CAAAAAAAAAD+////CAAAAAAAAAD/////CAAAAAAAAAAAAP//CAAAAAAAAAABAP//CAAAAAAAAAACAP//CAAAAAAAAAADAP//CAAAAAAAAAAEAP//CAAAAAAAAAAFAP//CAAAAAAAAAAGAP//CAAAAAAAAAAHAP//CAAAAAAAAAAIAP//CAAAAAAAAAAJAP//CAAAAAAAAAD8////CAAAAAAAAAA=")
+tile_set = ExtResource("2_h2dug")
+
+[node name="Roof" type="TileMapLayer" parent="Tilemap" unique_id=1671267912]
+z_index = -1
+tile_map_data = PackedByteArray("AAD9////BwAAAAAAAAD+////BwAAAAAAAAD/////BwAAAAAAAAAAAP//BwAAAAAAAAABAP//BwAAAAAAAAACAP//BwAAAAAAAAADAP//BwAAAAAAAAAEAP//BwAAAAAAAAAFAP//BwAAAAAAAAAGAP//BwAAAAAAAAAHAP//BwAAAAAAAAAIAP//BwAAAAAAAAAJAP//BwAAAAAAAAD8////BwAAAAAAAAA=")
+tile_set = ExtResource("2_h2dug")
+
+[node name="Balcony" type="TileMapLayer" parent="Tilemap" unique_id=70541531]
+tile_map_data = PackedByteArray("AAD9////BQAAAAAAAAD+////BgAAAAAAAAD/////BQAAAAAAAAAAAP//BQAAAAAAAAABAP//BQAAAAAAAAACAP//BQAAAAAAAAADAP//BQAAAAAAAAAEAP//BgAAAAAAAAAFAP//BQAAAAAAAAAGAP//BQAAAAAAAAAHAP//BQAAAAAAAAAIAP//BQAAAAAAAAAJAP//BQAAAAAAAAD8////BQAAAAAAAAA=")
+tile_set = ExtResource("2_h2dug")
+
+[node name="Walls" type="TileMapLayer" parent="Tilemap" unique_id=1315995624]
+z_index = -1
+tile_map_data = PackedByteArray("AAD9/wAABAAAAAAAAAD+/wAABAAAAAAAAAD//wAABAAAAAAAAAAAAAAABAAAAAAAAAABAAAABAAAAAAAAAACAAAABAAAAAAAAAD8/wAABAAAAAAAAAADAAAABAAAAAAAAAA=")
+tile_set = ExtResource("2_h2dug")
+
+[node name="Garden" type="TileMapLayer" parent="Tilemap" unique_id=141395404]
+z_index = -1
+tile_map_data = PackedByteArray("AAD9/wAAAwAAAAAAAAD+/wAAAwAAAAAAAAD//wAAAwAAAAAAAAAAAAAAAwAAAAAAAAABAAAAAwAAAAAAAAACAAAAAwAAAAAAAAD8/wAAAwAAAAAAAAADAAAAAwAAAAAAAAA=")
+tile_set = ExtResource("2_h2dug")
+
+[node name="Floor" type="TileMapLayer" parent="Tilemap" unique_id=519015618]
+z_index = -1
+tile_map_data = PackedByteArray("AAD9/wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAA=")
+tile_set = ExtResource("2_h2dug")
+
+[node name="Borders" type="Node2D" parent="." unique_id=596152502]
+scale = Vector2(0.6, 0.6)
+
+[node name="Main" type="StaticBody2D" parent="Borders" unique_id=1054324476]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Main" unique_id=2130411172]
+shape = SubResource("SegmentShape2D_yhcpw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders/Main" unique_id=1841938126]
+shape = SubResource("WorldBoundaryShape2D_yhcpw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders/Main" unique_id=1510064616]
+shape = SubResource("WorldBoundaryShape2D_duvhj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders/Main" unique_id=1257303214]
+shape = SubResource("SegmentShape2D_cogm1")
+
+[node name="Blockage" type="Node2D" parent="Borders" unique_id=246609487]
+
+[node name="Burning Wagon" parent="Borders/Blockage" unique_id=221941775 instance=ExtResource("3_h2dug")]
+position = Vector2(2296.6667, 236.66667)
+
+[node name="Burning Wagon2" parent="Borders/Blockage" unique_id=1447619621 instance=ExtResource("3_h2dug")]
+position = Vector2(2160, 270)
+
+[node name="Burning Wagon3" parent="Borders/Blockage" unique_id=832669035 instance=ExtResource("3_h2dug")]
+position = Vector2(2235, 358)
+scale = Vector2(-1, 1)
+
+[node name="Burning Wagon4" parent="Borders/Blockage" unique_id=1154968706 instance=ExtResource("3_h2dug")]
+position = Vector2(2123.3333, 456.66666)
+scale = Vector2(-1, 1)
+
+[node name="Burning Wagon5" parent="Borders/Blockage" unique_id=223238184 instance=ExtResource("3_h2dug")]
+position = Vector2(2266.6665, 546.6666)
+
+[node name="Darkness" type="DirectionalLight2D" parent="." unique_id=1575385351]
+energy = 0.5
+blend_mode = 1

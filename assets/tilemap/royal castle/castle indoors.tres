@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cn26exlpcj7mp" path="res://assets/tilemap/royal castle/indoors/plants.png" id="1_eqrjg"]
 [ext_resource type="Texture2D" uid="uid://c5j5eonfhxfg4" path="res://assets/tilemap/royal castle/indoors/terrace.png" id="2_ppef8"]
 [ext_resource type="Texture2D" uid="uid://c760ohmxov60g" path="res://assets/tilemap/royal castle/indoors/outer wall.png" id="3_6x637"]
+[ext_resource type="Texture2D" uid="uid://cx1d7bi8l0w04" path="res://assets/tilemap/royal castle/indoors/terrace opening.png" id="3_dftyl"]
 [ext_resource type="Texture2D" uid="uid://uvos1ls10vqt" path="res://assets/tilemap/royal castle/indoors/background.png" id="4_nnw41"]
 [ext_resource type="Texture2D" uid="uid://lsmudqycxrdi" path="res://assets/tilemap/royal castle/indoors/inner pillars.png" id="5_dftyl"]
 [ext_resource type="Texture2D" uid="uid://dqoomphgs8n65" path="res://assets/tilemap/royal castle/indoors/floor.png" id="6_x3khr"]
@@ -17,7 +18,17 @@ texture_region_size = Vector2i(576, 324)
 texture = ExtResource("2_ppef8")
 texture_region_size = Vector2i(576, 324)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-288, 112.90909, 288, 112.90909, 288, 162, -288, 162)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-288, 116.640015, 288, 116.640015, 288, 123.119995, -288, 123.119995)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x3khr"]
+texture = ExtResource("3_dftyl")
+texture_region_size = Vector2i(576, 324)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-288, 116.640015, -115.2, 116.640015, -115.2, 123.119995, -288, 123.119995)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, 116.640015, 288, 116.640015, 288, 123.119995, 0, 123.119995)
+0:0/0/physics_layer_1/polygon_0/one_way = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ypnf"]
 texture = ExtResource("3_6x637")
@@ -48,10 +59,12 @@ texture_region_size = Vector2i(576, 324)
 [resource]
 tile_size = Vector2i(576, 324)
 physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_2x1py")
 sources/1 = SubResource("TileSetAtlasSource_jy21w")
-sources/2 = SubResource("TileSetAtlasSource_2ypnf")
-sources/3 = SubResource("TileSetAtlasSource_1o85s")
-sources/4 = SubResource("TileSetAtlasSource_2nuah")
-sources/5 = SubResource("TileSetAtlasSource_akx2p")
-sources/6 = SubResource("TileSetAtlasSource_3p4r3")
+sources/7 = SubResource("TileSetAtlasSource_3p4r3")
+sources/6 = SubResource("TileSetAtlasSource_akx2p")
+sources/5 = SubResource("TileSetAtlasSource_2nuah")
+sources/4 = SubResource("TileSetAtlasSource_1o85s")
+sources/3 = SubResource("TileSetAtlasSource_2ypnf")
+sources/2 = SubResource("TileSetAtlasSource_x3khr")
