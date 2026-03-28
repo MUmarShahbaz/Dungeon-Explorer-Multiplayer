@@ -7,32 +7,23 @@
 [sub_resource type="GDScript" id="GDScript_3283v"]
 script/source = "extends Node2D
 
-var my_player : Player
-
 func _ready() -> void:
-	$Dungeon/Torches.ghost_flame()
-	$Dungeon/Vignette.show()
+	prepare_map()
 	$Fade.fade_in()
 	$PlayerSpawner.display_player_selector()
 	$Dungeon/Doors/door16.unlock()
-	for door in $Dungeon/Doors.get_children():
-		door.unlock()
-		door.door_opened.connect(func (_x): if door.exit != null: $PlayerSpawner.global_position = door.exit.global_position)
 
-func new_dialogue(dialogue = null, dialogue_resource = null):
-	my_player.disable_controls = true
-	var new_dialog_box := DialogueBox.new()
-	add_child.call_deferred(new_dialog_box)
-	await new_dialog_box.ready
-	if dialogue: await new_dialog_box.begin_dialogue(dialogue)
-	elif dialogue_resource: await new_dialog_box.begin_dialogue_from_resource(dialogue_resource)
-	new_dialog_box.queue_free()
-	my_player.disable_controls = false
+func prepare_map():
+	$Dungeon/Torches.ghost_flame()
+	$Dungeon/Vignette.show()
+	$\"Dungeon/Tilemap layers/Entry platforms\".queue_free()
+	for door in $Dungeon/Doors.get_children():
+		door.door_opened.connect(func (_x): if door.exit != null: $PlayerSpawner.global_position = door.exit.global_position)
+		door.unlock()
 
 func _on_player_spawned(player: Player, death_count: int) -> void:
-	my_player = player
 	if death_count == 0:
-		new_dialogue(null, \"res://scenes/dialogues/dialogue_on_start.tres\")
+		QuickScripts.new_dialogue(null, \"res://scenes/dialogues/dialogue_on_start.tres\")
 	$Dungeon/Vignette.add_mini_map_vignette($PlayerSpawner.my_hud)
 "
 
@@ -45,7 +36,7 @@ duration = 2.0
 metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
 [node name="PlayerSpawner" type="Node2D" parent="." unique_id=1699808860]
-position = Vector2(9900, 1005)
+position = Vector2(9900, 1006)
 script = ExtResource("2_u86r7")
 metadata/_custom_type_script = "uid://b666ndns0368d"
 

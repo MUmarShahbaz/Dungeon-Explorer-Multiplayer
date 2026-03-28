@@ -18,6 +18,10 @@ config/name="Dungeon Explorer"
 run/main_scene="uid://h6i84rdwjpt7"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[autoload]
+
+QuickScripts="*uid://bbia0otyu1ssl"
+
 [display]
 
 window/size/viewport_width=1280
