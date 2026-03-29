@@ -127,9 +127,9 @@ enum character_type {Melee, Projectile, Boss}
 @export var CI_Type : character_type
 
 func get_card_data() -> Dictionary:
-	var damagers = get_children().filter(func (node : Node): return (node is MeleeController or node is ProjectileLauncher))
+	var damagers = get_children().filter(func (node : Node): return (node is Damager))
 	var sum_damages : int = 0
-	for this_damager in damagers:
+	for this_damager : Damager in damagers:
 		sum_damages += this_damager.get_avg_damage()
 	@warning_ignore("integer_division")
 	var avg_dmg = int(sum_damages / damagers.size())

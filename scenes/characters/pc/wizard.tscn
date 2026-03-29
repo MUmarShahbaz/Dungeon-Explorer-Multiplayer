@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://d323wtm6txni3" path="res://assets/sprites/players/wizard/Run.png" id="7_veg6e"]
 [ext_resource type="Texture2D" uid="uid://drtcsm1sqe21t" path="res://assets/sprites/players/wizard/Magic_sphere.png" id="8_5hg0q"]
 [ext_resource type="Texture2D" uid="uid://2pfagbdhxwlu" path="res://assets/sprites/players/wizard/Walk.png" id="9_p1c7k"]
-[ext_resource type="Script" uid="uid://cjyum5jemod6g" path="res://components/AC/projectile_launcher.gd" id="10_tmpb7"]
-[ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/RES/ProjectileAttack.gd" id="11_s5sl6"]
+[ext_resource type="Script" uid="uid://cjyum5jemod6g" path="res://components/AC/damager/projectile/projectile_launcher.gd" id="10_tmpb7"]
+[ext_resource type="Script" uid="uid://cnxaqrr6haynw" path="res://components/AC/damager/AttackInfo.gd" id="10_uqnqn"]
+[ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/AC/damager/projectile/ProjectileAttack.gd" id="11_s5sl6"]
 [ext_resource type="PackedScene" uid="uid://41857mtigfwr" path="res://scenes/projectile_scenes/magic arrow.tscn" id="11_tpcqg"]
 [ext_resource type="PackedScene" uid="uid://cvth31vukk7kj" path="res://scenes/projectile_scenes/magic bomb.tscn" id="12_cpdw5"]
 
@@ -17,12 +18,22 @@
 script/source = "extends Player
 class_name Wizard
 
+func SP_Handler(delta):
+	if SP_Special_Points > 0:
+		SP_Special_Points -= delta/2
+		ANM_Animation_Tree.set(\"parameters/attack_1/TimeScale/scale\", 1.5)
+	else:
+		SP_Special_Points = 0
+		ANM_Animation_Tree.set(\"parameters/attack_1/TimeScale/scale\", 1)
+
 func primary():
 	if pause_movement(): return
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_1\")
 
 func secondary():
 	if pause_movement(): return
+	if SP_Special_Points < 5: return
+	else: SP_Special_Points -= 5
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_2\")
 "
 
@@ -835,8 +846,19 @@ _data = {
 &"walk": SubResource("Animation_jue6h")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gu12u"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uqnqn"]
 animation = &"attack_1"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4vrct"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bud0i"]
+graph_offset = Vector2(-748.1222, 80.572655)
+nodes/output/position = Vector2(-128, 160)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_uqnqn")
+nodes/Animation/position = Vector2(-448, 128)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_4vrct")
+nodes/TimeScale/position = Vector2(-288, 128)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xpa7"]
 animation = &"attack_2"
@@ -883,8 +905,6 @@ advance_expression = "get_parent().is_on_floor()"
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ox6at"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6e26"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wfufo"]
@@ -919,17 +939,19 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tmpb7"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ox6at"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tpcqg"]
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tmpb7"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wfufo"]
 states/End/position = Vector2(900, 125.333)
 states/Start/position = Vector2(200, 125.333)
-states/attack_1/node = SubResource("AnimationNodeAnimation_gu12u")
-states/attack_1/position = Vector2(402.322, 262.783)
+states/attack_1/node = SubResource("AnimationNodeBlendTree_bud0i")
+states/attack_1/position = Vector2(400.4, 261.95627)
 states/attack_2/node = SubResource("AnimationNodeAnimation_0xpa7")
 states/attack_2/position = Vector2(572, 261.674)
 states/die/node = SubResource("AnimationNodeAnimation_fpawd")
@@ -948,26 +970,26 @@ states/run/node = SubResource("AnimationNodeAnimation_4bvir")
 states/run/position = Vector2(675.711, 24.8822)
 states/walk/node = SubResource("AnimationNodeAnimation_ox6at")
 states/walk/position = Vector2(542.258, 25.38)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqwwa"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_gu12u"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_ku7g3"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_jpmv8"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_868je"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_ox6at"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_p6e26"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_wfufo"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_xjcqi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ov28q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_xs2k8"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_1fk6n"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_335tu"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_slg3v"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_4380a"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_y1nkr"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_0ekmf"), "idle", "attack_2", SubResource("AnimationNodeStateMachineTransition_tmpb7"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_tpcqg")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqwwa"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_gu12u"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_ku7g3"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_jpmv8"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_868je"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_p6e26"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_wfufo"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_xjcqi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ov28q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_xs2k8"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_1fk6n"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_335tu"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_slg3v"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_4380a"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_y1nkr"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_0ekmf"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_ox6at"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_tpcqg"), "idle", "attack_2", SubResource("AnimationNodeStateMachineTransition_tmpb7")]
 graph_offset = Vector2(0, 80.6853)
 
 [sub_resource type="Resource" id="Resource_0h755"]
 script = ExtResource("11_s5sl6")
-Animation_Name = "attack_1"
-Launch_Animation_Frame = 5
+Launch_Frame = 5
 Projectile_Scene = ExtResource("11_tpcqg")
 Spawn_Offset = Vector2(29, -10)
 Force = 600
+Animation_Name = "attack_1"
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
 [sub_resource type="Resource" id="Resource_18klt"]
 script = ExtResource("11_s5sl6")
-Animation_Name = "attack_2"
-Load_Animation_Frame = 9
-Launch_Animation_Frame = 12
+Launch_Frame = 12
 Projectile_Scene = ExtResource("12_cpdw5")
 Spawn_Offset = Vector2(35, -10)
 Force = 300
+Animation_Name = "attack_2"
+Animation_Frame = 9
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
 [node name="wizard" type="CharacterBody2D" unique_id=929675328 node_paths=PackedStringArray("MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
@@ -994,7 +1016,8 @@ libraries/ = SubResource("AnimationLibrary_gu12u")
 [node name="anim_tree" type="AnimationTree" parent="." unique_id=1604131072]
 tree_root = SubResource("AnimationNodeStateMachine_wfufo")
 anim_player = NodePath("../anim_player")
+parameters/attack_1/TimeScale/scale = 1.0
 
 [node name="Projectile Launcher" type="Node" parent="." unique_id=348662494]
 script = ExtResource("10_tmpb7")
-Move_List = Array[ExtResource("11_s5sl6")]([SubResource("Resource_0h755"), SubResource("Resource_18klt")])
+Move_List = Array[ExtResource("10_uqnqn")]([SubResource("Resource_0h755"), SubResource("Resource_18klt")])

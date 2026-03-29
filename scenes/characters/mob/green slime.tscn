@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b22rbterrn0qy" path="res://assets/sprites/mobs/green slime/Hurt.png" id="6_wgne8"]
 [ext_resource type="Texture2D" uid="uid://deijhy3ggs43b" path="res://assets/sprites/mobs/green slime/Run.png" id="7_pw1id"]
 [ext_resource type="Texture2D" uid="uid://bifoxi371me0" path="res://assets/sprites/mobs/green slime/Walk.png" id="8_38v3u"]
-[ext_resource type="Script" uid="uid://bqxoijlpwtgvm" path="res://components/AC/melee_controller.gd" id="9_mdnwl"]
-[ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/RES/MeleeAttack.gd" id="10_k87v2"]
+[ext_resource type="Script" uid="uid://bqxoijlpwtgvm" path="res://components/AC/damager/melee/melee_controller.gd" id="9_mdnwl"]
+[ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="10_k87v2"]
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="11_0unsh"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="12_n3kyp"]
 

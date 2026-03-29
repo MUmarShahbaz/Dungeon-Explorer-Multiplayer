@@ -24,7 +24,25 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if HP_Current <= 0: return
 	move_and_slide()
+	SP_Handler(delta)
 	super._physics_process(delta)
+
+func SP_Handler(delta):
+	var damagers = get_children().filter(func (x): return x is Damager)
+	if SP_Special_Points > 0:
+		SP_Special_Points -= delta
+		for damager : Damager in damagers: damager.multiplier = 1.5
+		ANM_Animation_Tree.set("parameters/attack_1/TimeScale/scale", 1.5)
+		ANM_Animation_Tree.set("parameters/attack_2/TimeScale/scale", 1.5)
+		ANM_Animation_Tree.set("parameters/attack_3/TimeScale/scale", 1.5)
+		ANM_Animation_Tree.set("parameters/shoot/TimeScale/scale", 1.5)
+	else:
+		SP_Special_Points = 0
+		for damager : Damager in damagers: damager.multiplier = 1
+		ANM_Animation_Tree.set("parameters/attack_1/TimeScale/scale", 1)
+		ANM_Animation_Tree.set("parameters/attack_2/TimeScale/scale", 1)
+		ANM_Animation_Tree.set("parameters/attack_3/TimeScale/scale", 1)
+		ANM_Animation_Tree.set("parameters/shoot/TimeScale/scale", 1)
 
 func dodge():
 	if pause_movement(): return
@@ -61,7 +79,8 @@ func heal():
 func boost():
 	if ITM_Booster_Potions > 0:
 		ITM_Booster_Potions -= 1
-		SP_Special_Points += 60
+		SP_Special_Points += 34
+		if SP_Special_Points > 100: SP_Special_Points = 100
 
 func primary():
 	pass

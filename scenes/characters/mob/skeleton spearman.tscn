@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dast83kxf6au5" path="res://assets/sprites/mobs/skeleton spearman/Run.png" id="7_uscrk"]
 [ext_resource type="Texture2D" uid="uid://dopushnhrtbsx" path="res://assets/sprites/mobs/skeleton spearman/Walk.png" id="8_qqcld"]
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="10_g1h7w"]
-[ext_resource type="Script" uid="uid://bqxoijlpwtgvm" path="res://components/AC/melee_controller.gd" id="11_t58gj"]
+[ext_resource type="Script" uid="uid://bqxoijlpwtgvm" path="res://components/AC/damager/melee/melee_controller.gd" id="11_t58gj"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="11_ygnye"]
-[ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/RES/MeleeAttack.gd" id="12_uscrk"]
+[ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="12_uscrk"]
 
 [sub_resource type="GDScript" id="GDScript_8krme"]
 script/source = "extends Enemy
