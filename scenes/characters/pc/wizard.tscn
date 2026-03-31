@@ -537,6 +537,42 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"default"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(4, -32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LightOccluder2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LightOccluder2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_fpawd"]
 resource_name = "attack_1"
@@ -565,6 +601,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"attack_1"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(8, -32)]
 }
 
 [sub_resource type="Animation" id="Animation_tmpb7"]
@@ -595,6 +643,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"attack_2"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(6, -32)]
+}
 
 [sub_resource type="Animation" id="Animation_4bvir"]
 resource_name = "die"
@@ -624,6 +684,42 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"die"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(10, -32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LightOccluder2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 8), Vector2(9, 17), Vector2(12, 28)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LightOccluder2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, 0.7853982, 1.5707964]
+}
 
 [sub_resource type="Animation" id="Animation_ku7g3"]
 resource_name = "fall"
@@ -652,6 +748,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"fall"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-2, -28)]
 }
 
 [sub_resource type="Animation" id="Animation_ox6at"]
@@ -741,6 +849,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"jump"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(-1, -32), Vector2(1, -26), Vector2(1, -13)]
+}
 
 [sub_resource type="Animation" id="Animation_jpmv8"]
 resource_name = "land"
@@ -769,6 +889,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"land"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-5, -32), Vector2(-2, -32)]
 }
 
 [sub_resource type="Animation" id="Animation_iqwwa"]
@@ -799,6 +931,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"run"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(11, -32)]
 }
 
 [sub_resource type="Animation" id="Animation_jue6h"]
@@ -992,6 +1136,9 @@ Animation_Name = "attack_2"
 Animation_Frame = 9
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqnqn"]
+polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
+
 [node name="wizard" type="CharacterBody2D" unique_id=929675328 node_paths=PackedStringArray("MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_egk8w")
 MV_Collider = NodePath("collider")
@@ -1021,3 +1168,7 @@ parameters/attack_1/TimeScale/scale = 1.0
 [node name="Projectile Launcher" type="Node" parent="." unique_id=348662494]
 script = ExtResource("10_tmpb7")
 Move_List = Array[ExtResource("10_uqnqn")]([SubResource("Resource_0h755"), SubResource("Resource_18klt")])
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=866903742]
+occluder = SubResource("OccluderPolygon2D_uqnqn")
+sdf_collision = false

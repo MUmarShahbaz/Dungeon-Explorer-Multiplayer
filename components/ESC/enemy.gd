@@ -54,6 +54,7 @@ func mob_brain():
 
 # Behaviour
 @onready var home = global_position.x
+var min_dist: int = 50
 var max_dist: int = 100
 var next_dist: float = 0
 var pause: bool = false
@@ -68,6 +69,8 @@ func patrol():
 		pause = true
 		home = global_position.x
 		next_dist = randi_range(50 , max_dist) if randi_range(0, 100) > 50 else randi_range(-max_dist, -50)
+		if VIS_Block_Check.is_colliding(): next_dist = abs(next_dist) * -facing
+		if next_dist * facing < 0 : flip()
 		await get_tree().create_timer(randf_range(3, 5)).timeout
 		pause = false
 

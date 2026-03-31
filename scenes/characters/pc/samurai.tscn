@@ -637,6 +637,42 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"default"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LightOccluder2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LightOccluder2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_fpawd"]
 resource_name = "attack_1"
@@ -666,6 +702,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"attack_1"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(6, -32)]
+}
 
 [sub_resource type="Animation" id="Animation_mh47a"]
 resource_name = "attack_2"
@@ -694,6 +742,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"attack_2"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(10, -32)]
 }
 
 [sub_resource type="Animation" id="Animation_dxeu0"]
@@ -753,6 +813,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"die"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LightOccluder2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(2, 1), Vector2(11, 8), Vector2(11, 10), Vector2(19, 27)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LightOccluder2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.0, 1.5707964]
+}
 
 [sub_resource type="Animation" id="Animation_ku7g3"]
 resource_name = "fall"
@@ -781,6 +865,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"fall"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -25)]
 }
 
 [sub_resource type="Animation" id="Animation_ox6at"]
@@ -870,6 +966,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"jump"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(-4, -32), Vector2(-3, -24), Vector2(-1, -24)]
+}
 
 [sub_resource type="Animation" id="Animation_jpmv8"]
 resource_name = "land"
@@ -898,6 +1006,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"land"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-4, -32)]
 }
 
 [sub_resource type="Animation" id="Animation_iqwwa"]
@@ -929,6 +1049,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"run"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(12, -32)]
+}
 
 [sub_resource type="Animation" id="Animation_868je"]
 resource_name = "shoot"
@@ -957,6 +1089,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"shoot"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(12, -32), Vector2(12, -31)]
 }
 
 [sub_resource type="Animation" id="Animation_jue6h"]
@@ -987,6 +1131,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"walk"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(7, -32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gu12u"]
@@ -1230,6 +1386,9 @@ Animation_Name = "shoot"
 Animation_Frame = 10
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lgcwo"]
+polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
+
 [node name="samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
@@ -1245,6 +1404,7 @@ CI_Avatar = SubResource("AtlasTexture_f7nts")
 CI_Title = "Samurai"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=722151253]
+position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_8lcca")
 autoplay = "default"
 offset = Vector2(0, -32)
@@ -1279,6 +1439,7 @@ Move_List = Array[ExtResource("13_lgcwo")]([SubResource("Resource_8s716")])
 metadata/_custom_type_script = "uid://cjyum5jemod6g"
 
 [node name="Attack 1" type="Area2D" parent="." unique_id=1104800646]
+visible = false
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
@@ -1286,6 +1447,7 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 polygon = PackedVector2Array(3, -4, 53, 7, 64, -6, 65, -24, 8, -25)
 
 [node name="Attack 2" type="Area2D" parent="." unique_id=1550585782]
+visible = false
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
@@ -1293,8 +1455,13 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 polygon = PackedVector2Array(0, 4, 46, 17, 65, 10, 70, -22, 55, -47, 11, -31)
 
 [node name="Attack 3" type="Area2D" parent="." unique_id=1461956384]
+visible = false
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3" unique_id=123949228]
 polygon = PackedVector2Array(-1, 2, 66, 3, 72, -7, 53, -21, 2, -17)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=24596585]
+occluder = SubResource("OccluderPolygon2D_lgcwo")
+sdf_collision = false
