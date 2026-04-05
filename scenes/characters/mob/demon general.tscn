@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cnhnlcn2jkj00"]
 
-[ext_resource type="Texture2D" uid="uid://cvp6kdw2pdu8a" path="res://assets/sprites/mobs/goblin champion/Idle.png" id="1_e2s1h"]
 [ext_resource type="Texture2D" uid="uid://c8apmaxbgunce" path="res://assets/sprites/mobs/demon/Attack.png" id="2_kss00"]
 [ext_resource type="Texture2D" uid="uid://cnf2ixv14bmn3" path="res://assets/sprites/mobs/demon/Idle.png" id="3_kaf1r"]
 [ext_resource type="Texture2D" uid="uid://dmk87xrclcgoh" path="res://assets/sprites/mobs/demon/Dead.png" id="4_e2s1h"]
 [ext_resource type="Texture2D" uid="uid://dntf82wx2d1g5" path="res://assets/sprites/mobs/demon/Hurt.png" id="5_pap00"]
 [ext_resource type="Texture2D" uid="uid://blrp4vk2simfc" path="res://assets/sprites/mobs/demon/Walk.png" id="6_toefc"]
+[ext_resource type="Script" uid="uid://cnxaqrr6haynw" path="res://components/AC/damager/AttackInfo.gd" id="8_f7sjy"]
 [ext_resource type="Script" uid="uid://bqxoijlpwtgvm" path="res://components/AC/damager/melee/melee_controller.gd" id="9_cxygy"]
 [ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="10_lc17k"]
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="11_u71n1"]
@@ -26,8 +26,8 @@ func pounce(player):
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yn02r"]
-atlas = ExtResource("1_e2s1h")
-region = Rect2(542.39996, 32, 62.47638, 96)
+atlas = ExtResource("3_kaf1r")
+region = Rect2(530.39996, 57.59999, 81.599976, 70.40001)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iin88"]
 atlas = ExtResource("2_kss00")
@@ -638,9 +638,9 @@ graph_offset = Vector2(93.43411, -52.238453)
 
 [sub_resource type="Resource" id="Resource_ffo2t"]
 script = ExtResource("10_lc17k")
+Damage_Zone = NodePath("../Attack 1")
 Animation_Name = "attack_1"
 Animation_Frame = 3
-Damage_Zone = NodePath("../Attack 1")
 Damage = 30.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
@@ -658,7 +658,7 @@ ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 CI_Avatar = SubResource("AtlasTexture_yn02r")
-CI_Title = "Goblin Champion"
+CI_Title = "Demon General"
 metadata/_custom_type_script = "uid://dyi8w7p8cl28t"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]
@@ -680,7 +680,7 @@ parameters/conditions/attack = false
 
 [node name="Melee Controller" type="Node" parent="." unique_id=241367612]
 script = ExtResource("9_cxygy")
-Move_List = Array[ExtResource("10_lc17k")]([SubResource("Resource_ffo2t")])
+Move_List = Array[ExtResource("8_f7sjy")]([SubResource("Resource_ffo2t")])
 metadata/_custom_type_script = "uid://bqxoijlpwtgvm"
 
 [node name="Attack Buffer" type="Node" parent="." unique_id=441854163]

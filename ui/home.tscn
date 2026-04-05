@@ -17,64 +17,78 @@
 [ext_resource type="Texture2D" uid="uid://df3utcvtlscxo" path="res://assets/gamepad.png" id="15_ktbpx"]
 [ext_resource type="Texture2D" uid="uid://jjt8n1p52ytv" path="res://assets/keyboard.png" id="16_5kn6r"]
 [ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="17_cd4ok"]
+[ext_resource type="PackedScene" uid="uid://83howi64ipha" path="res://scenes/characters/character_card.tscn" id="18_fttcr"]
 [ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="18_wjhlv"]
+[ext_resource type="PackedScene" uid="uid://bbd0aduf4k1tp" path="res://scenes/characters/pc/knight.tscn" id="19_cd4ok"]
+[ext_resource type="PackedScene" uid="uid://dy7gi0gjpojrs" path="res://scenes/characters/pc/wizard.tscn" id="20_wjhlv"]
+[ext_resource type="PackedScene" uid="uid://fdklui3d6kmg" path="res://scenes/characters/pc/samurai.tscn" id="21_ysbvi"]
+[ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="22_626sq"]
+[ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="23_p2ybt"]
+[ext_resource type="PackedScene" uid="uid://l5fcp0cx14mo" path="res://scenes/characters/mob/red slime.tscn" id="24_w7dri"]
+[ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="25_4dycw"]
+[ext_resource type="PackedScene" uid="uid://be3xdfq2ly1iy" path="res://scenes/characters/mob/goblin champion.tscn" id="26_0cdnv"]
+[ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="27_l7puc"]
+[ext_resource type="PackedScene" uid="uid://b25tl31ia5xmc" path="res://scenes/characters/mob/cereberus.tscn" id="28_rydd6"]
+[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="29_pcguc"]
+[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="30_l5wgd"]
+[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="31_cuftd"]
+[ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/skeleton champion.tscn" id="32_rxgr5"]
+[ext_resource type="PackedScene" uid="uid://cnhnlcn2jkj00" path="res://scenes/characters/mob/demon general.tscn" id="33_lbcdp"]
 
 [sub_resource type="GDScript" id="GDScript_tt30a"]
 script/source = "extends CanvasLayer
 
-@onready var main_panel = $Menu/Main
-@onready var gamepad_layout = $Menu/Layouts/Gamepad
-@onready var keyboard_layout = $Menu/Layouts/Keyboard
-
-enum menu_state {main, layout_gamepad, layout_keyboard}
-var current_state : menu_state = menu_state.main
+@onready var Gamepad := $Menu/Controls/Gamepad
+@onready var Keyboard := $Menu/Controls/Keyboard
 
 func _ready() -> void:
-	show_only(main_panel, $Menu/Main/Play)
+	$Menu/Main/Play.grab_focus()
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed(\"interact\"): roll_back()
-	if Input.is_joy_known(0) and current_state == menu_state.layout_keyboard: update_state(menu_state.layout_gamepad)
-	if !Input.is_joy_known(0) and current_state == menu_state.layout_gamepad: update_state(menu_state.layout_keyboard)
+func _physics_process(delta: float) -> void:
+	if Input.is_joy_known(0):
+		Gamepad.show()
+		Keyboard.hide()
+	else:
+		Gamepad.hide()
+		Keyboard.show()
 
-func roll_back():
-	match current_state:
-		menu_state.main:
-			return
-		menu_state.layout_gamepad:
-			show_only(main_panel, $Menu/Main/Play)
-			current_state = menu_state.main
-		menu_state.layout_keyboard:
-			show_only(main_panel, $Menu/Main/Play)
-			current_state = menu_state.main
+@onready var Main := $Menu/Main
+@onready var Controls := $Menu/Controls
+@onready var Missions := $Menu/Missions
+@onready var Stats := $\"Menu/Entity Stats\"
+@onready var Back := $Menu/Back
 
-func update_state(new_state):
-	match new_state:
-		menu_state.main:
-			return
-		menu_state.layout_gamepad:
-			show_only(gamepad_layout, $Menu/Back)
-			current_state = menu_state.layout_gamepad
-		menu_state.layout_keyboard:
-			show_only(keyboard_layout, $Menu/Back)
-			current_state = menu_state.layout_keyboard
+enum states {Main, Controls, Missions, Stats}
 
-func show_only(element_to_show, element_to_focus = null):
-	main_panel.hide()
-	gamepad_layout.hide()
-	keyboard_layout.hide()
-	element_to_show.show()
-	if element_to_focus: element_to_focus.grab_focus()
-
-
-func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://lvl/enter_the_dungeon.tscn\")
-
-func _on_controls_pressed() -> void:
-	update_state(menu_state.layout_gamepad)
+func change_state(new_state : states):
+	if new_state == states.Main:
+		$Menu/Main/Play.grab_focus()
+		Controls.hide()
+		Missions.hide()
+		Stats.hide()
+		Back.hide()
+	else:
+		Back.show()
+		Back.grab_focus()
+		match new_state:
+			states.Controls: Controls.show()
+			states.Missions: Missions.show()
+			states.Stats: Stats.show()
 
 func _on_back_pressed() -> void:
-	roll_back()
+	change_state(states.Main)
+
+func _on_controls_pressed() -> void:
+	change_state(states.Controls)
+
+func _on_missions_pressed() -> void:
+	change_state(states.Missions)
+
+func _on_entity_stats_pressed() -> void:
+	change_state(states.Stats)
+
+func _on_play_pressed() -> void:
+	pass
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qra41"]
@@ -565,15 +579,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Layouts" type="Control" parent="Menu" unique_id=2038060347]
+[node name="Main" type="VBoxContainer" parent="Menu" unique_id=342506106]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -129.0
+offset_right = 201.5
+offset_bottom = 129.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Gamepad" type="Control" parent="Menu/Layouts" unique_id=2029193917]
+[node name="Play" type="Button" parent="Menu/Main" unique_id=1970747116]
+layout_mode = 2
+theme = ExtResource("17_cd4ok")
+text = "Play"
+
+[node name="Controls" type="Button" parent="Menu/Main" unique_id=1031803877]
+layout_mode = 2
+theme = ExtResource("17_cd4ok")
+text = "Controls"
+
+[node name="Missions" type="Button" parent="Menu/Main" unique_id=812705788]
+layout_mode = 2
+theme = ExtResource("17_cd4ok")
+text = "Missions"
+
+[node name="Entity Stats" type="Button" parent="Menu/Main" unique_id=624571742]
+layout_mode = 2
+theme = ExtResource("17_cd4ok")
+text = "Entity Stats"
+
+[node name="Controls" type="Control" parent="Menu" unique_id=302456731]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -582,7 +622,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="ColorRect" parent="Menu/Layouts/Gamepad" unique_id=1457298851]
+[node name="BG" type="ColorRect" parent="Menu/Controls" unique_id=2111004912]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -591,7 +631,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.67058825)
 
-[node name="Label" type="Label" parent="Menu/Layouts/Gamepad" unique_id=1995538278]
+[node name="Gamepad" type="Control" parent="Menu/Controls" unique_id=1534205101]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Menu/Controls/Gamepad" unique_id=1949370692]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -611,7 +660,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 90
 text = "Controller"
 
-[node name="Controller" type="TextureRect" parent="Menu/Layouts/Gamepad" unique_id=767412040]
+[node name="Controller" type="TextureRect" parent="Menu/Controls/Gamepad" unique_id=420354637]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -628,7 +677,7 @@ scale = Vector2(0.6, 0.6)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("15_ktbpx")
 
-[node name="Control Labels" type="Control" parent="Menu/Layouts/Gamepad" unique_id=1069353470]
+[node name="Control Labels" type="Control" parent="Menu/Controls/Gamepad" unique_id=1914964647]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -642,7 +691,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LS" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=1067973238]
+[node name="LS" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=1113807554]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -662,7 +711,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Movement"
 
-[node name="LB" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=1542686997]
+[node name="LB" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=861220168]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -682,7 +731,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Heal"
 
-[node name="RT" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=1525176377]
+[node name="RT" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=1885334179]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -702,7 +751,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Sprint"
 
-[node name="RB" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=2043419519]
+[node name="RB" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=2060893196]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -722,7 +771,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Boost"
 
-[node name="RS" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=1997463470]
+[node name="RS" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=427734499]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -742,7 +791,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Camera"
 
-[node name="X" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=2001372938]
+[node name="X" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=1218943478]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -762,7 +811,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 35
 text = "Primary"
 
-[node name="Y" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=345326399]
+[node name="Y" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=1675292072]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -782,7 +831,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 35
 text = "Secondary"
 
-[node name="A" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=1892594362]
+[node name="A" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=1733285049]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -802,7 +851,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 35
 text = "Jump"
 
-[node name="B" type="Label" parent="Menu/Layouts/Gamepad/Control Labels" unique_id=150986285]
+[node name="B" type="Label" parent="Menu/Controls/Gamepad/Control Labels" unique_id=873192953]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -822,7 +871,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 35
 text = "Interact"
 
-[node name="Keyboard" type="Control" parent="Menu/Layouts" unique_id=1132354731]
+[node name="Keyboard" type="Control" parent="Menu/Controls" unique_id=1694300867]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -831,16 +880,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="ColorRect" parent="Menu/Layouts/Keyboard" unique_id=2135719154]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0.67058825)
-
-[node name="Label" type="Label" parent="Menu/Layouts/Keyboard" unique_id=158995801]
+[node name="Label" type="Label" parent="Menu/Controls/Keyboard" unique_id=859596908]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -860,7 +900,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 90
 text = "Keyboard"
 
-[node name="Keyboard" type="TextureRect" parent="Menu/Layouts/Keyboard" unique_id=1784666497]
+[node name="Keyboard" type="TextureRect" parent="Menu/Controls/Keyboard" unique_id=368519458]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -877,7 +917,7 @@ scale = Vector2(0.6, 0.6)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("16_5kn6r")
 
-[node name="Control Labels" type="Control" parent="Menu/Layouts/Keyboard" unique_id=1957255199]
+[node name="Control Labels" type="Control" parent="Menu/Controls/Keyboard" unique_id=551206885]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -891,7 +931,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LS" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=1511003501]
+[node name="LS" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=529264360]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -911,7 +951,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Movement"
 
-[node name="LB" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=1809064183]
+[node name="LB" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=406653406]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -931,7 +971,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Heal"
 
-[node name="RT" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=95503991]
+[node name="RT" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=1669889150]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -951,7 +991,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Sprint"
 
-[node name="RB" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=1119554360]
+[node name="RB" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=1414268614]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -971,7 +1011,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Boost"
 
-[node name="RS" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=1722601080]
+[node name="RS" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=673404078]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -991,7 +1031,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 45
 text = "Camera"
 
-[node name="X" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=1657355659]
+[node name="X" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=385880048]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1011,7 +1051,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 35
 text = "Primary"
 
-[node name="Y" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=716116248]
+[node name="Y" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=175546825]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1031,7 +1071,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 35
 text = "Secondary"
 
-[node name="A" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=1620309786]
+[node name="A" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=1895545648]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1051,7 +1091,7 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 35
 text = "Jump"
 
-[node name="B" type="Label" parent="Menu/Layouts/Keyboard/Control Labels" unique_id=1129154521]
+[node name="B" type="Label" parent="Menu/Controls/Keyboard/Control Labels" unique_id=35452746]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1071,32 +1111,146 @@ theme_override_fonts/font = ExtResource("14_hhjmr")
 theme_override_font_sizes/font_size = 35
 text = "Interact"
 
-[node name="Main" type="VBoxContainer" parent="Menu" unique_id=342506106]
+[node name="Missions" type="Control" parent="Menu" unique_id=1617418718]
+visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.75
-anchor_top = 0.5
-anchor_right = 0.75
-anchor_bottom = 0.5
-offset_left = -201.5
-offset_top = -129.0
-offset_right = 201.5
-offset_bottom = 129.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Play" type="Button" parent="Menu/Main" unique_id=1970747116]
-layout_mode = 2
-theme = ExtResource("17_cd4ok")
-theme_override_font_sizes/font_size = 100
-text = "Play"
+[node name="BG" type="ColorRect" parent="Menu/Missions" unique_id=968130398]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.67058825)
 
-[node name="Controls" type="Button" parent="Menu/Main" unique_id=1031803877]
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu/Missions" unique_id=210533967]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 158.0
+offset_top = 50.0
+offset_right = -30.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" type="HFlowContainer" parent="Menu/Missions/ScrollContainer" unique_id=1581904565]
 layout_mode = 2
-theme = ExtResource("17_cd4ok")
-text = "Controls"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+alignment = 1
+
+[node name="Entity Stats" type="Control" parent="Menu" unique_id=1065927200]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Menu/Entity Stats" unique_id=813877163]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.67058825)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu/Entity Stats" unique_id=1363131804]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 158.0
+offset_top = 50.0
+offset_right = -30.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+draw_focus_border = true
+
+[node name="Grid" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer" unique_id=1615351025]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+alignment = 1
+
+[node name="Character Card" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1199636227 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("19_cd4ok")
+
+[node name="Character Card2" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=571944131 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("20_wjhlv")
+
+[node name="Character Card3" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=128180301 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("21_ysbvi")
+
+[node name="Character Card4" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1376190794 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("22_626sq")
+
+[node name="Character Card5" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=2023657259 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("23_p2ybt")
+
+[node name="Character Card6" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=606934526 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("24_w7dri")
+
+[node name="Character Card7" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=2112356578 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("25_4dycw")
+
+[node name="Character Card8" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=987315069 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("26_0cdnv")
+
+[node name="Character Card9" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1625677902 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("27_l7puc")
+
+[node name="Character Card10" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=715033019 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("28_rydd6")
+
+[node name="Character Card11" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1021639136 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("29_pcguc")
+
+[node name="Character Card12" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=38556392 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("30_l5wgd")
+
+[node name="Character Card13" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=377749858 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("31_cuftd")
+
+[node name="Character Card14" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=151519606 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("32_rxgr5")
+
+[node name="Character Card15" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1975461284 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("33_lbcdp")
 
 [node name="Back" type="Button" parent="Menu" unique_id=949101147]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -1117,4 +1271,6 @@ metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
 [connection signal="pressed" from="Menu/Main/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/Main/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Menu/Main/Missions" to="." method="_on_missions_pressed"]
+[connection signal="pressed" from="Menu/Main/Entity Stats" to="." method="_on_entity_stats_pressed"]
 [connection signal="pressed" from="Menu/Back" to="." method="_on_back_pressed"]

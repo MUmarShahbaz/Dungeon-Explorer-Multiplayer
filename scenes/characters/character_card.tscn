@@ -3,9 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://cwer7wbqp2t6c" path="res://assets/theme/character_card.png" id="1_gn73n"]
 [ext_resource type="FontFile" uid="uid://dgrgg4560mh2s" path="res://assets/fonts/Prata-Regular.ttf" id="2_qtdkp"]
 [ext_resource type="Texture2D" uid="uid://cmulckpkb3a36" path="res://assets/sprites/mobs/skeleton archer/Idle.png" id="3_gn73n"]
+[ext_resource type="FontFile" uid="uid://ma273g1gutiu" path="res://assets/fonts/NewRocker-Regular.ttf" id="4_qtdkp"]
 
 [sub_resource type="GDScript" id="GDScript_l0nex"]
-script/source = "extends Node2D
+script/source = "extends Control
 
 @onready var avatar = $BG/Container/Sub/Avatar
 @onready var title = $BG/Container/Name/Title
@@ -28,18 +29,36 @@ func _ready() -> void:
 	dmg.text = str(data.dmg)
 	spd.text = str(data.spd)
 	rng.text = str(data.rng)
-	
+	focus_entered.connect(func ():
+		$Line2D.width = 5
+		$Line2D.default_color = Color(1.0, 1.0, 1.0, 1.0)
+		)
+	focus_exited.connect(func ():
+		$Line2D.width = 2
+		$Line2D.default_color = Color()
+		)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2scpd"]
 atlas = ExtResource("3_gn73n")
 region = Rect2(416, 58, 60, 70)
 
-[node name="Character Card" type="Node2D" unique_id=1199636227]
+[node name="Character Card" type="Control" unique_id=511723444]
+custom_minimum_size = Vector2(350, 490)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
 script = SubResource("GDScript_l0nex")
 
 [node name="BG" type="TextureRect" parent="." unique_id=1406316015]
 custom_minimum_size = Vector2(350, 490)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -172,7 +191,7 @@ alignment = 1
 [node name="Title" type="Label" parent="BG/Container/Name" unique_id=121423435]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_qtdkp")
+theme_override_fonts/font = ExtResource("4_qtdkp")
 theme_override_font_sizes/font_size = 35
 text = "Skeleton Warrior"
 horizontal_alignment = 1
@@ -184,3 +203,10 @@ theme_override_fonts/font = ExtResource("2_qtdkp")
 theme_override_font_sizes/font_size = 24
 text = "Melee"
 horizontal_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="." unique_id=962640416]
+points = PackedVector2Array(0, 0, 350, 0, 350, 490, 0, 490)
+closed = true
+width = 2.0
+default_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+joint_mode = 1
