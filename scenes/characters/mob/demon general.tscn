@@ -659,6 +659,7 @@ ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 CI_Avatar = SubResource("AtlasTexture_yn02r")
 CI_Title = "Demon General"
+CI_Type = 2
 metadata/_custom_type_script = "uid://dyi8w7p8cl28t"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]

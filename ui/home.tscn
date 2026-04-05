@@ -1183,7 +1183,7 @@ grow_vertical = 2
 follow_focus = true
 draw_focus_border = true
 
-[node name="Grid" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer" unique_id=1615351025]
+[node name="HFlowContainer" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer" unique_id=1615351025]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1191,63 +1191,128 @@ theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
 alignment = 1
 
-[node name="Character Card" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1199636227 instance=ExtResource("18_fttcr")]
+[node name="PC_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1954927675]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("17_cd4ok")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+text = "  Playable Characters"
+vertical_alignment = 2
+
+[node name="PC" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1153993437]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Knight" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/PC" unique_id=1199636227 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("19_cd4ok")
 
-[node name="Character Card2" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=571944131 instance=ExtResource("18_fttcr")]
+[node name="Wizard" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/PC" unique_id=571944131 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("20_wjhlv")
 
-[node name="Character Card3" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=128180301 instance=ExtResource("18_fttcr")]
+[node name="Samurai" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/PC" unique_id=128180301 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("21_ysbvi")
 
-[node name="Character Card4" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1376190794 instance=ExtResource("18_fttcr")]
+[node name="NPC_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=955335418]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("17_cd4ok")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+text = "  Non-Playable Characters"
+vertical_alignment = 2
+
+[node name="NPC" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=511727171]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ENM_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1026515187]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("17_cd4ok")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+text = "  Enemies"
+vertical_alignment = 2
+
+[node name="ENM" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=110497770]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Green Slime" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/ENM" unique_id=1376190794 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("22_626sq")
 
-[node name="Character Card5" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=2023657259 instance=ExtResource("18_fttcr")]
+[node name="Blue Slime" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/ENM" unique_id=2023657259 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("23_p2ybt")
 
-[node name="Character Card6" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=606934526 instance=ExtResource("18_fttcr")]
-layout_mode = 2
-entity = ExtResource("24_w7dri")
-
-[node name="Character Card7" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=2112356578 instance=ExtResource("18_fttcr")]
+[node name="Goblin" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/ENM" unique_id=2112356578 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("25_4dycw")
 
-[node name="Character Card8" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=987315069 instance=ExtResource("18_fttcr")]
-layout_mode = 2
-entity = ExtResource("26_0cdnv")
-
-[node name="Character Card9" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1625677902 instance=ExtResource("18_fttcr")]
+[node name="Hellhound" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/ENM" unique_id=1625677902 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("27_l7puc")
 
-[node name="Character Card10" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=715033019 instance=ExtResource("18_fttcr")]
-layout_mode = 2
-entity = ExtResource("28_rydd6")
-
-[node name="Character Card11" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1021639136 instance=ExtResource("18_fttcr")]
+[node name="Skeleton Warrior" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/ENM" unique_id=1021639136 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("29_pcguc")
 
-[node name="Character Card12" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=38556392 instance=ExtResource("18_fttcr")]
+[node name="Skeleton Spearman" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/ENM" unique_id=38556392 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("30_l5wgd")
 
-[node name="Character Card13" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=377749858 instance=ExtResource("18_fttcr")]
+[node name="Skeleton Archer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/ENM" unique_id=377749858 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("31_cuftd")
 
-[node name="Character Card14" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=151519606 instance=ExtResource("18_fttcr")]
+[node name="BOSS_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1270662383]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("17_cd4ok")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+text = "  Boss"
+vertical_alignment = 2
+
+[node name="BOSS" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=976545815]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Red Slime" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/BOSS" unique_id=606934526 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("24_w7dri")
+
+[node name="Goblin Champion" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/BOSS" unique_id=987315069 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("26_0cdnv")
+
+[node name="Cereberus" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/BOSS" unique_id=715033019 instance=ExtResource("18_fttcr")]
+layout_mode = 2
+entity = ExtResource("28_rydd6")
+
+[node name="Skeleton Champion" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/BOSS" unique_id=151519606 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("32_rxgr5")
 
-[node name="Character Card15" parent="Menu/Entity Stats/ScrollContainer/Grid" unique_id=1975461284 instance=ExtResource("18_fttcr")]
+[node name="Demon General" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer/BOSS" unique_id=1975461284 instance=ExtResource("18_fttcr")]
 layout_mode = 2
 entity = ExtResource("33_lbcdp")
 

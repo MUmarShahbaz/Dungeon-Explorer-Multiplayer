@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bqxoijlpwtgvm" path="res://components/AC/damager/melee/melee_controller.gd" id="9_nvbsd"]
 [ext_resource type="Texture2D" uid="uid://d2r2wj60adbbq" path="res://assets/sprites/mobs/cereberus/Walk.png" id="9_s2akx"]
 [ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="10_3wkwg"]
+[ext_resource type="Script" uid="uid://cnxaqrr6haynw" path="res://components/AC/damager/AttackInfo.gd" id="11_2f264"]
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="11_stqbp"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="12_ibi50"]
 [ext_resource type="Script" uid="uid://brm1y5fo4w5t3" path="res://components/MISC/quadruped.gd" id="14_6bhf1"]
@@ -755,25 +756,25 @@ graph_offset = Vector2(93.43411, 21.540798)
 
 [sub_resource type="Resource" id="Resource_ffo2t"]
 script = ExtResource("10_3wkwg")
+Damage_Zone = NodePath("../Attack 1")
 Animation_Name = "attack_1"
 Animation_Frame = 5
-Damage_Zone = NodePath("../Attack 1")
 Damage = 12.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_uuvfu"]
 script = ExtResource("10_3wkwg")
+Damage_Zone = NodePath("../Attack 2")
 Animation_Name = "attack_2"
 Animation_Frame = 3
-Damage_Zone = NodePath("../Attack 2")
 Damage = 12.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_6wvc4"]
 script = ExtResource("10_3wkwg")
+Damage_Zone = NodePath("../Attack 3")
 Animation_Name = "attack_3"
 Animation_Frame = 2
-Damage_Zone = NodePath("../Attack 3")
 Damage = 12.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
@@ -791,6 +792,7 @@ ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 CI_Avatar = SubResource("AtlasTexture_s2akx")
 CI_Title = "Cereberus"
+CI_Type = 2
 metadata/_custom_type_script = "uid://dyi8w7p8cl28t"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]
@@ -813,7 +815,7 @@ parameters/conditions/attack = false
 
 [node name="Melee Controller" type="Node" parent="." unique_id=241367612]
 script = ExtResource("9_nvbsd")
-Move_List = Array[ExtResource("10_3wkwg")]([SubResource("Resource_ffo2t"), SubResource("Resource_uuvfu"), SubResource("Resource_6wvc4")])
+Move_List = Array[ExtResource("11_2f264")]([SubResource("Resource_ffo2t"), SubResource("Resource_uuvfu"), SubResource("Resource_6wvc4")])
 metadata/_custom_type_script = "uid://bqxoijlpwtgvm"
 
 [node name="Attack Buffer" type="Node" parent="." unique_id=441854163]
