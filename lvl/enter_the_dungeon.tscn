@@ -143,6 +143,7 @@ size = Vector2(1424, 261)
 script = SubResource("GDScript_3283v")
 
 [node name="Fade" type="CanvasLayer" parent="." unique_id=298288358]
+layer = 2
 script = ExtResource("1_oek2d")
 duration = 2.0
 metadata/_custom_type_script = "uid://1uygfo1ei3w4"

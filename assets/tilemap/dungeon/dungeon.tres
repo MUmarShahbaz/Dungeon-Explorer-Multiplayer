@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://ds4gwmooxmgxv"]
 
 [ext_resource type="Texture2D" uid="uid://ipw7eytfeigv" path="res://assets/tilemap/dungeon/dungeon.png" id="1_rpuk4"]
+[ext_resource type="Texture2D" uid="uid://ccq1l5i00u0jq" path="res://assets/tilemap/dungeon/stairs.png" id="2_m4b1l"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m4b1l"]
 polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
@@ -568,8 +569,61 @@ texture_region_size = Vector2i(48, 48)
 16:14/0 = 0
 17:14/0 = 0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b1fon"]
+polygon = PackedVector2Array(-24, -19.2, 19.2, 24, -24, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_66lne"]
+polygon = PackedVector2Array(24, -19.2, 24, 24, -24, 24, -24, -24, 19.2, -24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7mro0"]
+polygon = PackedVector2Array(-24, -19.2, 19.2, 24, -24, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_54hhi"]
+polygon = PackedVector2Array(24, -19.2, 24, 24, -24, 24, -24, -24, 19.2, -24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nty2a"]
+polygon = PackedVector2Array(24, -19.2, 24, 24, -19.2, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_msr4s"]
+polygon = PackedVector2Array(24, -24, 24, 24, -24, 24, -24, -19.2, -19.2, -24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n2hu4"]
+polygon = PackedVector2Array(24, -19.2, 24, 24, -19.2, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tmt4j"]
+polygon = PackedVector2Array(24, -24, 24, 24, -24, 24, -24, -19.2, -19.2, -24)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x8xsr"]
+texture = ExtResource("2_m4b1l")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_b1fon")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, 24, -24, 24)
+1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_7mro0")
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, 24, -24, 24)
+2:0/0 = 0
+2:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_nty2a")
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(24, -24, 24, 24, -24, 24)
+3:0/0 = 0
+3:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_n2hu4")
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(24, -24, 24, 24, -24, 24)
+0:1/0 = 0
+0:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_66lne")
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+1:1/0 = 0
+1:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_54hhi")
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+2:1/0 = 0
+2:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_msr4s")
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+3:1/0 = 0
+3:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_tmt4j")
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
 [resource]
 tile_size = Vector2i(48, 48)
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_v1q01")
+sources/1 = SubResource("TileSetAtlasSource_x8xsr")
