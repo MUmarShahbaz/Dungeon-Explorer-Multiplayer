@@ -23,7 +23,7 @@ func prepare_map():
 
 func _on_player_spawned(player: Player, death_count: int) -> void:
 	if death_count == 0:
-		QuickScripts.new_dialogue(null, \"res://scenes/dialogues/dialogue_on_start.tres\")
+		pass#QuickScripts.new_dialogue(null, \"res://scenes/dialogues/dialogue_on_start.tres\")
 	$Dungeon/Vignette.add_mini_map_vignette($PlayerSpawner.my_hud)
 "
 

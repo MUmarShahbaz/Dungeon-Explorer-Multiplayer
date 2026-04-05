@@ -53,3 +53,6 @@ func get_bounds(entity: Entity):
 	var br : Vector2 = collider.shape.get_rect().end
 	#     left, right, top, bottom, global left, global right, global top, global bottom
 	return [tl.x, br.x, tl.y, br.y, tl.x + gp.x, br.x + gp.x, tl.y + gp.y, br.y + gp.y]
+
+func get_lvl(num: int) -> PackedScene:
+	return load("res://lvl/%d.tscn" % num)

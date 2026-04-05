@@ -38,8 +38,6 @@
 [sub_resource type="GDScript" id="GDScript_tt30a"]
 script/source = "extends CanvasLayer
 
-var lvl1 = load(\"res://lvl/enter_the_dungeon.tscn\")
-
 @onready var Gamepad := $Menu/Controls/Gamepad
 @onready var Keyboard := $Menu/Controls/Keyboard
 
@@ -90,8 +88,9 @@ func _on_entity_stats_pressed() -> void:
 	change_state(states.Stats)
 
 func _on_play_pressed() -> void:
+	var start_lvl = QuickScripts.get_lvl(4)
 	await $Fade.fade_out()
-	get_tree().change_scene_to_packed(lvl1)
+	get_tree().change_scene_to_packed(start_lvl)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qra41"]
